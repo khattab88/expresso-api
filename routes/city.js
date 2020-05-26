@@ -23,7 +23,10 @@ router.get("/cities/:id", (req, res, next) => {
 
 router.post("/cities", (req, res, next) => {
     const body = req.body;
-    res.json(body);
+
+    citySvc.add({name: body.name});
+
+     res.json("Created!");
 });
 
 module.exports = router;

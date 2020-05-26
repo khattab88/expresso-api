@@ -4,10 +4,18 @@ const Country = require("../entities/country");
 const City = require("../entities/city");
 const Area = require("../entities/area");
 
-class CityService {
-    constructor () {}
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const dbName = "expresso";
+const dbUser = { userName: "expresso", password: "expresso_88" };
+const url = `mongodb+srv://${dbUser.userName}:${dbUser.password}@cluster0-9lvdt.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
-    get () {
+const client = new MongoClient(url);
+
+class CityService {
+    constructor() { }
+
+    get() {
         return [
             new City("1", "Cairo",
                 new Country("1", "Egypt"),
@@ -39,6 +47,35 @@ class CityService {
                     new Area("15", "El Raml")
                 ])
         ];
+    }
+
+    add(city) {
+        client.connect(function (err) {
+            console.log("Connected successfully to server");
+
+            const db = client.db(dbName);
+
+            db.collection("cities").insertOne({ name: city.name}, (err, result) => {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+
+                // console.log(result);
+            });
+
+            client.close();
+        });
+    }
+
+    getAll() {
+        client.connect(function (err) {
+            console.log("Connected successfully to server");
+
+            const db = client.db(dbName);
+
+            client.close();
+        });
     }
 }
 
