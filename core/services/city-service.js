@@ -61,7 +61,7 @@ class CityService {
                     return;
                 }
 
-                // console.log(result);
+                //console.log(result);
             });
 
             client.close();
