@@ -21,7 +21,7 @@ router.get("/cities/:id", (req, res, next) => {
     res.json(city);
 });
 
-router.post("/cities", (req, res, next) => {
+router.post("/api/cities", (req, res, next) => {
     const body = req.body;
 
     citySvc.add({name: body.name});
