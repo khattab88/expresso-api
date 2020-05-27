@@ -16,4 +16,8 @@ app.use((req, res, next) => {
 
 app.use(cityRoutes);
 
+app.get("/", (req, res, next) => {
+    res.send("hello!");
+});
+
 app.listen(8000);
