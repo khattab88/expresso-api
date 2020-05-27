@@ -20,4 +20,8 @@ app.get("/", (req, res, next) => {
     res.send("hello expresso!");
 });
 
-app.listen(8000);
+// app.listen(8000);
+
+app.listen(process.env.PORT, process.env.HOST, () => {
+    console.log("server started on " + process.env.HOST + ":" + process.env.PORT);
+});
