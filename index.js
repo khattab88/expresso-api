@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cityRoutes);
+// app.use(cityRoutes);
 
 app.get("/", (req, res, next) => {
     res.send("hello expresso!");
