@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const cityRoutes = require("./routes/city");
+const tagRoutes = require("./routes/tag");
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use((req, res, next) => {
 });
 
 app.use(cityRoutes);
+app.use(tagRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("hello expresso!");
