@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const CityService = require("../core/services/city-service");
-const citySvc = new CityService();
+const cityRepo = require("../repositories/city-repository");
 
 router.get("/api/cities", (req, res, next) => {
-    const cities = citySvc.get();
+    const cities = cityRepo.get();
     res.json(cities);
 });
 
 router.get("/api/cities/:id", (req, res, next) => {
     const id = req.params.id;
-    const city = citySvc.get().find(c => c.id === id);
+    const city = cityRepo.get().find(c => c.id === id);
 
     if(!city) {
         res.status(404).json("Not found!");
@@ -24,7 +23,7 @@ router.get("/api/cities/:id", (req, res, next) => {
 router.post("/api/cities", (req, res, next) => {
     const body = req.body;
 
-    citySvc.add({name: body.name});
+    cityRepo.add({name: body.name});
 
      res.json("Created!");
 });

@@ -1,12 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const cityRoutes = require("./routes/city");
-const tagRoutes = require("./routes/tag");
+const cityRoutes = require("./routes/city-routes");
+const tagRoutes = require("./routes/tag-routes");
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");

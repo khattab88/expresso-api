@@ -1,7 +1,7 @@
 import { urlencoded } from "body-parser";
 
 /* TEST */
-class UserService {
+class UserRepository {
     constructor() {}
 
     get() {
@@ -15,4 +15,4 @@ class UserService {
     }
 }
 
-module.exports = UserService;
+module.exports = new UserRepository();

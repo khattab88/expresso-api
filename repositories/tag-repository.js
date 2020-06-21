@@ -1,6 +1,6 @@
-const Tag = require("../entities/tag");
+const Tag = require("../core/entities/tag");
 
-class TagService {
+class TagRepository {
     constructor () {}
 
     get () {
@@ -31,4 +31,4 @@ class TagService {
     }
 }
 
-module.exports = TagService; 
+module.exports = new TagRepository(); 

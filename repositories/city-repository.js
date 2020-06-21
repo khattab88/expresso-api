@@ -1,8 +1,8 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable class-methods-use-this */
-const Country = require("../entities/country");
-const City = require("../entities/city");
-const Area = require("../entities/area");
+const Country = require("../core/entities/country");
+const City = require("../core/entities/city");
+const Area = require("../core/entities/area");
 
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
@@ -12,7 +12,7 @@ const url = `mongodb+srv://${dbUser.userName}:${dbUser.password}@cluster0-9lvdt.
 
 const client = new MongoClient(url);
 
-class CityService {
+class CityRepository {
     constructor() { }
 
     get() {
@@ -79,4 +79,4 @@ class CityService {
     }
 }
 
-module.exports = CityService;
+module.exports = new CityRepository();
