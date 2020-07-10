@@ -1,8 +1,57 @@
 const Tag = require("../core/entities/tag");
 
-class TagRepository {
-    constructor () {}
+const fs = require('fs');
+const path =require('path');
 
+class TagRepository {
+    constructor () {
+        this.dataFile = path.join(__dirname, "../data/tag-data.json");
+        this.tags = JSON.parse(fs.readFileSync(this.dataFile));
+    }
+
+    getAll() {
+        return this.tags;
+    }
+
+    getById(id) { 
+        return this.tags.find(tag => tag.id === id);
+    }
+
+    create(tag) {
+        const newId = ((+this.tags[this.tags.length - 1].id) + 1).toString();
+
+        const newTag = Object.assign({id: newId}, tag);
+        
+        this.tags.push(newTag);
+        this.save(this.tags);
+
+        return newTag;
+    }
+
+    update(tag) {
+        const index = this.tags.findIndex(t => t.id === tag.id);
+
+        this.tags.splice(index, 1, tag);
+
+        this.save(this.tags);
+    }
+
+    delete(id) {
+        const index = this.tags.findIndex(t => t.id === id);
+
+        this.tags.splice(index, 1);
+
+        this.save(this.tags);
+    }
+
+    save(tags) {
+        fs.writeFile(this.dataFile, JSON.stringify(tags, null, 4), err => {
+            if(err) throw new Error(err);
+        });
+    }
+
+    
+    /* OBSOLETE */
     get () {
         return [
             new Tag("1", "Offers"),

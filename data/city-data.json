@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "name": "Cairo",
+        "country": {
+            "id": "1",
+            "name": "Egypt"
+        },
+        "areas": [
+            {
+                "id": "1",
+                "name": "Heliopolis"
+            },
+            {
+                "id": "2",
+                "name": "Zamalek"
+            },
+            {
+                "id": "3",
+                "name": "DownTown"
+            },
+            {
+                "id": "4",
+                "name": "Nasr City"
+            },
+            {
+                "id": "5",
+                "name": "Maadi"
+            },
+            {
+                "id": "6",
+                "name": "Shoubra"
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Giza",
+        "country": {
+            "id": "1",
+            "name": "Egypt"
+        },
+        "areas": [
+            {
+                "id": "7",
+                "name": "Mohandessien"
+            },
+            {
+                "id": "8",
+                "name": "Dokki"
+            },
+            {
+                "id": "9",
+                "name": "Giza Square"
+            },
+            {
+                "id": "10",
+                "name": "Haram"
+            },
+            {
+                "id": "11",
+                "name": "6th October"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Alexandria",
+        "country": {
+            "id": "1",
+            "name": "Egypt"
+        },
+        "areas": [
+            {
+                "id": "12",
+                "name": "Mohandessien"
+            },
+            {
+                "id": "13",
+                "name": "Dokki"
+            },
+            {
+                "id": "14",
+                "name": "Giza Square"
+            },
+            {
+                "id": "15",
+                "name": "Haram"
+            }
+        ]
+    }
+]

@@ -1,31 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const cityRepo = require("../repositories/city-repository");
+const cityController = require("../controllers/city-controller");
 
-router.get("/api/cities", (req, res, next) => {
-    const cities = cityRepo.get();
-    res.json(cities);
-});
+router.route("/")
+        .get(cityController.getAllCities);
 
-router.get("/api/cities/:id", (req, res, next) => {
-    const id = req.params.id;
-    const city = cityRepo.get().find(c => c.id === id);
+router.route("/:id")
+        .get(cityController.getCity);
 
-    if(!city) {
-        res.status(404).json("Not found!");
-        return;
-    }
-
-    res.json(city);
-});
-
-router.post("/api/cities", (req, res, next) => {
-    const body = req.body;
-
-    cityRepo.add({name: body.name});
-
-     res.json("Created!");
-});
 
 module.exports = router;

@@ -1,10 +1,12 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable prettier/prettier */
 /* eslint-disable function-paren-newline */
 /* eslint-disable class-methods-use-this */
 const Country = require("../core/entities/country");
 const City = require("../core/entities/city");
 const Area = require("../core/entities/area");
 
-const mongodb = require('mongodb');
+const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const dbName = "expresso";
 const dbUser = { userName: "expresso", password: "expresso_88" };
@@ -12,71 +14,75 @@ const url = `mongodb+srv://${dbUser.userName}:${dbUser.password}@cluster0-9lvdt.
 
 const client = new MongoClient(url);
 
+const fs = require("fs");
+const path = require("path");
+
 class CityRepository {
-    constructor() { }
+  constructor() {}
 
-    get() {
-        return [
-            new City("1", "Cairo",
-                new Country("1", "Egypt"),
-                [
-                    new Area("1", "Heliopolis"),
-                    new Area("2", "Zamalek"),
-                    new Area("3", "DownTown"),
-                    new Area("4", "Nasr City"),
-                    new Area("5", "Maadi"),
-                    new Area("6", "Shoubra")
-                ]),
+  getAll() {
+    const cities = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "../data/city-data.json"))
+    );
+    return cities;
+  }
 
-            new City("2", "Giza",
-                new Country("1", "Egypt"),
-                [
-                    new Area("7", "Mohandessien"),
-                    new Area("8", "Dokki"),
-                    new Area("9", "Giza Square"),
-                    new Area("10", "Haram"),
-                    new Area("11", "6th October")
-                ]),
+  get() {
+    return [
+      new City("1", "Cairo", new Country("1", "Egypt"), [
+        new Area("1", "Heliopolis"),
+        new Area("2", "Zamalek"),
+        new Area("3", "DownTown"),
+        new Area("4", "Nasr City"),
+        new Area("5", "Maadi"),
+        new Area("6", "Shoubra"),
+      ]),
 
-            new City("3", "Alexandria",
-                new Country("1", "Egypt"),
-                [
-                    new Area("12", "San Stephano"),
-                    new Area("13", "DownTown"),
-                    new Area("14", "Sidi Beshr"),
-                    new Area("15", "El Raml")
-                ])
-        ];
-    }
+      new City("2", "Giza", new Country("1", "Egypt"), [
+        new Area("7", "Mohandessien"),
+        new Area("8", "Dokki"),
+        new Area("9", "Giza Square"),
+        new Area("10", "Haram"),
+        new Area("11", "6th October"),
+      ]),
 
-    add(city) {
-        client.connect(function (err) {
-            console.log("Connected successfully to server");
+      new City("3", "Alexandria", new Country("1", "Egypt"), [
+        new Area("12", "San Stephano"),
+        new Area("13", "DownTown"),
+        new Area("14", "Sidi Beshr"),
+        new Area("15", "El Raml"),
+      ]),
+    ];
+  }
 
-            const db = client.db(dbName);
+  add(city) {
+    client.connect(function (err) {
+      console.log("Connected successfully to server");
 
-            db.collection("cities").insertOne({ name: city.name}, (err, result) => {
-                if(err){
-                    console.log(err);
-                    return;
-                }
+      const db = client.db(dbName);
 
-                //console.log(result);
-            });
+      db.collection("cities").insertOne({ name: city.name }, (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
 
-            client.close();
-        });
-    }
+        //console.log(result);
+      });
 
-    getAll() {
-        client.connect(function (err) {
-            console.log("Connected successfully to server");
+      client.close();
+    });
+  }
 
-            const db = client.db(dbName);
+  // getAll() {
+  //     client.connect(function (err) {
+  //         console.log("Connected successfully to server");
 
-            client.close();
-        });
-    }
+  //         const db = client.db(dbName);
+
+  //         client.close();
+  //     });
+  // }
 }
 
 module.exports = new CityRepository();

@@ -1,13 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 
-const cityRoutes = require("./routes/city-routes");
-const tagRoutes = require("./routes/tag-routes");
+const cityRouter = require("./routes/city-routes");
+const tagRouter = require("./routes/tag-routes");
 
 const app = express();
 
+
+/* MIDDLEWARES */
+console.log(process.env.NODE_ENV);
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use(express.static(`${__dirname}/public`));
+
+if(process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,12 +27,16 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cityRoutes);
-app.use(tagRoutes);
+
+/* ROUTERS */
+app.use("/api/v1/cities", cityRouter);
+app.use("/api/v1/tags", tagRouter);
 
 
+/* ROOT ROUTE */
 app.get("/", (req, res) => {
-    res.send("hello expresso!");
+    res.send("Expresso API");
 });
 
-app.listen(process.env.PORT || 3000);
+
+module.exports = app;

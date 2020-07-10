@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresso API</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .jumbotron { margin-top: 20px; }
+        .resource { display: flex; }
+        .resource > .resource__name { 
+            width: 60px;
+            font-weight: 400; 
+        }
+        .resource > .resource__url { margin-left: 0 }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Expresso API</h1>
+            <p class="lead">JSON API for Expresso Project.</p>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="resource">
+                    <p class="resource__name">Tags:</p>
+                    <a class="resource__url" href="http://localhost:3000/api/v1/tags/">/api/v1/tags/</a>
+                </div> 
+            </li>
+            <li class="list-group-item">
+                <div class="resource">
+                    <p class="resource__name">Cities:</p>
+                    <a class="resource__url" href="http://localhost:3000/api/v1/cities/">/api/v1/cities/</a>
+                </div> 
+            </li>
+          </ul>
+    </div>
+</body>
+
+</html>

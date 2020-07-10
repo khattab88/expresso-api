@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const tagRepo = require("../repositories/tag-repository");
+const tagController = require("../controllers/tag-controller");
 
-router.get("/api/tags", (req, res, next) => {
-    const tags = tagRepo.get();
-    res.json(tags);
-});
+router.param("id", tagController.checkId);
+
+router.route("/")
+        .get(tagController.getAllTags)
+        .post(tagController.checkBody, tagController.createTag);
+
+router.route("/:id")
+        .get(tagController.getTag)
+        .patch(tagController.checkBody, tagController.updateTag)
+        .delete(tagController.deleteTag);
 
 module.exports = router;
