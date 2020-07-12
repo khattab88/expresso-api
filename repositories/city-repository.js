@@ -1,12 +1,21 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-console */
+/* eslint-disable prettier/prettier */
 /* eslint-disable import/newline-after-import */
 /* eslint-disable prettier/prettier */
 /* eslint-disable function-paren-newline */
 /* eslint-disable class-methods-use-this */
+const fs = require("fs");
+const path = require("path");
+const mongodb = require("mongodb");
+
 const Country = require("../core/entities/country");
 const City = require("../core/entities/city");
 const Area = require("../core/entities/area");
 
-const mongodb = require("mongodb");
+// eslint-disable-next-line prefer-destructuring
 const MongoClient = mongodb.MongoClient;
 const dbName = "expresso";
 const dbUser = { userName: "expresso", password: "expresso_88" };
@@ -14,11 +23,11 @@ const url = `mongodb+srv://${dbUser.userName}:${dbUser.password}@cluster0-9lvdt.
 
 const client = new MongoClient(url);
 
-const fs = require("fs");
-const path = require("path");
 
 class CityRepository {
-  constructor() {}
+  constructor() {
+    console.log("city repository");
+  }
 
   getAll() {
     const cities = JSON.parse(
@@ -61,10 +70,10 @@ class CityRepository {
 
       const db = client.db(dbName);
 
-      db.collection("cities").insertOne({ name: city.name }, (err, result) => {
+      db.collection("cities").insertOne({ name: city.name }, (error, result) => {
         if (err) {
-          console.log(err);
-          return;
+          console.log(error);
+          
         }
 
         //console.log(result);
