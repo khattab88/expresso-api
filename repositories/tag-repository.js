@@ -7,9 +7,6 @@ const Tag = require('../core/entities/tag');
 
 class TagRepository {
   constructor() {
-    // mongodb://127.0.0.1:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false
-    // mongodb+srv://expresso:expresso_88@expresso-cluster.vcmz3.mongodb.net/expresso?retryWrites=true&w=majority
-
     this.dataFile = path.join(__dirname, '../data/tag-data.json');
     this.tags = JSON.parse(fs.readFileSync(this.dataFile));
   }

@@ -1,12 +1,13 @@
 {
-    "env": "dev",
+    "env": "development",
     "dev": {
         "dbServer": "localhost:27017",
         "dbName": "expresso",
         "dbUser": {
             "userName": "expresso",
             "password": "expresso_88"
-        }
+        },
+    "connectionString": "mongodb://127.0.0.1:27017/expresso"
     },
     "staging": {
         "dbServer": "cluster0-9lvdt.mongodb.net",
@@ -14,6 +15,7 @@
         "dbUser": {
             "userName": "expresso",
             "password": "expresso_88"
-        }
+        },
+    "connectionString": "mongodb+srv://expresso:expresso_88@expresso-cluster.vcmz3.mongodb.net/expresso?retryWrites=true&w=majority"
     }
 }
