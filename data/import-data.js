@@ -10,6 +10,7 @@ const config = require("../config");
 
 const Tag = require("../models/tag-model");
 
+// CONNECT TO DATABASE
 const connectionString = config[config['env']].connectionString;
 mongoose
   .connect(connectionString, {
@@ -25,14 +26,30 @@ mongoose
       tag: Tag
   };
 
-  // READ DATA FILE(S)
-  const tags = JSON.parse(fs.readFileSync(`${__dirname}/tag-data.json`, "utf-8"));
-  // console.log(tags);
+  // READ DATA FILE
+  const readData = (type) => {
+    return JSON.parse(fs.readFileSync(`${__dirname}/${type}-data.json`, "utf-8"));
+  };
+
+  // DELETE EXSISTING DATA
+  const deleteData = async (type) => {
+      try {
+          await mapping[type].deleteMany();
+          console.log("data successfully deleted.");
+        }
+        catch (err) {
+            console.log(err);
+        }
+  
+        process.exit();
+   };
 
   // IMPORT DATA TO DB
-  const importData = async () => {
+  const importData = async (type) => {
       try {
-        await Tag.create(tags);
+        const data = readData(type);
+
+        await mapping[type].create(data);
         console.log("data successfully loaded.");
       }
       catch (err) {
@@ -40,27 +57,15 @@ mongoose
       }
 
       process.exit();
-  };
-  
-  // DELETE EXSISTING DATA
-  const deleteData = async () => {
-    try {
-        await Tag.deleteMany();
-        console.log("data successfully deleted.");
-      }
-      catch (err) {
-          console.log(err);
-      }
-
-      process.exit();
-  };
+   };
 
 
+const type = process.argv[3];
 if(process.argv[2] === "--import") {
-    importData();
+    importData(type);
 } else if(process.argv[2] === "--delete") {
-    deleteData();
+    deleteData(type);
 }
 
 
-/* CMD node data/import-data.js --delete OR --import  */
+/* CMD node data/import-data.js --delete || --import [TYPE]  */
