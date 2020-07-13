@@ -1,3 +1,3 @@
-const repo = require("./repositories/city-repository");
+const config = require("./config");
 
-console.log(repo.getAll());
+console.log(config[(config["env"])].connectionString);

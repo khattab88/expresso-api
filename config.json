@@ -1,6 +1,6 @@
 {
     "env": "development",
-    "dev": {
+    "development": {
         "dbServer": "localhost:27017",
         "dbName": "expresso",
         "dbUser": {
