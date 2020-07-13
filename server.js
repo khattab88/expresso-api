@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable dot-notation */
 /* eslint-disable prettier/prettier */
@@ -25,8 +26,6 @@ mongoose.connect(connectionString, {
     console.log(err);
     console.log("Unable to connect to DB.")
 });
-
-
 
 
 app.listen(process.env.PORT || 3000, () => {

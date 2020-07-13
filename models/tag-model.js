@@ -12,6 +12,8 @@ const tagSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Tag must have a name!'],
+    trim: true,
+    unique: true,
   }
 });
 
