@@ -36,9 +36,16 @@ exports.getAllTags = async (req, res) => {
       let filter = { ...req.query };
       let sortBy = req.query.sort;
       let fields = req.query.fields;
+      let paging = null;
+      if(req.query.page) {
+        paging = { 
+          page: (req.query.page * 1) -1,
+          pageSize: req.query.limit * 1
+        };
+      }
 
       // excecute query
-      const tags = await tagRepo.getAll(filter, sortBy, fields);
+      const tags = await tagRepo.getAll(filter, sortBy, fields, paging);
 
       // return resposne
       res.status(200).json({
@@ -52,7 +59,7 @@ exports.getAllTags = async (req, res) => {
     catch(err) {
       res.status(500).json({
           status: "fail",
-          message: err
+          message: err.message
       });
     }
 };
