@@ -30,6 +30,14 @@ exports.checkBody = (req, res, next) => {
   next();
 };
 
+exports.getPopularTags = async (req, res, next) => {
+  req.query.limit = "5";
+  req.query.sort = "name";
+  req.query.fields = "id,name";
+
+  next();
+};
+
 exports.getAllTags = async (req, res) => {
     try {
       // build query
@@ -43,9 +51,10 @@ exports.getAllTags = async (req, res) => {
           pageSize: req.query.limit * 1
         };
       }
+      let limit = req.query.limit * 1;
 
       // excecute query
-      const tags = await tagRepo.getAll(filter, sortBy, fields, paging);
+      const tags = await tagRepo.getAll(filter, sortBy, fields, paging, limit);
 
       // return resposne
       res.status(200).json({

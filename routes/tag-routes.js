@@ -8,6 +8,8 @@ const tagController = require('../controllers/tag-controller');
 
 // router.param('id', tagController.checkId);
 
+router.route("/popular").get(tagController.getPopularTags, tagController.getAllTags);
+
 router
   .route('/')
   .get(tagController.getAllTags)

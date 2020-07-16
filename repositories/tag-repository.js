@@ -12,7 +12,7 @@ const Tag = require("../models/tag-model");
 
 class TagRepository {
 
-  async query(filter, sortBy, fields, paging) {
+  async query(filter, sortBy, fields, paging, limit) {
     try {
       let query = null;
 
@@ -63,6 +63,11 @@ class TagRepository {
         // query = query.skip(skip).limit(pageSize); //(DISABLED)
       }
 
+      // 6) limiting (TOP n)
+      if(limit) {
+        query = query.limit(limit);
+      }
+
       /// query.sort().select().skip().limit()...
       return query;
     } 
@@ -75,10 +80,10 @@ class TagRepository {
     return await Tag.countDocuments();
   }
 
-  async getAll(filter, sortBy, fields, paging) {
+  async getAll(filter, sortBy, fields, paging, limit) {
     try {
       // excecute query
-      const tags = await this.query(filter, sortBy, fields, paging);
+      const tags = await this.query(filter, sortBy, fields, paging, limit);
       return tags;
     }
     catch(err) {
