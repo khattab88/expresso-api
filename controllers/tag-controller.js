@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable node/no-unsupported-features/es-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
 const tagRepo = require('../repositories/tag-repository');
@@ -33,17 +35,23 @@ exports.getAllTags = async (req, res) => {
       // build query object
 
       // 1) basic filtering
-      let queryObj = { ...req.query };
+      let filter = { ...req.query };
       const excludedFields = ["sort", "page", "limit", "fields"];
-      excludedFields.forEach(field => delete queryObj[field]);
+      excludedFields.forEach(field => delete filter[field]);
 
       // 2) advanced filtering
-      // let queryStr = JSON.stringify(queryObj);
+      // let queryStr = JSON.stringify(filter);
       // queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
-      // queryObj = JSON.parse(queryStr);
-      // console.log(queryObj);
+      // filter = JSON.parse(queryStr);
+      // console.log(filter);
 
-      const tags = await tagRepo.getAll(queryObj);
+      // 3) sorting
+      let sortBy = null;
+      if(req.query.sort) {
+        sortBy = req.query.sort.split(',').join(' ');
+      }
+
+      const tags = await tagRepo.getAll(filter, sortBy);
 
       res.status(200).json({
         status: 'success',

@@ -10,13 +10,24 @@ const Tag = require("../models/tag-model");
 
 class TagRepository {
 
-  async getAll(queryObj) {
-    try {
-      const query = Tag.find(queryObj);
-      // const query = Tag.find().where("name").equals("Offers");
+  query(filter, sortBy) {
+    let query = Tag.find(filter);
+    // const query = Tag.find().where("name").equals("Offers");
 
+    if(sortBy) {
+      query = query.sort(sortBy);
+    } else {
+      // default sorting
+      query = query.sort("name");
+    }
+
+    return query;
+  }
+
+  async getAll(filter, sortBy) {
+    try {
       // excecute query
-      const tags = await query;
+      const tags = await this.query(filter, sortBy);
       return tags;
     }
     catch(err) {
