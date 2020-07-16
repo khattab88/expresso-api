@@ -10,24 +10,53 @@ const Tag = require("../models/tag-model");
 
 class TagRepository {
 
-  query(filter, sortBy) {
-    let query = Tag.find(filter);
-    // const query = Tag.find().where("name").equals("Offers");
+  query(filter, sortBy, fields) {
+    try {
+      let query = null;
 
-    if(sortBy) {
-      query = query.sort(sortBy);
-    } else {
-      // default sorting
-      query = query.sort("name");
+      // 1) basic filtering
+      const excluded = ["sort", "page", "limit", "fields"];
+      excluded.forEach(field => delete filter[field]);
+
+      // 2) advanced filtering
+      // let queryStr = JSON.stringify(filter);
+      // queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
+      // filter = JSON.parse(queryStr);
+
+      // CREATE QUERY OBJECT
+      query = Tag.find(filter);
+      /// const query = Tag.find().where("name").equals("Offers");
+
+      // 3) sorting
+      if(sortBy) {
+        sortBy = sortBy.split(',').join(' ');
+        query.sort(sortBy);
+      } else {
+        // default sorting
+        query = query.sort("name");
+      }
+
+      // 4) projecting
+      if(fields) {
+        fields = fields.split(",").join(" ");
+        query.select(fields);
+      } else {
+        const excludedFields = ["-_id", "-__v"].join(" ");
+        query = query.select(excludedFields);
+      }
+
+      return query;
+    } 
+    catch (err) {
+      console.error(err);
+      throw new Error(err);
     }
-
-    return query;
   }
 
-  async getAll(filter, sortBy) {
+  async getAll(filter, sortBy, fields) {
     try {
       // excecute query
-      const tags = await this.query(filter, sortBy);
+      const tags = await this.query(filter, sortBy, fields);
       return tags;
     }
     catch(err) {
