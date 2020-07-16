@@ -30,21 +30,26 @@ exports.checkBody = (req, res, next) => {
 
 exports.getAllTags = async (req, res) => {
     try {
-        const tags = await tagRepo.getAll();
+      // build query object
+      const queryObj = { ...req.query };
+      const excludedFields = ["sort", "page", "limit", "fields"];
+      excludedFields.forEach(field => delete queryObj[field]);
 
-        res.status(200).json({
-          status: 'success',
-          count: tags.length,
-          data: {
-            tags: tags,
-          },
-        });
+      const tags = await tagRepo.getAll(queryObj);
+
+      res.status(200).json({
+        status: 'success',
+        count: tags.length,
+        data: {
+          tags: tags,
+        },
+      });
     }
     catch(err) {
-        res.status(500).json({
-            status: "fail",
-            message: err
-        });
+      res.status(500).json({
+          status: "fail",
+          message: err
+      });
     }
 };
 

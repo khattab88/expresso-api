@@ -10,9 +10,13 @@ const Tag = require("../models/tag-model");
 
 class TagRepository {
 
-  async getAll() {
+  async getAll(queryObj) {
     try {
-      const tags = await Tag.find();
+      const query = Tag.find(queryObj);
+      // const query = Tag.find().where("name").equals("Offers");
+
+      // excecute query
+      const tags = await query;
       return tags;
     }
     catch(err) {
