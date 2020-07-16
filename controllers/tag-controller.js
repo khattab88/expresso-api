@@ -31,9 +31,17 @@ exports.checkBody = (req, res, next) => {
 exports.getAllTags = async (req, res) => {
     try {
       // build query object
-      const queryObj = { ...req.query };
+
+      // 1) basic filtering
+      let queryObj = { ...req.query };
       const excludedFields = ["sort", "page", "limit", "fields"];
       excludedFields.forEach(field => delete queryObj[field]);
+
+      // 2) advanced filtering
+      // let queryStr = JSON.stringify(queryObj);
+      // queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
+      // queryObj = JSON.parse(queryStr);
+      // console.log(queryObj);
 
       const tags = await tagRepo.getAll(queryObj);
 
