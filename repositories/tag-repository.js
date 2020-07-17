@@ -4,14 +4,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable prettier/prettier */
-const fs = require('fs');
-const path = require('path');
-
 const Tag = require("../models/tag-model");
 
 
 class TagRepository {
 
+  /* OBSOLETE */
   async query(filter, sortBy, fields, paging, limit) {
     try {
       let query = null;
@@ -80,7 +78,18 @@ class TagRepository {
     return await Tag.countDocuments();
   }
 
-  async getAll(filter, sortBy, fields, paging, limit) {
+  async getAll(query) {
+    try {
+      const tags = await Tag.find(query);
+      return tags; 
+    }
+    catch(err) {
+      throw new Error(err);
+    }
+  }
+
+  /* OBSOLETE */
+  async get(filter, sortBy, fields, paging, limit) {
     try {
       // excecute query
       const tags = await this.query(filter, sortBy, fields, paging, limit);

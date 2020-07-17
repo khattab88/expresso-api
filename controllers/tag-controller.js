@@ -2,7 +2,10 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
+const QueryBuilder = require('./query-builder');
+const Tag = require('../models/tag-model');
 const tagRepo = require('../repositories/tag-repository');
+
 
 /* OBSOLETE */
 exports.checkId = (req, res, next, val) => {
@@ -53,8 +56,12 @@ exports.getAllTags = async (req, res) => {
       }
       let limit = req.query.limit * 1;
 
+
       // excecute query
-      const tags = await tagRepo.getAll(filter, sortBy, fields, paging, limit);
+      // const tags = await tagRepo.get(filter, sortBy, fields, paging, limit);
+
+      const query = new QueryBuilder(Tag, req.query).build();
+      const tags = await tagRepo.getAll(query);
 
       // return resposne
       res.status(200).json({
@@ -66,6 +73,7 @@ exports.getAllTags = async (req, res) => {
       });
     }
     catch(err) {
+      console.log(err);
       res.status(500).json({
           status: "fail",
           message: err.message

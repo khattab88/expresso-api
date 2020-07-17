@@ -25,10 +25,7 @@ const client = new MongoClient(url);
 
 
 class CityRepository {
-  constructor() {
-    console.log("city repository");
-  }
-
+  
   getAll() {
     const cities = JSON.parse(
       fs.readFileSync(path.join(__dirname, "../data/city-data.json"))
