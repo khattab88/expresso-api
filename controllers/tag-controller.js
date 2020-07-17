@@ -44,23 +44,10 @@ exports.getPopularTags = async (req, res, next) => {
 exports.getAllTags = async (req, res) => {
     try {
       // build query
-      let filter = { ...req.query };
-      let sortBy = req.query.sort;
-      let fields = req.query.fields;
-      let paging = null;
-      if(req.query.page) {
-        paging = { 
-          page: (req.query.page * 1) -1,
-          pageSize: req.query.limit * 1
-        };
-      }
-      let limit = req.query.limit * 1;
-
+      const query = new QueryBuilder(Tag, req.query).build();
 
       // excecute query
       // const tags = await tagRepo.get(filter, sortBy, fields, paging, limit);
-
-      const query = new QueryBuilder(Tag, req.query).build();
       const tags = await tagRepo.getAll(query);
 
       // return resposne
@@ -73,7 +60,6 @@ exports.getAllTags = async (req, res) => {
       });
     }
     catch(err) {
-      console.log(err);
       res.status(500).json({
           status: "fail",
           message: err.message
