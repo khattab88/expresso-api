@@ -14,4 +14,6 @@ export default class Repository {
     async update (id, attrs) { throw new Error("Not implemented yet!"); }
 
     async delete (id) { throw new Error("Not implemented yet!"); }
+
+    async getCount() { throw new Error("Not implemented yet!"); }
 }

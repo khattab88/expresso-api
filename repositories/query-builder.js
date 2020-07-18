@@ -8,26 +8,9 @@ class QueryBuilder {
   constructor(query, queryString) {
     this.query = query;
     this.queryString = queryString;
-
-    ///this.originalQuery = query;
   }
 
-  build() {
-    try {
-      this.filtering();
-      this.sorting();
-      this.projection();
-      this.pagination();
-      this.limiting();
-
-      return this.query;
-    }
-    catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  filtering() {
+  filter() {
     const queryParams = { ...this.queryString };
 
     // eslint-disable-next-line node/no-unsupported-features/es-syntax
@@ -43,10 +26,10 @@ class QueryBuilder {
     filter = JSON.parse(queryStr);
 
     this.query = this.query.find(filter);
-    return this.query;
+    return this;
   }
 
-  sorting() {
+  sort() {
     const queryParams = { ...this.queryString };
     let sortBy = queryParams.sort;
 
@@ -58,10 +41,10 @@ class QueryBuilder {
       this.query = this.query.sort("name");
     }
 
-    return this.query;
+    return this;
   }
 
-  projection() {
+  project() {
     const queryParams = { ...this.queryString };
     let fields = queryParams.fields;
 
@@ -73,10 +56,10 @@ class QueryBuilder {
       this.query = this.query.select(excludedFields);
     }
 
-    return this.query;
+    return this;
   }
 
-  pagination() {
+  paginate() {
     const queryParams = { ...this.queryString };
     let paging = null;
 
@@ -93,20 +76,16 @@ class QueryBuilder {
       pageSize = paging.pageSize;
       skip = page * pageSize;
 
-      // check for non-exsisting page
-      //const count = this.originalQuery.countDocuments();
-      //if (skip >= count) throw new Error("this page does not exist!");
-
       this.query = this.query.skip(skip).limit(pageSize);
     } else {
       // default paging
       // this.query = this.query.skip(skip).limit(pageSize); //(DISABLED)
     }
 
-    return this.query;
+    return this;
   }
 
-  limiting() {
+  limit() {
     const queryParams = { ...this.queryString };
     const limit = queryParams.limit * 1;
 
@@ -114,7 +93,7 @@ class QueryBuilder {
       this.query = this.query.limit(limit);
     }
 
-    return this.query;
+    return this;
   }
 
 }

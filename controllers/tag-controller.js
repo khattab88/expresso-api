@@ -2,7 +2,7 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
-const QueryBuilder = require('./query-builder');
+const QueryBuilder = require('../repositories/query-builder');
 const Tag = require('../models/tag-model');
 const tagRepo = require('../repositories/tag-repository');
 
@@ -44,10 +44,14 @@ exports.getPopularTags = async (req, res, next) => {
 exports.getAllTags = async (req, res) => {
     try {
       // build query
-      const query = new QueryBuilder(Tag, req.query).build();
+      const query = new QueryBuilder(Tag.find(), req.query)
+                        .filter()
+                        .sort()
+                        .project()
+                        .paginate()
+                        .limit().query; 
 
       // excecute query
-      // const tags = await tagRepo.get(filter, sortBy, fields, paging, limit);
       const tags = await tagRepo.getAll(query);
 
       // return resposne
