@@ -1,0 +1,1317 @@
+[
+    {
+        "name": "McDonald's Menu",
+        "restaurant": {
+            "name": "McDonald's",
+            "slogan": "I'm lovin' it",
+            "image": "web_cover_Mcd.png",
+            "deliveryTime": 25,
+            "deliveryFee": 20,
+            "specialOffers": true,
+            "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"]
+        },
+        "menuSections": [
+            {
+                "name": "Sandwiches",
+                "menuItems": [
+                    {
+                        "name": "Double Cheese Burger",
+                        "image": "item-1.png",
+                        "price": 70,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cheese Burger",
+                        "image": "item-2.png",
+                        "price": 50,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Big Mac",
+                        "image": "item-3.png",
+                        "price": 80,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mac Royale",
+                        "image": "item-4.png",
+                        "price": 90,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Sides",
+                "menuItems": [
+                    {
+                        "name": "Spicy Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Spicy Chicken Strips"
+                    },
+                    {
+                        "name": "Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Chicken Strips"
+                    }
+                ]
+            },
+            {
+                "name": "Salads",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Specialities",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Beverages",
+                "menuItems": [
+                    {
+                        "name": "Coca-Cola",
+                        "image": "item-5.png",
+                        "price": 10,
+                        "desc": "Coca-Cola 160ml"
+                    },
+                    {
+                        "name": "Premium Cappuccino",
+                        "image": "item-6.png",
+                        "price": 25,
+                        "desc": "Premium Cappuccino"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "KFC Menu",
+        "restaurant": {
+            "name": "KFC",
+            "slogan": "Finger Lickin Good",
+            "image": "cover_oage__2_.jpg",
+            "deliveryTime": 30,
+            "deliveryFee": 20,
+            "specialOffers": true,
+            "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        },
+        "menuSections": [
+            {
+                "name": "Sandwiches",
+                "menuItems": [
+                    {
+                        "name": "Double Cheese Burger",
+                        "image": "item-1.png",
+                        "price": 70,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cheese Burger",
+                        "image": "item-2.png",
+                        "price": 50,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Big Mac",
+                        "image": "item-3.png",
+                        "price": 80,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mac Royale",
+                        "image": "item-4.png",
+                        "price": 90,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Sides",
+                "menuItems": [
+                    {
+                        "name": "Spicy Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Spicy Chicken Strips"
+                    },
+                    {
+                        "name": "Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Chicken Strips"
+                    }
+                ]
+            },
+            {
+                "name": "Salads",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Specialities",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Beverages",
+                "menuItems": [
+                    {
+                        "name": "Coca-Cola",
+                        "image": "item-5.png",
+                        "price": 10,
+                        "desc": "Coca-Cola 160ml"
+                    },
+                    {
+                        "name": "Premium Cappuccino",
+                        "image": "item-6.png",
+                        "price": 25,
+                        "desc": "Premium Cappuccino"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Pizza Hut Menu",
+        "restaurant": {
+            "name": "Pizza Hut",
+            "slogan": "Finger Lickin Good",
+            "image": "cover_oage__2_.jpg",
+            "deliveryTime": 30,
+            "deliveryFee": 20,
+            "specialOffers": true,
+            "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        },
+        "menuSections": [
+            {
+                "name": "Sandwiches",
+                "menuItems": [
+                    {
+                        "name": "Double Cheese Burger",
+                        "image": "item-1.png",
+                        "price": 70,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cheese Burger",
+                        "image": "item-2.png",
+                        "price": 50,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Big Mac",
+                        "image": "item-3.png",
+                        "price": 80,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mac Royale",
+                        "image": "item-4.png",
+                        "price": 90,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Sides",
+                "menuItems": [
+                    {
+                        "name": "Spicy Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Spicy Chicken Strips"
+                    },
+                    {
+                        "name": "Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Chicken Strips"
+                    }
+                ]
+            },
+            {
+                "name": "Salads",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Specialities",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Beverages",
+                "menuItems": [
+                    {
+                        "name": "Coca-Cola",
+                        "image": "item-5.png",
+                        "price": 10,
+                        "desc": "Coca-Cola 160ml"
+                    },
+                    {
+                        "name": "Premium Cappuccino",
+                        "image": "item-6.png",
+                        "price": 25,
+                        "desc": "Premium Cappuccino"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Burger King Menu",
+        "restaurant": {
+            "name": "Burger King",
+            "slogan": "Finger Lickin Good",
+            "image": "cover_oage__2_.jpg",
+            "deliveryTime": 30,
+            "deliveryFee": 20,
+            "specialOffers": true,
+            "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        },
+        "menuSections": [
+            {
+                "name": "Sandwiches",
+                "menuItems": [
+                    {
+                        "name": "Double Cheese Burger",
+                        "image": "item-1.png",
+                        "price": 70,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cheese Burger",
+                        "image": "item-2.png",
+                        "price": 50,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Big Mac",
+                        "image": "item-3.png",
+                        "price": 80,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mac Royale",
+                        "image": "item-4.png",
+                        "price": 90,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Sides",
+                "menuItems": [
+                    {
+                        "name": "Spicy Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Spicy Chicken Strips"
+                    },
+                    {
+                        "name": "Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Chicken Strips"
+                    }
+                ]
+            },
+            {
+                "name": "Salads",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Specialities",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Beverages",
+                "menuItems": [
+                    {
+                        "name": "Coca-Cola",
+                        "image": "item-5.png",
+                        "price": 10,
+                        "desc": "Coca-Cola 160ml"
+                    },
+                    {
+                        "name": "Premium Cappuccino",
+                        "image": "item-6.png",
+                        "price": 25,
+                        "desc": "Premium Cappuccino"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Cook Door Menu",
+        "restaurant": {
+            "name": "Cook Door",
+            "slogan": "Makin' it great",
+            "image": "1900x1427.jpg",
+            "deliveryTime": 40,
+            "deliveryFee": 15,
+            "specialOffers": false,
+            "tags": ["Offers", "American", "Fast Food", "Italian", "Pizza"]
+        },
+        "menuSections": [
+            {
+                "name": "Sandwiches",
+                "menuItems": [
+                    {
+                        "name": "Double Cheese Burger",
+                        "image": "item-1.png",
+                        "price": 70,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cheese Burger",
+                        "image": "item-2.png",
+                        "price": 50,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Big Mac",
+                        "image": "item-3.png",
+                        "price": 80,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mac Royale",
+                        "image": "item-4.png",
+                        "price": 90,
+                        "desc": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                        "options": [
+                            {
+                                "name": "Choice of bun or lettuce wrap",
+                                "type": "Required",
+                                "optionItems": [
+                                    {
+                                        "name": "Potato Bun",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Lettuce Wrap",
+                                        "price": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Choice of cheese",
+                                "type": "Optional",
+                                "optionItems": [
+                                    {
+                                        "name": "No Cheese",
+                                        "price": 0
+                                    },
+                                    {
+                                        "name": "Regular",
+                                        "price": 3
+                                    },
+                                    {
+                                        "name": "Cheddar",
+                                        "price": 7
+                                    },
+                                    {
+                                        "name": "Spicy",
+                                        "price": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Sides",
+                "menuItems": [
+                    {
+                        "name": "Spicy Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Spicy Chicken Strips"
+                    },
+                    {
+                        "name": "Chicken Strips",
+                        "image": "item-7.png",
+                        "price": 20,
+                        "desc": "2 Pcs of Chicken Strips"
+                    }
+                ]
+            },
+            {
+                "name": "Salads",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Specialities",
+                "menuItems": [
+                    {
+                        "name": "Green Salas",
+                        "image": "item-8.png",
+                        "price": 30,
+                        "desc": "Green Salad"
+                    },
+                    {
+                        "name": "Ceaser Salad",
+                        "image": "item-9.png",
+                        "price": 40,
+                        "desc": "Caeser Salad"
+                    }
+                ]
+            },
+            {
+                "name": "Beverages",
+                "menuItems": [
+                    {
+                        "name": "Coca-Cola",
+                        "image": "item-5.png",
+                        "price": 10,
+                        "desc": "Coca-Cola 160ml"
+                    },
+                    {
+                        "name": "Premium Cappuccino",
+                        "image": "item-6.png",
+                        "price": 25,
+                        "desc": "Premium Cappuccino"
+                    }
+                ]
+            }
+        ]
+    }
+]

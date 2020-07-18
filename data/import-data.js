@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const config = require("../config");
 
 const Tag = require("../models/tag-model");
+const Menu = require("../models/menu-model");
 
 // CONNECT TO DATABASE
 const connectionString = config[config['env']].connectionString;
@@ -23,7 +24,8 @@ mongoose
 
 
   const mapping = {
-      tag: Tag
+      tag: Tag,
+      menu: Menu
   };
 
   // READ DATA FILE
