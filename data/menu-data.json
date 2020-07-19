@@ -8,6 +8,7 @@
             "deliveryTime": 25,
             "deliveryFee": 20,
             "specialOffers": true,
+            "rating": 4.5,
             "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"]
         },
         "menuSections": [
@@ -271,6 +272,7 @@
             "deliveryTime": 30,
             "deliveryFee": 20,
             "specialOffers": true,
+            "rating": 4.3,
             "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
         },
         "menuSections": [
@@ -534,6 +536,7 @@
             "deliveryTime": 30,
             "deliveryFee": 20,
             "specialOffers": true,
+            "rating": 4.5,
             "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
         },
         "menuSections": [
@@ -797,6 +800,7 @@
             "deliveryTime": 30,
             "deliveryFee": 20,
             "specialOffers": true,
+            "rating": 4,
             "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
         },
         "menuSections": [
@@ -1060,6 +1064,7 @@
             "deliveryTime": 40,
             "deliveryFee": 15,
             "specialOffers": false,
+            "rating": 4.3,
             "tags": ["Offers", "American", "Fast Food", "Italian", "Pizza"]
         },
         "menuSections": [

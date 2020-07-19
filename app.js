@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 const cityRouter = require("./routes/city-routes");
 const tagRouter = require("./routes/tag-routes");
+const menuRouter = require("./routes/menu-routes");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 /* ROUTERS */
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/tags", tagRouter);
+app.use("/api/v1/menus", menuRouter);
 
 
 /* ROOT ROUTE */

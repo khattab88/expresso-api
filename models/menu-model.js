@@ -30,7 +30,12 @@ const menuSchema = new mongoose.Schema({
         },
         deliveryTime: Number,
         deliveryFee: Number,
-        specialOffers: Boolean
+        specialOffers: Boolean,
+        "rating": {
+            type: Number,
+            default: true,
+        },
+        "tags": [String]
     }
     // TODO: complete the rest of fields...
 });
