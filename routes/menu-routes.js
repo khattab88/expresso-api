@@ -16,6 +16,10 @@ const menuController = require('../controllers/menu-controller');
 //   .delete(menuController.delete);
 
 router
+    .route("/stats")
+    .get(menuController.getStats);
+
+router
     .route("/")
     .get(menuController.getAllMenus);
 

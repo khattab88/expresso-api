@@ -3,10 +3,29 @@ const Menu = require('../models/menu-model');
 
 class MenuRepository {
 
-    async getStats() { throw new Error("Not implemented yet!"); }
+    async getStats() {
+      return await Menu.aggregate([
+        // { 
+        //   $match: { specialOffers: { $eq: true } }
+        // },
+        { 
+          $group: {
+            _id: "$restaurant.rating", 
+            num: { $sum: 1 },
+            maxRating: { $max: "$restaurant.rating" }, 
+            minRating: { $min: "$restaurant.rating" },
+            avgRating: { $avg: "$restaurant.rating" }
+          }
+        },
+        { 
+          $sort: { maxRating: -1 } 
+        }
+      ]);  
+
+  }
 
     async getCount() {
-        return await Tag.countDocuments();
+        return await Menu.countDocuments();
       }
     
       async getAll() {
@@ -60,6 +79,7 @@ class MenuRepository {
           throw new Error(err);
         }
       }
+      
     }
 
 module.exports = new MenuRepository();    

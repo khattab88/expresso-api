@@ -1,0 +1,52 @@
+[
+    {
+        "name": "McDonald's",
+        "slogan": "I'm lovin' it",
+        "image": "web_cover_Mcd.png",
+        "deliveryTime": 25,
+        "deliveryFee": 20,
+        "specialOffers": true,
+        "rating": 4.5,
+        "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"]
+    },
+    {
+        "name": "KFC",
+        "slogan": "Finger Lickin Good",
+        "image": "cover_oage__2_.jpg",
+        "deliveryTime": 30,
+        "deliveryFee": 20,
+        "specialOffers": true,
+        "rating": 4.3,
+        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+    },
+    {
+        "name": "Pizza Hut",
+        "slogan": "Finger Lickin Good",
+        "image": "cover_oage__2_.jpg",
+        "deliveryTime": 30,
+        "deliveryFee": 20,
+        "specialOffers": false,
+        "rating": 4.5,
+        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+    },
+    {
+        "name": "Burger King",
+        "slogan": "Finger Lickin Good",
+        "image": "cover_oage__2_.jpg",
+        "deliveryTime": 30,
+        "deliveryFee": 20,
+        "specialOffers": true,
+        "rating": 4,
+        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+    },
+    {
+        "name": "Cook Door",
+        "slogan": "Makin' it great",
+        "image": "1900x1427.jpg",
+        "deliveryTime": 40,
+        "deliveryFee": 15,
+        "specialOffers": false,
+        "rating": 4.3,
+        "tags": ["Offers", "American", "Fast Food", "Italian", "Pizza"]
+    }
+]

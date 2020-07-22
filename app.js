@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const cityRouter = require("./routes/city-routes");
+const restaurantRouter = require("./routes/restaurant-routes");
 const tagRouter = require("./routes/tag-routes");
 const menuRouter = require("./routes/menu-routes");
 
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
 
 /* ROUTERS */
 app.use("/api/v1/cities", cityRouter);
+app.use("/api/v1/restaurants", restaurantRouter);
 app.use("/api/v1/tags", tagRouter);
 app.use("/api/v1/menus", menuRouter);
 

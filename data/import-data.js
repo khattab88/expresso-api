@@ -8,6 +8,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const config = require("../config");
 
+const Restaurant = require("../models/restaurant-model");
 const Tag = require("../models/tag-model");
 const Menu = require("../models/menu-model");
 
@@ -24,6 +25,7 @@ mongoose
 
 
   const mapping = {
+      restaurant: Restaurant,
       tag: Tag,
       menu: Menu
   };
