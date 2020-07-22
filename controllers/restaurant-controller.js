@@ -61,3 +61,21 @@ exports.getAllRestaurants = async (req, res) => {
     }
   };
   
+exports.createRestaurant = async (req, res) => {
+  try {
+    const newRestaurant = await restaurantRepo.create(req.body);
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        restaurant: newRestaurant,
+      }
+    });
+}
+catch(err) {
+    res.status(400).json({
+        status: 'fail',
+        message: err.message
+    });
+}
+};

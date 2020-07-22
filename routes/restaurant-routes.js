@@ -14,6 +14,7 @@ router
 
 router
     .route("/")
-    .get(restaurantController.getAllRestaurants);
+    .get(restaurantController.getAllRestaurants)
+    .post(restaurantController.createRestaurant);
 
 module.exports = router;

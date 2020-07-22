@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const slugify = require('slugify');
+const validator = require('validator')
 
 const restaurantSchema = new mongoose.Schema({
     id: {
@@ -23,7 +24,15 @@ const restaurantSchema = new mongoose.Schema({
         trim: true,
         unique: false,
     },
-    deliveryTime: Number,
+    deliveryTime: {
+        type: Number,
+        validate: {
+            message: "delivery time ({VALUE}) must be less than 60!",
+            validator: function(val) {
+                return val < 60;
+            }
+        }
+    },
     deliveryFee: Number,
     specialOffers: Boolean,
     rating: {
@@ -32,19 +41,25 @@ const restaurantSchema = new mongoose.Schema({
         max: [5, "rating must be below 5.0!"],
     },
     tags: [String],
-    slug: String,
+    slug: {
+        type: String,
+        validate: {
+            validator: (val) => validator.isSlug(val),
+            message: "slug ({VALUE}) is not a valid slug!"
+        }
+    },
     createdAt: {
         type: Date,
         default: new Date(),
     },
-    level: {
-        type: String,
-        required: [true, "Restaurant must have a level!"],
-        enum: {
-            values: ["A", "B", "C"],
-            message: "Level is either A, B or C!"
-        }
-    }
+    // level: {
+    //     type: String,
+    //     required: [true, "Restaurant must have a level!"],
+    //     enum: {
+    //         values: ["A", "B", "C"],
+    //         message: "Level is either A, B or C!"
+    //     }
+    // }
 }, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
@@ -52,7 +67,7 @@ const restaurantSchema = new mongoose.Schema({
 
 // virtual properties
 restaurantSchema.virtual("deliveryRate").get(function() {
-    return (this.deliveryFee / this.deliveryTime).toFixed(2);
+    return (this.deliveryFee / this.deliveryTime).toFixed(2) * 1;
 });
 
 
