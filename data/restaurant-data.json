@@ -21,7 +21,7 @@
     },
     {
         "name": "Pizza Hut",
-        "slogan": "Finger Lickin Good",
+        "slogan": "Finger Lickin",
         "image": "cover_oage__2_.jpg",
         "deliveryTime": 30,
         "deliveryFee": 30,
@@ -31,7 +31,7 @@
     },
     {
         "name": "Burger King",
-        "slogan": "Finger Lickin Good",
+        "slogan": "Finger Lickin Great",
         "image": "cover_oage__2_.jpg",
         "deliveryTime": 30,
         "deliveryFee": 25,
