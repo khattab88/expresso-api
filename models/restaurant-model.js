@@ -45,6 +45,7 @@ restaurantSchema.virtual("deliveryRate").get(function() {
     return (this.deliveryFee / this.deliveryTime).toFixed(2);
 });
 
+
 // Document middleware: runs BEFORE .save() and .create()
 restaurantSchema.pre("save", function(next) {
     // eslint-disable-next-line prefer-destructuring
@@ -72,6 +73,13 @@ restaurantSchema.post(/^find/, function(docs, next) {
     // console.log(docs);
     next();
 });
+
+// Aggregate middleware: runs BEFORE .aggregate()
+restaurantSchema.pre("aggregate", function(next) {
+    console.log(this.pipeline());
+    next();
+});
+
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
