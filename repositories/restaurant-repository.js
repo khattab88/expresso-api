@@ -3,6 +3,26 @@ const Restaurant = require("../models/restaurant-model");
 
 class RestaurantRepository {
 
+  async getTopRating(count) {
+    return await Restaurant.aggregate([
+      // {
+      //   $group: {
+      //     _id: "$name",
+      //     rating: { $sum: "$rating" }
+      //   }
+      // },
+      {
+        $sort: { rating: -1 }
+      },
+      { $limit : count },
+      // {
+      //   $unwind: "$tags"
+      // }
+      { $addFields: { id: "$id", name: "$name" } },
+      { $project: { id: 1, name: 1, rating: 1, _id: 0 } }
+    ]);
+  }
+
   async getStats() {
     return await Restaurant.aggregate([
       // { 

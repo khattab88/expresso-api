@@ -5,6 +5,10 @@ const router = express.Router();
 const restaurantController = require('../controllers/restaurant-controller');
 
 router
+    .route("/top/:count")
+    .get(restaurantController.getTopRating);
+
+router
     .route("/stats")
     .get(restaurantController.getStats);
 
