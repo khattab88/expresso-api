@@ -15,6 +15,7 @@ const restaurantSchema = new mongoose.Schema({
         required: [true, 'Restaurant must have a name!'],
         trim: true,
         unique: false,
+        maxlength: [50, "Restaurant must have less than or equal 50 characters!"]
     },
     slogan: {
         type: String,
@@ -27,13 +28,22 @@ const restaurantSchema = new mongoose.Schema({
     specialOffers: Boolean,
     rating: {
         type: Number,
-        default: 0
+        default: 0,
+        max: [5, "rating must be below 5.0!"],
     },
     tags: [String],
     slug: String,
     createdAt: {
         type: Date,
         default: new Date(),
+    },
+    level: {
+        type: String,
+        required: [true, "Restaurant must have a level!"],
+        enum: {
+            values: ["A", "B", "C"],
+            message: "Level is either A, B or C!"
+        }
     }
 }, {
     toJSON: { virtuals: true },
