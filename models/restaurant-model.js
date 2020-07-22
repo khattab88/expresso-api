@@ -61,6 +61,18 @@ restaurantSchema.post("save", function(doc, next) {
     next();
 });
 
+// Query middleware: runs BEFORE .find(), findOne() and findOneAnd...()
+restaurantSchema.pre(/^find/, function(next) {
+    // this.find({ specialOffers: { $ne: false } })
+    next();
+});
+
+// Query middleware: runs AFTER .find(), findOne() and findOneAnd...()
+restaurantSchema.post(/^find/, function(docs, next) {
+    // console.log(docs);
+    next();
+});
+
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 module.exports = Restaurant;
