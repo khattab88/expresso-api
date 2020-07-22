@@ -4,7 +4,7 @@
         "slogan": "I'm lovin' it",
         "image": "web_cover_Mcd.png",
         "deliveryTime": 25,
-        "deliveryFee": 20,
+        "deliveryFee": 15,
         "specialOffers": true,
         "rating": 4.5,
         "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"]
@@ -24,7 +24,7 @@
         "slogan": "Finger Lickin Good",
         "image": "cover_oage__2_.jpg",
         "deliveryTime": 30,
-        "deliveryFee": 20,
+        "deliveryFee": 30,
         "specialOffers": false,
         "rating": 4.5,
         "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
@@ -34,7 +34,7 @@
         "slogan": "Finger Lickin Good",
         "image": "cover_oage__2_.jpg",
         "deliveryTime": 30,
-        "deliveryFee": 20,
+        "deliveryFee": 25,
         "specialOffers": true,
         "rating": 4,
         "tags": ["Offers", "American", "Fast Food", "Sandwiches"]

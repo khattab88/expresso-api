@@ -25,7 +25,15 @@ const restaurantSchema = new mongoose.Schema({
     deliveryFee: Number,
     specialOffers: Boolean,
     rating: Number,
-    "tags": [String]
+    tags: [String]
+}, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+});
+
+// virtual properties
+restaurantSchema.virtual("deliveryRate").get(function() {
+    return (this.deliveryFee / this.deliveryTime).toFixed(2);
 });
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
