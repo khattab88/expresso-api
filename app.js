@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
+const AppError = require("./utils/app-error");
+const globalErorrHandler = require("./controllers/error-controller");
+
 const cityRouter = require("./routes/city-routes");
 const restaurantRouter = require("./routes/restaurant-routes");
 const tagRouter = require("./routes/tag-routes");
@@ -44,28 +47,13 @@ app.get("/", (req, res) => {
 
 /* FALLBACK ROUTE */
 app.all("*", (req, res, next) => {
-    // res.status(404).json({
-    //     status: "fail",
-    //     message: `Can't find ${req.originalUrl} on this server!`
-    // });
-
-    const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-    err.statusCode = 404;
-    err.status = "fail";
-
+    const err = new AppError(`Can't find ${req.originalUrl} on this server!`, 404);
+    
     next(err);
 });
 
 /* GLOBAL ERROR HANDLING MIDDLEWARE */
-app.use((err, req, res, next) => {
-    err.statusCode = err.statusCode || 500;
-    err.status = err.status || "error";
-
-    res.status(err.statusCode).json({
-        status: err.status,
-        message: err.message
-    });
-});
+app.use(globalErorrHandler);
 
 
 module.exports = app;
