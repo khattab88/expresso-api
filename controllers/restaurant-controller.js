@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 const Restaurant = require('../models/restaurant-model');
 const restaurantRepo = require('../repositories/restaurant-repository');
+const catchAsync = require('../utils/catch-async');
+
 
 exports.getTopRating = async (req, res) => {
   try {
@@ -59,10 +61,9 @@ exports.getAllRestaurants = async (req, res) => {
         message: err.message,
       });
     }
-  };
+};
   
-  exports.getRestaurant = async (req, res) => {
-    try {
+exports.getRestaurant = catchAsync(async (req, res, next) => {
       const {id} = req.params;
       const restaurant = await restaurantRepo.getById(id);
 
@@ -79,29 +80,15 @@ exports.getAllRestaurants = async (req, res) => {
           restaurant: restaurant,
         },
       });
-    } catch (err) {
-      res.status(500).json({
-        status: 'fail',
-        message: err.message
-    });
+});
+
+exports.createRestaurant = catchAsync( async (req, res, next) => {
+  const newRestaurant = await restaurantRepo.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      restaurant: newRestaurant,
     }
-  };
-
-exports.createRestaurant = async (req, res) => {
-  try {
-    const newRestaurant = await restaurantRepo.create(req.body);
-
-    res.status(201).json({
-      status: 'success',
-      data: {
-        restaurant: newRestaurant,
-      }
-    });
-}
-catch(err) {
-    res.status(400).json({
-        status: 'fail',
-        message: err.message
-    });
-}
-};
+  });
+});
