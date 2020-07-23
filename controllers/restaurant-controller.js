@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 const Restaurant = require('../models/restaurant-model');
 const restaurantRepo = require('../repositories/restaurant-repository');
+
+const AppError = require('../utils/app-error');
 const catchAsync = require('../utils/catch-async');
 
 
@@ -68,10 +70,7 @@ exports.getRestaurant = catchAsync(async (req, res, next) => {
       const restaurant = await restaurantRepo.getById(id);
 
       if(!restaurant) {
-        return res.status(404).json({
-            status: "fail",
-            message: "not found!"
-        });
+        return next(new AppError("No restaurant found with that id!", 404));
       }
 
       res.status(200).json({
