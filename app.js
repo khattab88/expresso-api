@@ -37,10 +37,17 @@ app.use("/api/v1/restaurants", restaurantRouter);
 app.use("/api/v1/tags", tagRouter);
 app.use("/api/v1/menus", menuRouter);
 
-
 /* ROOT ROUTE */
 app.get("/", (req, res) => {
     res.send("Expresso API");
+});
+
+/* FALLBACK ROUTE */
+app.all("*", (req, res) => {
+    res.status(404).json({
+        status: "fail",
+        message: `Can't find ${req.originalUrl} on this server!`
+    });
 });
 
 
