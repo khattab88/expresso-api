@@ -61,6 +61,32 @@ exports.getAllRestaurants = async (req, res) => {
     }
   };
   
+  exports.getRestaurant = async (req, res) => {
+    try {
+      const {id} = req.params;
+      const restaurant = await restaurantRepo.getById(id);
+
+      if(!restaurant) {
+        return res.status(404).json({
+            status: "fail",
+            message: "not found!"
+        });
+      }
+
+      res.status(200).json({
+        status: 'success',
+        data: {
+          restaurant: restaurant,
+        },
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 'fail',
+        message: err.message
+    });
+    }
+  };
+
 exports.createRestaurant = async (req, res) => {
   try {
     const newRestaurant = await restaurantRepo.create(req.body);

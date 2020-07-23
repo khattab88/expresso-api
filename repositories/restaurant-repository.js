@@ -60,8 +60,8 @@ class RestaurantRepository {
 
     async getById(id) {
         try {
-          const menu = await Restaurant.findOne({ id: id });
-          return menu;
+          const restaurant = await Restaurant.findOne({ id: id });
+          return restaurant;
         }
         catch(err) {
           throw new Error(err);
