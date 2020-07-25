@@ -2,7 +2,13 @@
 const AppError = require('../utils/app-error');
 
 const HandleDbCastError = err => {
-    const message = `invalid ${err.path}: ${err.value}`;
+    const message = `invalid ${err.path}: ${err.value}!`;
+    return new AppError(message, 400);
+};
+
+const handleDbDuplicateFields = err => {
+    const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+    const message = `duplicate field value ${value}, please use another value!`;
     return new AppError(message, 400);
 };
 
@@ -45,9 +51,9 @@ module.exports = (err, req, res, next) => {
     } 
     else if(process.env.NODE_ENV === "production") {
         let error = { ...err };
-        if(err.name === "CastError") {
-            error = HandleDbCastError(error);
-        }
+
+        if(error.name === "CastError") error = HandleDbCastError(error);
+        else if(error.statusCode === 11000) error = handleDbDuplicateFields(error);
 
         sendErrorProd(error, res);
     }
