@@ -23,11 +23,24 @@ mongoose.connect(connectionString, {
     console.log("DB Connection Successful.")
 })
 .catch(err => { 
-    console.log(err);
-    console.log("Unable to connect to DB.")
+    console.error(err);
+    console.log("Unable to connect to DB.");
+
+    process.exit(1);
 });
 
 
-app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
     console.log("server started...")
+});
+
+
+/* Handle UNHANDLED REJECTION  */
+process.on('unhandledRejection', err => {
+    console.error(err.name, err.message);
+    console.log("UNHANDLED REJECTION!")
+    
+    server.close(() => {
+        process.exit(1);
+    });
 });
