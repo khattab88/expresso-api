@@ -19,6 +19,7 @@ router
 
 router
     .route("/:id")
-    .get(restaurantController.getRestaurant);
+    .get(restaurantController.getRestaurant)
+    .patch(restaurantController.updateRestaurant);
 
 module.exports = router;
