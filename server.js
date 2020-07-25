@@ -7,10 +7,22 @@
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+
+/* handle UNCAUGHT EXCEPTION for sync code */
+process.on("uncaughtException", err => {
+    console.log("UNCAUGHT EXCEPTION!");
+    console.error(err);
+    
+    // shutdown app immediately
+    process.exit(1);
+});
+
+
 dotenv.config({ path: "./config.env" });
 const config = require("./config");
 
 const app = require("./app");
+
 
 const connectionString = config[(config["env"])].connectionString;
 mongoose.connect(connectionString, {
@@ -35,11 +47,12 @@ const server = app.listen(process.env.PORT || 3000, () => {
 });
 
 
-/* Handle UNHANDLED REJECTION  */
+/* handle UNHANDLED REJECTION for async code */
 process.on('unhandledRejection', err => {
-    console.error(err.name, err.message);
-    console.log("UNHANDLED REJECTION!")
+    console.log("UNHANDLED REJECTION!");
+    console.error(err);
     
+    // shutdown app gracefully
     server.close(() => {
         process.exit(1);
     });
