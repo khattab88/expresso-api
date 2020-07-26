@@ -10,21 +10,20 @@ const citySchema = new mongoose.Schema({
       },
     name: {
         type: String,
-        required: [true, 'Tag must have a name!'],
+        required: [true, 'City must have a name!'],
         trim: true,
         unique: true,
     },
     country: {
-        id: {
-            type: String,
-            default: uuidv4,
-            unique: true,
-          },
+        // id: {
+        //     type: String,
+        //     default: uuidv4,
+        //     unique: true,
+        // },
         name: {
             type: String,
-            required: [true, 'Tag must have a name!'],
-            trim: true,
-            unique: true,
+            required: [true, 'Country must have a name!'],
+            unique: false,
         },
     },
     areas: [
@@ -36,7 +35,7 @@ const citySchema = new mongoose.Schema({
               },
             name: {
                 type: String,
-                required: [true, 'Tag must have a name!'],
+                required: [true, 'Area must have a name!'],
                 trim: true,
                 unique: true,
             }

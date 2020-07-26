@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 const cityRepo = require("../repositories/city-repository");
 
-
-exports.getAllCities = (req, res) => {
-    const cities = cityRepo.getAll();
+exports.getAllCities = async (req, res) => {
+    const cities = await cityRepo.getAll();
     
     res.status(200).json({
         status: "success",
@@ -13,9 +13,9 @@ exports.getAllCities = (req, res) => {
     });
 };
 
-exports.getCity = (req, res) => {
+exports.getCity = async (req, res) => {
     const id = req.params.id;
-    const city = cityRepo.get().find(c => c.id === id);
+    const city = await cityRepo.getById(id);
 
     if(!city) {
         res.status(404).json("Not found!");
