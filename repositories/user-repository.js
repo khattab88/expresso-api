@@ -1,17 +1,60 @@
-import { urlencoded } from "body-parser";
+/* eslint-disable prefer-destructuring */
+/* eslint-disable one-var */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable prettier/prettier */
+const User = require("../models/user-model");
 
-/* TEST */
 class UserRepository {
-    constructor() {}
 
-    get() {
-        const promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve();
-            }, 3000);
-        });
+    async getAll() {
+        try {
+            const users = await User.find();
+            return users;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
 
-        return promise;
+    async getById(id) {
+        try {
+            const user = await User.findOne({ id: id });
+            return user;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+    async create(user) {
+        try {
+            const newUser = await User.create(user);
+            return newUser;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+    async update(id, user) {
+        try {
+          const updated = await User.findOneAndUpdate({ id: id }, user, { 
+            new: true,
+            runValidators: true
+          });
+          return updated;
+        }
+        catch (err) {
+          throw new Error(err);
+        }
+    }
+
+    async delete(id) {
+        try {
+          await User.findOneAndDelete({ id: id });
+        }
+        catch (err) {
+          throw new Error(err);
+        }
     }
 }
 
