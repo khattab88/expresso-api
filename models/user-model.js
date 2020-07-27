@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     id: {
@@ -37,8 +38,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "User must have a password confirm!"],
         trim: true,
-        // TODO: add validator
+        validate: {
+            // Only works on CREATE and SAVE.
+            validator: function(value) {
+                return this.password === value;
+            },
+            message: "Password confirm does not match password!"
+        }
     }
+});
+
+/* Hashing passowrd */
+userSchema.pre("save", async function(next) {
+    if(!this.isModified("password")) return next();
+
+    this.password = await bcrypt.hash(this.password, 12);
+    this.passwordConfirm = undefined;
+
+    next();
 });
 
 const User = mongoose.model("User", userSchema);
