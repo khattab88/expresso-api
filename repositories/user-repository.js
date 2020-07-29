@@ -56,6 +56,15 @@ class UserRepository {
           throw new Error(err);
         }
     }
+
+    async getByEmail(email) {
+        try {
+            const user = await User.findOne({ email: email }).select("+password");
+            return user;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
 }
 
 module.exports = new UserRepository();
