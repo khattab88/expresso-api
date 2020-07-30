@@ -17,14 +17,16 @@ const signToken = id => {
 };
 
 exports.signup = catchAsync(async (req, res) => {
-    const newUser = await userRepo.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        passwordChangedAt: req.body.passwordChangedAt
-    });
+    // const newUser = await userRepo.create({
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     email: req.body.email,
+    //     password: req.body.password,
+    //     passwordConfirm: req.body.passwordConfirm,
+    //     passwordChangedAt: req.body.passwordChangedAt
+    // });
+
+    const newUser = await userRepo.create(req.body);
 
     const token = signToken(newUser.id);
 
