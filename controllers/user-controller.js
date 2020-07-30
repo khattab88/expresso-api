@@ -58,7 +58,10 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteUser = catchAsync(async (req, res, next) => {
-    userRepo.delete(req.params.id);
+    const user = await userRepo.getById(req.params.id);
+    if(!user) return next(new AppError(`User with id: ${req.params.id} is not found!`, 404));
+
+    await userRepo.delete(req.params.id);
 
     res.status(204).json({
         status: 'success',

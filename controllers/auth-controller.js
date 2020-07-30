@@ -85,3 +85,12 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.user = user;
     next();
 });
+
+exports.restrictTo = (...roles) => {
+    return (req, res, next) => {
+        // Roles: ["user", "admin"]
+        if(!roles.includes(req.user.role)) return next(new AppError("You don't have a sufficient permission!", 403));
+
+        next();
+    };
+};
