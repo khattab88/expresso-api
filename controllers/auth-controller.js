@@ -3,6 +3,7 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 
 const userRepo = require("../repositories/user-repository");
@@ -21,7 +22,8 @@ exports.signup = catchAsync(async (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm
+        passwordConfirm: req.body.passwordConfirm,
+        passwordChangedAt: req.body.passwordChangedAt
     });
 
     const token = signToken(newUser.id);
@@ -53,4 +55,31 @@ exports.login = catchAsync(async (req, res, next) => {
         token: token,
         data: { user }
     });
+});
+
+exports.protect = catchAsync(async (req, res, next) => {
+    let token;
+
+    // get token from authorization header
+    if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    if(!token) return next(new AppError("You are not logged in!", 401));
+
+    // verify token
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    
+    // check if user still exists
+    const user = await userRepo.getById(decoded.id);
+    if(!user) return next(new AppError("User is no longer exists", 401));
+
+    // check if user changed password, after token issued
+    if(user.hasPasswordChangedAfter(decoded.iat)) {
+        return next(new AppError("User recently changed password, please login again!", 401));
+    };
+
+    // next() => grant access to protected route
+    req.user = user;
+    next();
 });

@@ -46,7 +46,8 @@ const userSchema = new mongoose.Schema({
             },
             message: "Password confirm does not match password!"
         }
-    }
+    },
+    passwordChangedAt: Date
 });
 
 /* Hashing passowrd */
@@ -62,6 +63,19 @@ userSchema.pre("save", async function(next) {
 /* Compare passwords */
 userSchema.methods.isCorrectPassword = async function (userPassword, candidatePassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+/* Check if password changed after issuing token */
+userSchema.methods.hasPasswordChangedAfter = function (jwtTimestamp) {
+    if(this.passwordChangedAt) {
+        const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+        // console.log(jwtTimestamp, changedTimestamp);
+        const passwordChangedAfterToken = jwtTimestamp < changedTimestamp;
+        return passwordChangedAfterToken;
+    }
+
+    // false means password not changed
+    return false; 
 };
 
 const User = mongoose.model("User", userSchema);
