@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const validator = require('validator');
@@ -52,7 +53,9 @@ const userSchema = new mongoose.Schema({
             message: "Password confirm does not match password!"
         }
     },
-    passwordChangedAt: Date
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date
 });
 
 /* Hashing passowrd */
@@ -81,6 +84,17 @@ userSchema.methods.hasPasswordChangedAfter = function (jwtTimestamp) {
 
     // false means password not changed
     return false; 
+};
+
+userSchema.methods.createPasswordResetToken = function() {
+    const resetToken = crypto.randomBytes(32).toString('hex');
+
+    this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    this.passwordResetExpires = Date.now() + (10 * 60 * 1000); // adds 10 minutes (as milliseconds)
+
+    console.log({resetToken}, this.passwordResetToken);
+
+    return resetToken;
 };
 
 const User = mongoose.model("User", userSchema);
