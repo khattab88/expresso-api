@@ -19,7 +19,7 @@ class UserRepository {
 
     async getById(id) {
         try {
-            const user = await User.findOne({ id: id });
+            const user = await User.findOne({ id: id }).select("+password");
             return user;
         } catch (err) {
             throw new Error(err);

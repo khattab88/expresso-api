@@ -169,3 +169,29 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
         //data: { user }
     }); 
 });
+
+exports.changePassword = catchAsync(async (req, res, next) => {
+    // 1. get user
+    const user = await userRepo.getById(req.user.id);
+    //console.log(user);
+
+    // 2. check if POSTed password is correct
+    if(!user) return next(new AppError("User not found!", 404));
+
+    if(!(await user.isCorrectPassword(user.password, req.body.currentPassword))) {
+        return next(new AppError("Incorrect password!", 401));
+    }
+
+    // 3. if password is correct, change it to new password
+    user.password = req.body.newPassword;
+    user.passwordConfirm = req.body.newPasswordConfirm;
+    await user.save();
+
+    // 4. log user in => send JWT
+    const jwtToken = signToken(user.id);
+
+    res.status(200).json({
+        status: 'success',
+        token: jwtToken
+    });
+});
