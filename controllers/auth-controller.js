@@ -9,6 +9,8 @@ const jwt = require('jsonwebtoken');
 const userRepo = require("../repositories/user-repository");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const sendEmail = require("../utils/email");
+
 
 const signToken = id => {
     return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -105,8 +107,32 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // 3. send generated token via email
+    const resetUrl = `${req.protocol}://${req.get("host")}/api/v1/auth/resetPassword/${resetToken}`;
 
+    const message = `Forgot your password? Submit a PATCH request with your new password and password confirm to ${resetUrl}.
+                    \nIf you did't forget your password, please ignore this email.`;
 
+    const mailOptions = {
+        email: user.email,
+        subject: "Your password reset token (valid for 10 minutes)",
+        message: message
+    };
+
+    try {
+        await sendEmail(mailOptions);
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Reset token sent to user email.'
+        });
+    } catch (err) {
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+
+        await user.save({ validateBeforeSave: false });
+
+        return next(new AppError("Error occured while sending email to user, please try again later!", 500));
+    }
 });
 
 exports.resetPassword = (req, res, next) => {
