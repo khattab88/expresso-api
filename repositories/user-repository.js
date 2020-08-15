@@ -65,6 +65,15 @@ class UserRepository {
             throw new Error(err);
         }
     }
+
+    async getByFieldValue(fieldValue) {
+        try {
+            const user = await User.findOne(fieldValue);
+            return user;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
 }
 
 module.exports = new UserRepository();

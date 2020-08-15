@@ -4,6 +4,7 @@
 const nodemailer = require('nodemailer');
 const config = require("../config.json");
 
+// Dev Mail Server: https://mailtrap.io/inboxes/1025540/messages
 const sendEmailDev = async options => {
     // 1. create a transporter
     const transporter = nodemailer.createTransport({

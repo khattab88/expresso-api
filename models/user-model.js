@@ -68,6 +68,13 @@ userSchema.pre("save", async function(next) {
     next();
 });
 
+userSchema.pre("save", function(next) {
+    if(!this.isModified("password") || this.isNew) return next();
+
+    this.passwordChangedAt = Date.now() - 1000; // passwordChangedAt is 1 second earlier than jwt token creation
+    next();
+});
+
 /* Compare passwords */
 userSchema.methods.isCorrectPassword = async function (userPassword, candidatePassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
