@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -20,16 +21,22 @@ console.log(process.env.NODE_ENV);
 
 
 /* GLOBAL MIDDLEWARES */
-app.use(bodyParser.json()); // for parsing application/json
+
+// Setting security HTTP headers
+app.use(helmet());
+
+app.use(bodyParser.json({ limit: "100kb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+// Serving static files
 app.use(express.static(`${__dirname}/public`));
 
+// Development Logging
 if(process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
-// Rate Limiting
+// Limiting requests from same IP address
 const limiter = rateLimit({
     max: 100,
     windowMs: 60 * 60 * 1000,
@@ -46,6 +53,12 @@ app.use((req, res, next) => {
 
     next();
 });
+
+// Test Middleware
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    next();
+}); 
 
 
 /* ROUTERS */
