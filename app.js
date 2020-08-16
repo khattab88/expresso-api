@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const rateLimit = require("express-rate-limit");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -15,10 +16,10 @@ const authRouter = require("./routes/auth-routes");
 
 const app = express();
 
-
-/* MIDDLEWARES */
 console.log(process.env.NODE_ENV);
 
+
+/* GLOBAL MIDDLEWARES */
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -28,11 +29,19 @@ if(process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
+// Rate Limiting
+const limiter = rateLimit({
+    max: 100,
+    windowMs: 60 * 60 * 1000,
+    message: "Too many requests from this IP, please try again in a hour!"
+});
+app.use("/api/", limiter);
+
+// Enabling CORS
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
     // console.log(req.headers);
 
     next();
