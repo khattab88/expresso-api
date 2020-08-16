@@ -55,7 +55,7 @@ const sendEmailProd = async options => {
 };
 
 const sendEmail = async options => {
-    if(process.env === "production") {
+    if(process.env.NODE_ENV === "production") {
         await sendEmailProd(options);
     } else {
         await sendEmailDev(options);
