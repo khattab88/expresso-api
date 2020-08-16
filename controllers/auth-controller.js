@@ -215,3 +215,12 @@ exports.updateMe = catchAsync(async (req, res, next) => {
         data: { updatedUser }
     });
 });
+
+exports.deactivate = catchAsync(async (req, res, next) => {
+    await userRepo.update(req.user.id, { active: false});
+
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
+});

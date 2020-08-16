@@ -55,8 +55,16 @@ const userSchema = new mongoose.Schema({
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
-    passwordResetExpires: Date
+    passwordResetExpires: Date,
+    active: {
+        type: Boolean,
+        default: true,
+        select: false
+    }
 });
+
+
+/* DOCUMENT MIDDLEWARE */
 
 /* Hashing passowrd */
 userSchema.pre("save", async function(next) {
@@ -74,6 +82,16 @@ userSchema.pre("save", function(next) {
     this.passwordChangedAt = Date.now() - 1000; // passwordChangedAt is 1 second earlier than jwt token creation
     next();
 });
+
+/* QUERY MIDDLEWARE */
+
+/* Select only active users */
+userSchema.pre(/^find/, function(next) {
+    // this keyword refers to query
+    this.find({ active: { $ne: false } });
+    next();
+});
+
 
 /* Compare passwords */
 userSchema.methods.isCorrectPassword = async function (userPassword, candidatePassword) {

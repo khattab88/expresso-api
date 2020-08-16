@@ -30,4 +30,8 @@ router
     .route("/updateMe")
     .patch(authController.protect, authController.updateMe);
 
+router
+    .route("/deactivate")
+    .delete(authController.protect, authController.deactivate);
+
 module.exports = router;
