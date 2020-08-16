@@ -26,4 +26,8 @@ router
     .route("/changePassword")
     .patch(authController.protect, authController.changePassword);
 
+router
+    .route("/updateMe")
+    .patch(authController.protect, authController.updateMe);
+
 module.exports = router;

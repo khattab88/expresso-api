@@ -11,6 +11,7 @@ const userRepo = require("../repositories/user-repository");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const sendEmail = require("../utils/email");
+const helper = require("../utils/helper");
 
 
 const signToken = id => {
@@ -193,5 +194,24 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: 'success',
         token: jwtToken
+    });
+});
+
+exports.updateMe = catchAsync(async (req, res, next) => {
+    // 1. create error if user POSTed password data (no password updtaes)
+    if(req.body.password || req.body.passwordConfirm) {
+        return next(new AppError("Can not update password via this route, please use /changePassword instead!", 400));
+    }
+
+    
+    // 2. filter out fields that not allowed to be updated
+    const filteredBody = helper.filterObject(req.body, "firstName", "lastName", "email");
+
+    // 3. update user data
+    const updatedUser = await userRepo.update(req.user.id, filteredBody);
+    
+    res.status(200).json({
+        status: 'success',
+        data: { updatedUser }
     });
 });
