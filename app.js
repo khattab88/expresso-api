@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xssClean = require("xss-clean");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -27,6 +29,12 @@ app.use(helmet());
 
 app.use(bodyParser.json({ limit: "100kb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS attacks
+app.use(xssClean());
 
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
