@@ -5,7 +5,7 @@ const slugify = require('slugify');
 const validator = require('validator');
 
 const Country = require('./country-model');
-const Area = require('./area-model');
+//const Area = require('./area-model');
 
 const citySchema = new mongoose.Schema({
     id: {
@@ -27,7 +27,7 @@ const citySchema = new mongoose.Schema({
         }
     },
     country: Object,
-    areas: Array
+    //areas: Array
 });
 
 // Document middleware: runs BEFORE .save() and .create()
@@ -52,15 +52,15 @@ citySchema.pre("save", async function(next) {
 });
 
 // embed areas collection as a child documents
-citySchema.pre("save", async function(next) {
-    const areaPromises = this.areas.map(async id => await Area.findOne({ id: id }));
-    this.areas = await Promise.all(areaPromises);
+//citySchema.pre("save", async function(next) {
+    //const areaPromises = this.areas.map(async id => await Area.findOne({ id: id }));
+    //this.areas = await Promise.all(areaPromises);
 
-    // eslint-disable-next-line no-return-assign
+    //// eslint-disable-next-line no-return-assign
     //this.areas.forEach(area => area.city = undefined);
 
-    next();
-});
+    //next();
+//});
 
 const City = mongoose.model("City", citySchema);
 

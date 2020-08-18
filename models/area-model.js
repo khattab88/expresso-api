@@ -27,10 +27,12 @@ const areaSchema = new mongoose.Schema({
         }
     },
     city: Object
-}, {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-});
+}
+// ,{
+//     toJSON: { virtuals: true },
+//     toObject: { virtuals: true }
+// }
+);
 
 // Document middleware: runs BEFORE .save() and .create()
 areaSchema.pre("save", function(next) {
@@ -44,8 +46,8 @@ areaSchema.pre("save", function(next) {
 
 // embed city object as a child document
 areaSchema.pre("save", async function(next) {
-    //const city = await City.findOne({ id: this.city });
-    //this.city = city;
+    const city = await City.findOne({ id: this.city });
+    this.city = city;
 
     next();
 });
