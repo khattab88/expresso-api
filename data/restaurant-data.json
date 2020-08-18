@@ -7,7 +7,119 @@
         "deliveryFee": 15,
         "specialOffers": true,
         "rating": 4.5,
-        "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"]
+        "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"],
+        "menu": {
+            "menuSections": [
+                {
+                    "name": "Sandwiches",
+                    "menuItems": [
+                        {
+                            "name": "Double Cheese Burger",
+                            "price": 70,
+                            "description": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            "image": "item-1.png",
+                            "options": [
+                                {
+                                    "name": "Choice of bun or lettuce wrap",
+                                    "type": "Required",
+                                    "optionItems": [
+                                        { "name": "Potato Bun", "value": 3 },
+                                        { "name": "Lettuce Wrap", "value": 7 }
+                                    ]
+                                },
+                                {
+                                    "name": "Choice of cheese",
+                                    "type": "Optional",
+                                    "optionItems": [
+                                        { "name": "No cheese", "value": 0 },
+                                        { "name": "regular", "value": 3 },
+                                        { "name": "Cheddar", "value": 7 },
+                                        { "name": "Spicy", "value": 10 }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Cheese Burger",
+                            "price": 40,
+                            "description": "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            "image": "item-2.png",
+                            "options": [
+                                {
+                                    "name": "Choice of bun or lettuce wrap",
+                                    "type": "Required",
+                                    "optionItems": [
+                                        { "name": "Potato Bun", "value": 3 },
+                                        { "name": "Lettuce Wrap", "value": 7 }
+                                    ]
+                                },
+                                {
+                                    "name": "Choice of cheese",
+                                    "type": "Optional",
+                                    "optionItems": [
+                                        { "name": "No cheese", "value": 0 },
+                                        { "name": "regular", "value": 3 },
+                                        { "name": "Cheddar", "value": 7 },
+                                        { "name": "Spicy", "value": 10 }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Sides",
+                    "menuItems": [
+                        {
+                            "name": "2 Pcs Chicken Strips Spicy",
+                            "price": 20,
+                            "description": "Chicken Strips Spicy.",
+                            "image": "item-7.png"
+                        },
+                        {
+                            "name": "2 Pcs Spicy Chicken Strips Spicy",
+                            "price": 20,
+                            "description": "Spicy Chicken Strips Spicy.",
+                            "image": "item-7.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "Salads",
+                    "menuItems": [
+                        {
+                            "name": "Green salad",
+                            "price": 15,
+                            "description": "Green Saald",
+                            "image": "item-10.png"
+                        },
+                        {
+                            "name": "Caisar salad",
+                            "price": 20,
+                            "description": "Caisar Saald",
+                            "image": "item-11.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "Beverages",
+                    "menuItems": [
+                        {
+                            "name": "Coca-Cola",
+                            "price": 10,
+                            "description": "Coca-Cola 160ml",
+                            "image": "item-5.png"
+                        },
+                        {
+                            "name": "Premium Cappuccino",
+                            "price": 25,
+                            "description": "Premium Cappuccino",
+                            "image": "item-6.png"
+                        }
+                    ]
+                }
+            ]
+        }
     },
     {
         "name": "KFC",
