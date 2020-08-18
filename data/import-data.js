@@ -14,6 +14,7 @@ const Tag = require("../models/tag-model");
 const Menu = require("../models/menu-model");
 const Branch = require("../models/branch-model");
 const Area = require("../models/area-model");
+const Country = require("../models/country-model");
 
 // CONNECT TO DATABASE
 const connectionString = config[config['env']].connectionString;
@@ -34,6 +35,7 @@ mongoose
       menu: Menu,
       branch: Branch,
       area: Area,
+      country: Country,
   };
 
   // READ DATA FILE

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Egypt",
+        "alias": "eg",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/eg.svg",
+        "currency": "EGP"
+    },
+    {
+        "name": "UAE",
+        "alias": "sa",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/ae.svg",
+        "currency": "AED"
+    },
+    {
+        "name": "Saudia Arabia",
+        "alias": "sa",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/sa.svg",
+        "currency": "SAR"
+    },
+    {
+        "name": "Kuwait",
+        "alias": "kw",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/kw.svg",
+        "currency": "KWD"
+    },
+    {
+        "name": "Qatar",
+        "alias": "qa",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/qa.svg",
+        "currency": "QAR"
+    },
+    {
+        "name": "Bahrain",
+        "alias": "bh",
+        "image": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/bh.svg",
+        "currency": "BHD"
+    }
+]
