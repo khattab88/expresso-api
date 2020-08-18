@@ -60,7 +60,32 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
         select: false
-    }
+    },
+    deliveryAddresses: [{
+        id: {
+            type: String,
+            default: uuidv4,
+            unique: true,
+        },
+        // GeoJSON
+        type: {
+            type: String,
+            default: "Point",
+            enum: ["Point"]
+        },
+        coordinates: [Number],
+        address: {
+            name: String,
+            area: String,
+            street: String,
+            building: String,
+            floor: String,
+            apartment: String,
+            mobile: String,
+            landline: String,
+            instructions: String
+        }
+    }]
 });
 
 
