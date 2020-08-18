@@ -1,71 +1,35 @@
 [
     {
         "name": "Cairo",
-        "country": {
-            "name": "Egypt"
-        },
+        "country": "54a506fb-d574-4118-a33a-d7366286ee04",
         "areas": [
-            {
-                "name": "Heliopolis"
-            },
-            {
-                "name": "Zamalek"
-            },
-            {
-                "name": "DownTown"
-            },
-            {
-                "name": "Nasr City"
-            },
-            {
-                "name": "Maadi"
-            },
-            {
-                "name": "Shoubra"
-            }
+            "60ada76c-6e25-4157-927f-004fc0a6281c",
+            "29b2f8eb-9317-476f-b53e-98881b4ed477",
+            "4fcd76c6-b138-4030-9b39-ab55db7d8c6a",
+            "84358b62-b4fa-4d48-a3d3-07574b67b2bb",
+            "71d43053-a605-4cd4-991f-b642e6e689ff",
+            "a90f1bf2-ada3-4c1b-9335-eab62d35ff1f"
         ]
     },
     {
         "name": "Giza",
-        "country": {
-            "name": "Egypt"
-        },
+        "country": "54a506fb-d574-4118-a33a-d7366286ee04",
         "areas": [
-            {
-                "name": "Mohandessien"
-            },
-            {
-                "name": "Dokki"
-            },
-            {
-                "name": "Giza Square"
-            },
-            {
-                "name": "Haram"
-            },
-            {
-                "name": "6th October"
-            }
+            "c14fa057-b45f-4398-9464-489c6e0eaeeb",
+            "8b5825fa-83a8-4537-ba41-7ae7e0865e73",
+            "5691ecb6-dd69-4412-8f68-0a4ee3e2f7b0",
+            "d38551f7-f4e0-4364-9b31-919070ce6846",
+            "4730ef99-1034-4b44-bc33-10fdbaf03695"
         ]
     },
     {
         "name": "Alexandria",
-        "country": {
-            "name": "Egypt"
-        },
+        "country": "54a506fb-d574-4118-a33a-d7366286ee04",
         "areas": [
-            {
-                "name": "Mohandessien"
-            },
-            {
-                "name": "Dokki"
-            },
-            {
-                "name": "Giza Square"
-            },
-            {
-                "name": "Haram"
-            }
+            "663f36cd-d1f7-40cc-867f-2ccf4c550769",
+            "ce9a4f22-78ed-461c-9452-e8e78c3d8fab",
+            "2883149e-3770-4cfe-be36-eda118a97705",
+            "481e6880-7d36-4db0-995b-4c6f5fb0747e"
         ]
     }
 ]

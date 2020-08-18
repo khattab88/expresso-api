@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const slugify = require('slugify');
 const validator = require('validator')
 
+const City = require('./city-model');
+
 const areaSchema = new mongoose.Schema({
     id: {
         type: String,
@@ -24,12 +26,7 @@ const areaSchema = new mongoose.Schema({
             message: "slug ({VALUE}) is not a valid slug!"
         }
     },
-    city: {
-        name: String,
-        country: {
-            name: String
-        }
-    }
+    city: Object
 }, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
@@ -42,6 +39,14 @@ areaSchema.pre("save", function(next) {
         lower: true,
         remove: /[*+~.()'"!:@]/g 
     });
+    next();
+});
+
+// embed city object as a child document
+areaSchema.pre("save", async function(next) {
+    //const city = await City.findOne({ id: this.city });
+    //this.city = city;
+
     next();
 });
 

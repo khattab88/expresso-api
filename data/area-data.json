@@ -1,137 +1,62 @@
 [
     {
         "name": "Heliopolis",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "Zamalek",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "DownTown",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "Nasr City",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "Maadi",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "Shoubra",
-        "city": {
-            "name": "Cairo",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "949f83b9-be92-4fdd-a9e1-2ada12aa0952"
     },
     {
         "name": "Mohandessien",
-        "city": {
-            "name": "Giza",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "44016306-0eb7-4885-b465-9423dbeab3e6"
     },
     {
         "name": "Dokki",
-        "city": {
-            "name": "Giza",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "44016306-0eb7-4885-b465-9423dbeab3e6"
     },
     {
         "name": "Giza Square",
-        "city": {
-            "name": "Giza",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "44016306-0eb7-4885-b465-9423dbeab3e6"
     },
     {
         "name": "Haram",
-        "city": {
-            "name": "Giza",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "44016306-0eb7-4885-b465-9423dbeab3e6"
     },
     {
         "name": "6th October",
-        "city": {
-            "name": "Giza",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "44016306-0eb7-4885-b465-9423dbeab3e6"
     },
     {
         "name": "San Stephano",
-        "city": {
-            "name": "Alexandria",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "f14adaa9-2e98-4a88-ab17-0d5864e7cd21"
     },
     {
         "name": "DownTown",
-        "city": {
-            "name": "Alexandria",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "f14adaa9-2e98-4a88-ab17-0d5864e7cd21"
     },
     {
         "name": "Sidi Beshr",
-        "city": {
-            "name": "Alexandria",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "f14adaa9-2e98-4a88-ab17-0d5864e7cd21"
     },
     {
         "name": "El Raml",
-        "city": {
-            "name": "Alexandria",
-            "country": {
-                "name": "Egypt"
-            }
-        }
+        "city": "f14adaa9-2e98-4a88-ab17-0d5864e7cd21"
     }
 ]
