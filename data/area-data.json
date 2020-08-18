@@ -18,9 +18,9 @@
         }
     },
     {
-        "name": "Zamalek",
+        "name": "DownTown",
         "city": {
-            "name": "DownTown",
+            "name": "Cairo",
             "country": {
                 "name": "Egypt"
             }
