@@ -156,7 +156,7 @@ restaurantSchema.post(/^find/, function(docs, next) {
 
 // Aggregate middleware: runs BEFORE .aggregate()
 restaurantSchema.pre("aggregate", function(next) {
-    console.log(this.pipeline());
+    // console.log(this.pipeline());
     next();
 });
 
