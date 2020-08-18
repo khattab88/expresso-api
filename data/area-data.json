@@ -1,0 +1,137 @@
+[
+    {
+        "name": "Heliopolis",
+        "city": {
+            "name": "Cairo",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Zamalek",
+        "city": {
+            "name": "Cairo",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Zamalek",
+        "city": {
+            "name": "DownTown",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Nasr City",
+        "city": {
+            "name": "Cairo",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Maadi",
+        "city": {
+            "name": "Cairo",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Shoubra",
+        "city": {
+            "name": "Cairo",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Mohandessien",
+        "city": {
+            "name": "Giza",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Dokki",
+        "city": {
+            "name": "Giza",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Giza Square",
+        "city": {
+            "name": "Giza",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Haram",
+        "city": {
+            "name": "Giza",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "6th October",
+        "city": {
+            "name": "Giza",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "San Stephano",
+        "city": {
+            "name": "Alexandria",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "DownTown",
+        "city": {
+            "name": "Alexandria",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "Sidi Beshr",
+        "city": {
+            "name": "Alexandria",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    },
+    {
+        "name": "El Raml",
+        "city": {
+            "name": "Alexandria",
+            "country": {
+                "name": "Egypt"
+            }
+        }
+    }
+]

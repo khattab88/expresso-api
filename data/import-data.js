@@ -12,6 +12,8 @@ const City = require('../models/city-model');
 const Restaurant = require("../models/restaurant-model");
 const Tag = require("../models/tag-model");
 const Menu = require("../models/menu-model");
+const Branch = require("../models/branch-model");
+const Area = require("../models/area-model");
 
 // CONNECT TO DATABASE
 const connectionString = config[config['env']].connectionString;
@@ -29,7 +31,9 @@ mongoose
       city: City,
       restaurant: Restaurant,
       tag: Tag,
-      menu: Menu
+      menu: Menu,
+      branch: Branch,
+      area: Area,
   };
 
   // READ DATA FILE
