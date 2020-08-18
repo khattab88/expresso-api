@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const slugify = require('slugify');
-const validator = require('validator')
+const validator = require('validator');
 
 const branchSchema = new mongoose.Schema({
     id: {
