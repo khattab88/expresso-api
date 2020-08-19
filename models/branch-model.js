@@ -28,13 +28,14 @@ const branchSchema = new mongoose.Schema({
     },
     area: Object,
     restaurant: {
-        //type: String,
         type: mongoose.Schema.ObjectId,
         ref: "Restaurant"
     }
 });
 
-// Document middleware: runs BEFORE .save() and .create()
+/* Document middleware: runs BEFORE .save() and .create() */
+
+// create name slug
 branchSchema.pre("save", function(next) {
     // eslint-disable-next-line prefer-destructuring
     this.slug = slugify(this.name, {
@@ -48,6 +49,18 @@ branchSchema.pre("save", function(next) {
 branchSchema.pre("save", async function(next) {
     const area = await Area.findOne({ id: this.area });
     this.area = area;
+
+    next();
+});
+
+/* Query Middleware */
+
+// reference restaurant (parent) documnet vai populate()
+branchSchema.pre(/^find/, async function(next) {
+    this.populate({
+        path: "restaurant",
+        select: "-__v -createdAt"
+    });
 
     next();
 });

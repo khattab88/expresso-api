@@ -21,6 +21,18 @@ class BranchRepository {
         }
     }
 
+    async getByIdWith(id, field) {
+      try {
+        const branch = await Branch.findOne({ id }).populate({
+          path: field,
+          select: "-__v"
+        });
+        return branch;
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
+
     async create(branch) {
         try {
           const newBranch = await Branch.create(branch);
