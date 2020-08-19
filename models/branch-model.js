@@ -27,9 +27,10 @@ const branchSchema = new mongoose.Schema({
         }
     },
     area: Object,
-    restaurantId: {
-        type: String,
-        required: [true, "Branch must have a restaurant Id!"]
+    restaurant: {
+        //type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: "Restaurant"
     }
 });
 

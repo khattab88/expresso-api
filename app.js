@@ -17,6 +17,7 @@ const tagRouter = require("./routes/tag-routes");
 const menuRouter = require("./routes/menu-routes");
 const userRouter = require("./routes/user-routes");
 const authRouter = require("./routes/auth-routes");
+const branchRouter = require("./routes/branch-routes");
 
 const app = express();
 
@@ -80,6 +81,7 @@ app.use("/api/v1/tags", tagRouter);
 app.use("/api/v1/menus", menuRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/branches", branchRouter);
 
 /* ROOT ROUTE */
 app.get("/", (req, res) => {
