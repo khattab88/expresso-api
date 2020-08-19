@@ -5,16 +5,20 @@ const express = require('express');
 const router = express.Router();
 
 const countryController = require('../controllers/country-controller');
+const authController = require('../controllers/auth-controller');
 
 router
     .route("/")
-    .get(countryController.getAllCountries)
-    .post(countryController.createCountry);
+    .get(authController.protect, countryController.getAllCountries)
+    .post(authController.protect, authController.restrictTo("admin"),
+          countryController.createCountry);
 
 router
     .route("/:id")
-    .get(countryController.getCountry)
-    .patch(countryController.updateCountry)
-    .delete(countryController.deleteCountry);
+    .get(authController.protect, countryController.getCountry)
+    .patch(authController.protect, authController.restrictTo("admin"), 
+           countryController.updateCountry)
+    .delete(authController.protect, authController.restrictTo("admin"),
+            countryController.deleteCountry);
 
 module.exports = router;

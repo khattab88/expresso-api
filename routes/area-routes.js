@@ -5,16 +5,20 @@ const express = require('express');
 const router = express.Router();
 
 const areaController = require('../controllers/area-controller');
+const authController = require('../controllers/auth-controller');
 
 router
     .route("/")
-    .get(areaController.getAllAreas)
-    .post(areaController.createArea);
+    .get(authController.protect, areaController.getAllAreas)
+    .post(authController.protect, authController.restrictTo("admin"),
+          areaController.createArea);
 
 router
     .route("/:id")
-    .get(areaController.getArea)
-    .patch(areaController.updateArea)
-    .delete(areaController.deleteArea);
+    .get(authController.protect, areaController.getArea)
+    .patch(authController.protect, authController.restrictTo("admin"), 
+           areaController.updateArea)
+    .delete(authController.protect, authController.restrictTo("admin"), 
+            areaController.deleteArea);
 
 module.exports = router;

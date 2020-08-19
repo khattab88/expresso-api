@@ -5,16 +5,20 @@ const express = require('express');
 const router = express.Router();
 
 const branchController = require('../controllers/branch-controller');
+const authController = require('../controllers/auth-controller');
 
 router
     .route("/")
-    .get(branchController.getAllBranches)
-    .post(branchController.createBranch);
+    .get(authController.protect, branchController.getAllBranches)
+    .post(authController.protect, authController.restrictTo("admin"),
+          branchController.createBranch);
 
 router
     .route("/:id")
-    .get(branchController.getBranch)
-    .patch(branchController.updateUser)
-    .delete(branchController.deleteBranch);
+    .get(authController.protect, branchController.getBranch)
+    .patch(authController.protect, authController.restrictTo("admin"),
+           branchController.updateUser)
+    .delete(authController.protect, authController.restrictTo("admin"),
+            branchController.deleteBranch);
 
 module.exports = router;

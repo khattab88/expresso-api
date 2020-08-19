@@ -3,23 +3,26 @@ const express = require('express');
 const router = express.Router();
 
 const restaurantController = require('../controllers/restaurant-controller');
+const authController = require('../controllers/auth-controller');
 
 router
     .route("/top/:count")
-    .get(restaurantController.getTopRating);
+    .get(authController.protect, restaurantController.getTopRating);
 
 router
     .route("/stats")
-    .get(restaurantController.getStats);
+    .get(authController.protect, restaurantController.getStats);
 
 router
     .route("/")
-    .get(restaurantController.getAllRestaurants)
-    .post(restaurantController.createRestaurant);
+    .get(authController.protect, restaurantController.getAllRestaurants)
+    .post(authController.protect, authController.restrictTo("admin"),
+          restaurantController.createRestaurant);
 
 router
     .route("/:id")
-    .get(restaurantController.getRestaurant)
-    .patch(restaurantController.updateRestaurant);
+    .get(authController.protect, restaurantController.getRestaurant)
+    .patch(authController.protect, authController.restrictTo("admin"),
+           restaurantController.updateRestaurant);
 
 module.exports = router;
