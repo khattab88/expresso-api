@@ -1,32 +1,32 @@
 [
     {
         "name": "Heliopolis",
-        "areaId": "60ada76c-6e25-4157-927f-004fc0a6281c",
+        "area": "80a8c4cb-b738-4026-b16e-4a70ba895ae3",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     },
     {
         "name": "Zamalek",
-        "areaId": "29b2f8eb-9317-476f-b53e-98881b4ed477",
+        "area": "75a6bef9-111a-40f3-9c35-c8bdae11e2ea",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     },
     {
         "name": "DownTown",
-        "areaId": "4fcd76c6-b138-4030-9b39-ab55db7d8c6a",
+        "area": "97c64a6b-c851-48bb-9a59-1fdc30908dff",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     },
     {
         "name": "Nasr City",
-        "areaId": "84358b62-b4fa-4d48-a3d3-07574b67b2bb",
+        "area": "2ddcf80a-c202-4d21-b319-e7f30faecdd6",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     },
     {
         "name": "Maadi",
-        "areaId": "71d43053-a605-4cd4-991f-b642e6e689ff",
+        "area": "fc2db82b-8f13-4d90-8806-ec4363a1f00e",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     },
     {
         "name": "Shoubra",
-        "areaId": "a90f1bf2-ada3-4c1b-9335-eab62d35ff1f",
+        "area": "e0061a22-8ffd-43ea-9095-f59b8ab6c93d",
         "restaurantId": "9975363f-5fad-4ab7-b148-abed91f06dcd"
     }
 ]

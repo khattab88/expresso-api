@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const slugify = require('slugify');
 const validator = require('validator');
 
+const Area = require('./area-model');
+
 const branchSchema = new mongoose.Schema({
     id: {
         type: String,
@@ -24,10 +26,7 @@ const branchSchema = new mongoose.Schema({
             message: "slug ({VALUE}) is not a valid slug!"
         }
     },
-    areaId: {
-        type: String,
-        required: [true, "Branch must have a area Id!"]
-    },
+    area: Object,
     restaurantId: {
         type: String,
         required: [true, "Branch must have a restaurant Id!"]
@@ -41,6 +40,14 @@ branchSchema.pre("save", function(next) {
         lower: true,
         remove: /[*+~.()'"!:@]/g 
     });
+    next();
+});
+
+// embed area as a child document
+branchSchema.pre("save", async function(next) {
+    const area = await Area.findOne({ id: this.area });
+    this.area = area;
+
     next();
 });
 
