@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const slugify = require('slugify');
 const validator = require('validator')
 
+const Tag = require('./tag-model');
+
 const restaurantSchema = new mongoose.Schema({
     id: {
         type: String,
@@ -40,7 +42,7 @@ const restaurantSchema = new mongoose.Schema({
         default: 0,
         max: [5, "rating must be below 5.0!"],
     },
-    tags: [String],
+    tags: Array,
     slug: {
         type: String,
         validate: {
@@ -136,9 +138,17 @@ restaurantSchema.pre("save", function(next) {
     next();
 });
 
+// tags array as a child collection
+restaurantSchema.pre("save", async function(next) {
+    const tagPromises = this.tags.map(async id => await Tag.findOne({ id: id }));
+    this.tags = await Promise.all(tagPromises);
+
+    next();
+});
+
 // Document middleware: runs AFTER .save() and .create()
 restaurantSchema.post("save", function(doc, next) {
-    // console.log(doc);
+    //console.log(doc);
     next();
 });
 

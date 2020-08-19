@@ -7,7 +7,12 @@
         "deliveryFee": 15,
         "specialOffers": true,
         "rating": 4.5,
-        "tags": ["Offers", "American", "Burgers", "Fast Food", "Sandwiches"],
+        "tags": [
+            "fc454087-0036-4b92-ac64-e2ebac5acb5e",
+            "201b88d4-fb0a-4b5c-b49c-b7d917ecc8f0",
+            "623e2504-ca68-4da6-80d5-0a7433bb3c39",
+            "f0ef6458-abae-45b2-b8b6-cec2ed397f2b"
+        ],
         "menu": {
             "menuSections": [
                 {
@@ -129,7 +134,12 @@
         "deliveryFee": 20,
         "specialOffers": true,
         "rating": 4.3,
-        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        "tags": [
+            "fc454087-0036-4b92-ac64-e2ebac5acb5e",
+            "201b88d4-fb0a-4b5c-b49c-b7d917ecc8f0",
+            "623e2504-ca68-4da6-80d5-0a7433bb3c39",
+            "f0ef6458-abae-45b2-b8b6-cec2ed397f2b"
+        ]
     },
     {
         "name": "Pizza Hut",
@@ -139,7 +149,13 @@
         "deliveryFee": 30,
         "specialOffers": false,
         "rating": 4.5,
-        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        "tags": [
+            "fc454087-0036-4b92-ac64-e2ebac5acb5e",
+            "201b88d4-fb0a-4b5c-b49c-b7d917ecc8f0",
+            "623e2504-ca68-4da6-80d5-0a7433bb3c39",
+            "98865e57-6390-4305-a09d-a00a3d32e1c4",
+            "73a3ae28-a227-4596-b647-1c9bd49893c3"
+        ]
     },
     {
         "name": "Burger King",
@@ -149,7 +165,12 @@
         "deliveryFee": 25,
         "specialOffers": true,
         "rating": 4,
-        "tags": ["Offers", "American", "Fast Food", "Sandwiches"]
+        "tags": [
+            "fc454087-0036-4b92-ac64-e2ebac5acb5e",
+            "201b88d4-fb0a-4b5c-b49c-b7d917ecc8f0",
+            "623e2504-ca68-4da6-80d5-0a7433bb3c39",
+            "f0ef6458-abae-45b2-b8b6-cec2ed397f2b"
+        ]
     },
     {
         "name": "Cook Door",
@@ -159,6 +180,11 @@
         "deliveryFee": 15,
         "specialOffers": false,
         "rating": 4.3,
-        "tags": ["Offers", "American", "Fast Food", "Italian", "Pizza"]
+        "tags": [
+            "fc454087-0036-4b92-ac64-e2ebac5acb5e",
+            "201b88d4-fb0a-4b5c-b49c-b7d917ecc8f0",
+            "623e2504-ca68-4da6-80d5-0a7433bb3c39",
+            "f0ef6458-abae-45b2-b8b6-cec2ed397f2b"
+        ]
     }
 ]
