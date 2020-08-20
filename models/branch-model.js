@@ -26,10 +26,14 @@ const branchSchema = new mongoose.Schema({
             message: "slug ({VALUE}) is not a valid slug!"
         }
     },
-    area: Object,
+    area: {
+        type: Object,
+        required: [true, "Branch must have an Area!"]
+    },
     restaurant: {
         type: mongoose.Schema.ObjectId,
-        ref: "Restaurant"
+        ref: "Restaurant",
+        required: [true, "Branch must have a restaurant!"]
     }
 });
 
