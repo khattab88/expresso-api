@@ -68,6 +68,7 @@ exports.getAllRestaurants = async (req, res) => {
 exports.getRestaurant = catchAsync(async (req, res, next) => {
       const {id} = req.params;
       const restaurant = await restaurantRepo.getById(id);
+      //const restaurant = await Restaurant.findOne({ id }).populate("branches");
 
       if(!restaurant) {
         return next(new AppError("No restaurant found with that id!", 404));

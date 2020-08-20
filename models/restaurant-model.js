@@ -127,6 +127,13 @@ restaurantSchema.virtual("deliveryRate").get(function() {
     return (this.deliveryFee / this.deliveryTime).toFixed(2) * 1;
 });
 
+//// virtual populate
+// restaurantSchema.virtual("branches", {
+//     ref: "Branch",
+//     foreignField: "restaurant",
+//     localField: "_id"
+// });
+
 
 // Document middleware: runs BEFORE .save() and .create()
 restaurantSchema.pre("save", function(next) {
