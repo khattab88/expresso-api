@@ -3,10 +3,17 @@
 const cityRepo = require("../repositories/city-repository");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const City = require("../models/city-model");
 
 
 exports.getAllCities = catchAsync(async (req, res, next) => {
-    const cities = await cityRepo.getAll();
+    let cities = null;
+
+    if(req.params.countryId) {
+        cities = await cityRepo.getByCountryId(req.params.countryId);
+    } else {
+        cities = await cityRepo.getAll();
+    }
     
     res.status(200).json({
         status: "success",

@@ -9,7 +9,7 @@ const authController = require('../controllers/auth-controller');
 
 const cityRouter = require('./city-routes');
 
-
+// GET /countries/34fdc/cities
 // POST /countries/34fdc/cities
 router.use("/:countryId/cities", cityRouter);
 

@@ -32,6 +32,16 @@ class CityRepository {
     }
   }
 
+  async getByCountryId(countryId) {
+    try {
+      const cities = await City.find({ "country.id": countryId });
+      return cities;
+    }
+    catch(err) {
+      throw new Error(err);
+    }
+  }
+
   async create(city) {
     try {
       const newCity = await City.create(city);
