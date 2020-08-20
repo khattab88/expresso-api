@@ -7,6 +7,12 @@ const router = express.Router();
 const countryController = require('../controllers/country-controller');
 const authController = require('../controllers/auth-controller');
 
+const cityRouter = require('./city-routes');
+
+
+// POST /countries/34fdc/cities
+router.use("/:countryId/cities", cityRouter);
+
 router
     .route("/")
     .get(authController.protect, countryController.getAllCountries)
@@ -20,5 +26,6 @@ router
            countryController.updateCountry)
     .delete(authController.protect, authController.restrictTo("admin"),
             countryController.deleteCountry);
+
 
 module.exports = router;

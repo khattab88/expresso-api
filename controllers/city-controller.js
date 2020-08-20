@@ -32,6 +32,9 @@ exports.getCity = catchAsync(async (req, res, next) => {
 });
 
 exports.createCity = catchAsync(async (req, res, next) => {
+    // allow nested rotes
+    if(!req.body.country) req.body.country = req.params.countryId;
+
     const newCity = await cityRepo.create(req.body);
 
     res.status(201).json({
