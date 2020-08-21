@@ -7,9 +7,14 @@ const router = express.Router({ mergeParams: true });
 const cityController = require("../controllers/city-controller");
 const authController = require('../controllers/auth-controller');
 
+const areaRouter = require('./area-routes');
+
+// POST /cities/34fdc/areas
+// GET /cities/34fdc/areas
+router.use("/:cityId/areas", areaRouter);
+
 // POST /countries/34fdc/cities 
 // POST /cities
-
 router.route("/")
         .get(authController.protect, cityController.getAllCities)
         .post(authController.protect, authController.restrictTo("admin"),

@@ -21,6 +21,16 @@ class AreaRepository {
         }
     }
 
+    async getByCityId(cityId) {
+      try {
+        const cities = await Area.find({ "city.id": cityId });
+        return cities;
+      }
+      catch(err) {
+        throw new Error(err);
+      }
+    }
+
     async create(area) {
         try {
           const newArea = await Area.create(area);

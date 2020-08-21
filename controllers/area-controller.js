@@ -4,7 +4,13 @@ const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
 exports.getAllAreas = catchAsync(async (req, res, next) => {
-    const areas = await areaRepo.getAll();
+    let areas = null;
+
+    if(req.params.cityId) {
+        areas = await areaRepo.getByCityId(req.params.cityId);
+    } else {
+        areas = await areaRepo.getAll();
+    }
 
     res.status(200).json({
         status: "success",
@@ -29,6 +35,9 @@ exports.getArea = catchAsync(async (req, res, next) => {
 });
 
 exports.createArea = catchAsync(async (req, res, next) => {
+    // allow nested routes
+    if(!req.body.city) req.body.city = req.params.cityId;
+
     const newArea = await areaRepo.create(req.body);
 
     res.status(201).json({
