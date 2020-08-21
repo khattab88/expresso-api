@@ -21,6 +21,16 @@ class BranchRepository {
         }
     }
 
+    async getByRestaurantId(restaurantId) {
+      try {
+        const cities = await Branch.find({ "restaurant.id": restaurantId });
+        return cities;
+      }
+      catch(err) {
+        throw new Error(err);
+      }
+    }
+
     async getByIdWith(id, field) {
       try {
         const branch = await Branch.findOne({ id }).populate({

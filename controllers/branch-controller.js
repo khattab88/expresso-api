@@ -5,7 +5,13 @@ const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
 exports.getAllBranches = catchAsync(async (req, res, next) => {
-    const branches = await branchRepo.getAll();
+    let branches = null;
+
+    if(req.params.restaurantId) {
+        branches = await branchRepo.getByRestaurantId(req.params.restaurantId);
+    } else {
+        branches = await branchRepo.getAll();
+    }
 
     res.status(200).json({
         status: "success",
@@ -29,6 +35,9 @@ exports.getBranch = catchAsync(async (req, res, next) => {
 });
 
 exports.createBranch = catchAsync(async (req, res, next) => {
+    // allow nested routes
+    if(!req.body.restaurant) req.body.restaurant = req.params.restaurantId;
+
     const newBranch = await branchRepo.create(req.body);
 
     res.status(201).json({
