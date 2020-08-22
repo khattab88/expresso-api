@@ -17,7 +17,7 @@ exports.getAllBranches = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: "success",
         count: branches.length,
-        data: { branches }
+        data: { docs: branches }
     });
 });
 

@@ -41,35 +41,7 @@ exports.getPopularTags = async (req, res, next) => {
   next();
 };
 
-exports.getAllTags = async (req, res) => {
-    try {
-      // build query
-      const query = new QueryBuilder(Tag.find(), req.query)
-                        .filter()
-                        .sort()
-                        .project()
-                        .paginate()
-                        .limit().query; 
-
-      // excecute query
-      const tags = await tagRepo.getAll(query);
-
-      // return resposne
-      res.status(200).json({
-        status: 'success',
-        count: tags.length,
-        data: {
-          tags: tags,
-        },
-      });
-    }
-    catch(err) {
-      res.status(500).json({
-          status: "fail",
-          message: err.message
-      });
-    }
-};
+exports.getAllTags = controllerFactory.getAll(Tag, tagRepo);
 
 exports.getTag = controllerFactory.getById(tagRepo);
 

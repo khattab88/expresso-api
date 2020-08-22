@@ -44,25 +44,7 @@ exports.getStats = async (req, res) => {
     }
 };
 
-exports.getAllRestaurants = async (req, res) => {
-    try {
-      const restaurants = await restaurantRepo.getAll();
-  
-      // return resposne
-      res.status(200).json({
-        status: 'success',
-        count: restaurants.length,
-        data: {
-          restaurants: restaurants,
-        },
-      });
-    } catch (err) {
-      res.status(500).json({
-        status: 'fail',
-        message: err.message,
-      });
-    }
-};
+exports.getAllRestaurants = controllerFactory.getAll(Restaurant, restaurantRepo);
   
 exports.getRestaurant = controllerFactory.getById(restaurantRepo);
 

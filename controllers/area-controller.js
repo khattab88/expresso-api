@@ -16,7 +16,7 @@ exports.getAllAreas = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: "success",
         count: areas.length,
-        data: { areas }
+        data: { docs: areas }
     });
 });
 

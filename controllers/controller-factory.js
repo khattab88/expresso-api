@@ -1,7 +1,36 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const QueryBuilder = require("../repositories/query-builder");
 
+exports.getAll = (Model, repo) => catchAsync(async (req, res, next) => {
+  try {
+    // build query
+    const query = new QueryBuilder(Model.find(), req.query)
+                      .filter()
+                      .sort()
+                      .project()
+                      .paginate()
+                      .limit().query; 
+
+    // excecute query
+    const docs = await repo.getAll(query);
+
+    // return resposne
+    res.status(200).json({
+      status: 'success',
+      count: docs.length,
+      data: { docs }
+    });
+  }
+  catch(err) {
+    res.status(500).json({
+        status: "fail",
+        message: err.message
+    });
+  }
+});
 
 exports.getById = repo => catchAsync(async (req, res, next) => {
   const doc = await repo.getById(req.params.id);

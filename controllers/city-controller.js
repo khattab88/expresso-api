@@ -19,9 +19,7 @@ exports.getAllCities = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: "success",
         count: cities.length,
-        data: {
-            cities: cities
-        }
+        data: { docs: cities }
     });
 });
 
