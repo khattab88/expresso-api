@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const authController = require('../controllers/auth-controller');
+const userController = require('../controllers/user-controller');
 
 router
     .route("/signup")
@@ -25,6 +26,11 @@ router
 router
     .route("/changePassword")
     .patch(authController.protect, authController.changePassword);
+
+router
+    .route("/me")
+    .get(authController.protect, 
+         authController.getMe, userController.getUser);
 
 router
     .route("/updateMe")
