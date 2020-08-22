@@ -20,20 +20,7 @@ exports.getAllAreas = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getArea = catchAsync(async (req, res, next) => {
-    // eslint-disable-next-line prefer-destructuring
-    const id = req.params.id;
-    const area = await areaRepo.getById(id);
-
-    if(!area) {
-        return next(new AppError("No branch found with that id!", 404));
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: { area }
-    });
-});
+exports.getArea = controllerFactory.getById(areaRepo);
 
 exports.setCityId = (req, res, next) => {
     // allow nested routes

@@ -21,19 +21,7 @@ exports.getAllBranches = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getBranch = catchAsync(async (req, res, next) => {
-    const id = req.params.id;
-    const branch = await branchRepo.getById(id);
-
-    if(!branch) {
-        return next(new AppError("No branch found with that id!", 404));
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: { branch }
-    });
-});
+exports.getBranch = controllerFactory.getById(branchRepo);
 
 exports.setRestaurantId = (req, res, next) => {
     // allow nested routes

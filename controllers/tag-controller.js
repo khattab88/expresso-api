@@ -71,32 +71,7 @@ exports.getAllTags = async (req, res) => {
     }
 };
 
-exports.getTag = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const tag = await tagRepo.getById(id);
-
-    if(!tag) {
-        return res.status(404).json({
-            status: "fail",
-            message: "not found!"
-        });
-    }
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        tag: tag,
-      },
-    });
-  }
-  catch(err) {
-      res.status(500).json({
-          status: 'fail',
-          message: err.message
-      });
-  }
-};
+exports.getTag = controllerFactory.getById(tagRepo);
 
 exports.createTag = controllerFactory.create(tagRepo);
 

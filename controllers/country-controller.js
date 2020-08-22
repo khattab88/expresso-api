@@ -14,20 +14,7 @@ exports.getAllCountries = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getCountry = catchAsync(async (req, res, next) => {
-    // eslint-disable-next-line prefer-destructuring
-    const id = req.params.id;
-    const country = await countryRepo.getById(id);
-
-    if(!country) {
-        return next(new AppError("No Country found with that id!", 404));
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: { country }
-    });
-});
+exports.getCountry = controllerFactory.getById(countryRepo);
 
 exports.createCountry = controllerFactory.create(countryRepo);
 

@@ -15,18 +15,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getUser = catchAsync(async (req, res, next) => {
-    const user = await userRepo.getById(req.params.id);
-
-    if(!user) {
-        return next(new AppError("No user found with that id!", 404));
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: { user }
-    });
-});
+exports.getUser = controllerFactory.getById(userRepo);
 
 exports.createUser = controllerFactory.create(userRepo);
 

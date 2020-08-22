@@ -3,6 +3,19 @@ const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
 
+exports.getById = repo => catchAsync(async (req, res, next) => {
+  const doc = await repo.getById(req.params.id);
+
+  if(!doc) {
+      return next(new AppError("No document found with that id!", 404));
+  }
+
+  res.status(200).json({
+      status: 'success',
+      data: { doc }
+  });
+});
+
 exports.create = repo => catchAsync(async (req, res, next) => {
   const newDoc = await repo.create(req.body);
 

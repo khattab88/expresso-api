@@ -25,19 +25,7 @@ exports.getAllCities = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getCity = catchAsync(async (req, res, next) => {
-    const id = req.params.id;
-    const city = await cityRepo.getById(id);
-
-    if(!city) {
-        return next(new AppError("No city found with that id!", 404));
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: { city }
-    });
-});
+exports.getCity = controllerFactory.getById(cityRepo);
 
 exports.setCountryId = (req, res, next) => {
     // allow nested rotes
