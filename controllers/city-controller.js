@@ -53,22 +53,6 @@ exports.createCity = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.updateCity = catchAsync(async (req, res, next) => {
-    const updated = await cityRepo.update(req.params.id, req.body);
-
-    if(!updated) {
-        return res.status(404).json({ 
-            status: "fail",
-            message: "not found!"
-        });
-      }
-    
-      res.status(200).json({
-        status: 'success',
-        data: {
-          city: updated,
-        }
-      });
-});
+exports.updateCity = controllerFactory.update(cityRepo);
 
 exports.deleteCity = controllerFactory.delete(cityRepo);

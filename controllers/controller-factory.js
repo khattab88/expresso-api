@@ -2,6 +2,19 @@
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
+exports.update = repo => catchAsync(async (req, res, next) => {
+    const updated = await repo.update(req.params.id, req.body);
+
+    if(!updated) return next(new AppError(`Document with id: ${req.params.id} is not found!`, 404));
+    
+    res.status(200).json({
+      status: 'success',
+      data: {
+        doc: updated,
+      }
+    });
+});
+
 exports.delete = repo => catchAsync(async (req, res, next) => {
     const doc = await repo.getById(req.params.id);
 

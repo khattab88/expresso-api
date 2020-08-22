@@ -40,22 +40,6 @@ exports.createCountry = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.updateCountry = catchAsync(async (req, res, next) => {
-    const updated = await countryRepo.update(req.params.id, req.body);
-
-    if(!updated) {
-        return res.status(404).json({ 
-            status: "fail",
-            message: "not found!"
-        });
-      }
-    
-      res.status(200).json({
-        status: 'success',
-        data: {
-          country: updated,
-        }
-      });
-});
+exports.updateCountry = controllerFactory.update(countryRepo);
 
 exports.deleteCountry = controllerFactory.delete(countryRepo);

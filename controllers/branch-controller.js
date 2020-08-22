@@ -49,22 +49,6 @@ exports.createBranch = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.updateUser = catchAsync(async (req, res, next) => {
-    const updated = await branchRepo.update(req.params.id, req.body);
-
-    if(!updated) {
-        return res.status(404).json({ 
-            status: "fail",
-            message: "not found!"
-        });
-      }
-    
-      res.status(200).json({
-        status: 'success',
-        data: {
-          branch: updated,
-        }
-      });
-});
+exports.updateUser = controllerFactory.update(branchRepo);
 
 exports.deleteBranch = controllerFactory.delete(branchRepo);

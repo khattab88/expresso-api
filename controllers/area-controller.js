@@ -49,22 +49,6 @@ exports.createArea = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.updateArea = catchAsync(async (req, res, next) => {
-    const updated = await areaRepo.update(req.params.id, req.body);
-
-    if(!updated) {
-        return res.status(404).json({ 
-            status: "fail",
-            message: "not found!"
-        });
-      }
-    
-      res.status(200).json({
-        status: 'success',
-        data: {
-          area: updated,
-        }
-      });
-});
+exports.updateArea = controllerFactory.update(areaRepo);
 
 exports.deleteArea = controllerFactory.delete(areaRepo);

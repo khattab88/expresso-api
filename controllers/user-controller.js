@@ -39,22 +39,6 @@ exports.createUser = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.updateUser = catchAsync(async (req, res, next) => {
-    const updated = await userRepo.update(req.params.id, req.body);
-
-    if(!updated) {
-        return res.status(404).json({ 
-            status: "fail",
-            message: "not found!"
-        });
-      }
-    
-      res.status(200).json({
-        status: 'success',
-        data: {
-          user: updated,
-        }
-      });
-});
+exports.updateUser = controllerFactory.update(userRepo);
 
 exports.deleteUser = controllerFactory.delete(userRepo);

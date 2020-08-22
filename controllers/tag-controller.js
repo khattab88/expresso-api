@@ -117,30 +117,6 @@ exports.createTag = async (req, res) => {
     }
 };
 
-exports.updateTag = async (req, res) => {
-    try {
-        const updated = await tagRepo.update(req.params.id, req.body);
-
-        if(!updated) {
-            return res.status(404).json({ 
-                status: "fail",
-                message: "not found!"
-            });
-        }
-
-        res.status(200).json({
-          status: 'success',
-          data: {
-            tag: updated,
-          }
-        });
-    }
-    catch(err) {
-        res.status(500).json({
-            status: 'fail',
-            message: err
-        });
-    }
-};
+exports.updateTag = controllerFactory.update(tagRepo);
 
 exports.deleteTag = controllerFactory.delete(tagRepo);
