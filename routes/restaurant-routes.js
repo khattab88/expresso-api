@@ -14,21 +14,21 @@ router.use("/:restaurantId/branches", branchRouter);
 
 router
     .route("/top/:count")
-    .get(authController.protect, restaurantController.getTopRating);
+    .get(restaurantController.getTopRating);
 
 router
     .route("/stats")
-    .get(authController.protect, restaurantController.getStats);
+    .get(restaurantController.getStats);
 
 router
     .route("/")
-    .get(authController.protect, restaurantController.getAllRestaurants)
+    .get(restaurantController.getAllRestaurants)
     .post(authController.protect, authController.restrictTo("admin"),
           restaurantController.createRestaurant);
 
 router
     .route("/:id")
-    .get(authController.protect, restaurantController.getRestaurant)
+    .get(restaurantController.getRestaurant)
     .patch(authController.protect, authController.restrictTo("admin"),
            restaurantController.updateRestaurant)
     .delete(authController.protect, authController.restrictTo("admin"),

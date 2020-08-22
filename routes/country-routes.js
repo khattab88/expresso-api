@@ -15,13 +15,13 @@ router.use("/:countryId/cities", cityRouter);
 
 router
     .route("/")
-    .get(authController.protect, countryController.getAllCountries)
+    .get(countryController.getAllCountries)
     .post(authController.protect, authController.restrictTo("admin"),
           countryController.createCountry);
 
 router
     .route("/:id")
-    .get(authController.protect, countryController.getCountry)
+    .get(countryController.getCountry)
     .patch(authController.protect, authController.restrictTo("admin"), 
            countryController.updateCountry)
     .delete(authController.protect, authController.restrictTo("admin"),

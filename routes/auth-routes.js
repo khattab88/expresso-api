@@ -23,21 +23,24 @@ router
     .route("/resetPassword/:token")
     .patch(authController.resetPassword);
 
+
+// Protected Routes
+router.use(authController.protect);
+
 router
     .route("/changePassword")
-    .patch(authController.protect, authController.changePassword);
+    .patch(authController.changePassword);
 
 router
     .route("/me")
-    .get(authController.protect, 
-         authController.getMe, userController.getUser);
+    .get(authController.getMe, userController.getUser);
 
 router
     .route("/updateMe")
-    .patch(authController.protect, authController.updateMe);
+    .patch(authController.updateMe);
 
 router
     .route("/deactivate")
-    .delete(authController.protect, authController.deactivate);
+    .delete(authController.deactivate);
 
 module.exports = router;

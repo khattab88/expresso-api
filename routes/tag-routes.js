@@ -11,18 +11,17 @@ const authController = require('../controllers/auth-controller');
 
 router
   .route("/popular")
-  .get(authController.protect,
-       tagController.getPopularTags, tagController.getAllTags);
+  .get(tagController.getPopularTags, tagController.getAllTags);
 
 router
   .route('/')
-  .get(authController.protect, tagController.getAllTags)
+  .get(tagController.getAllTags)
   .post(authController.protect, authController.restrictTo("admin"),
         tagController.checkBody, tagController.createTag);
 
 router
   .route('/:id')
-  .get(authController.protect, tagController.getTag)
+  .get(tagController.getTag)
   .patch(authController.protect, authController.restrictTo("admin"),
          tagController.checkBody, tagController.updateTag)
   .delete(authController.protect, authController.restrictTo("admin"),

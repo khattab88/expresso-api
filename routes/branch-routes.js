@@ -9,13 +9,13 @@ const authController = require('../controllers/auth-controller');
 
 router
     .route("/")
-    .get(authController.protect, branchController.getAllBranches)
+    .get(branchController.getAllBranches)
     .post(authController.protect, authController.restrictTo("admin"),
           branchController.setRestaurantId, branchController.createBranch);
 
 router
     .route("/:id")
-    .get(authController.protect, branchController.getBranch)
+    .get(branchController.getBranch)
     .patch(authController.protect, authController.restrictTo("admin"),
            branchController.updateUser)
     .delete(authController.protect, authController.restrictTo("admin"),

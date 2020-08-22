@@ -9,13 +9,13 @@ const authController = require('../controllers/auth-controller');
 
 router
     .route("/")
-    .get(authController.protect, areaController.getAllAreas)
+    .get(areaController.getAllAreas)
     .post(authController.protect, authController.restrictTo("admin"),
           areaController.setCityId, areaController.createArea);
 
 router
     .route("/:id")
-    .get(authController.protect, areaController.getArea)
+    .get(areaController.getArea)
     .patch(authController.protect, authController.restrictTo("admin"), 
            areaController.updateArea)
     .delete(authController.protect, authController.restrictTo("admin"), 

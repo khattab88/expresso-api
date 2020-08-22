@@ -16,12 +16,12 @@ router.use("/:cityId/areas", areaRouter);
 // POST /countries/34fdc/cities 
 // POST /cities
 router.route("/")
-        .get(authController.protect, cityController.getAllCities)
+        .get(cityController.getAllCities)
         .post(authController.protect, authController.restrictTo("admin"),
               cityController.setCountryId, cityController.createCity);
 
 router.route("/:id")
-        .get(authController.protect, cityController.getCity)
+        .get(cityController.getCity)
         .patch(authController.protect, authController.restrictTo("admin"), 
                cityController.updateCity)
         .delete(authController.protect, authController.restrictTo("admin"), 

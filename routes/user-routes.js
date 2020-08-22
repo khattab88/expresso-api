@@ -7,18 +7,19 @@ const router = express.Router();
 const userController = require('../controllers/user-controller');
 const authController = require('../controllers/auth-controller');
 
+// Protected All Routes
+router.use(authController.protect);
+router.use(authController.restrictTo("admin"));
+
 router
     .route("/")
-    .get(authController.protect, userController.getAllUsers)
-    .post(authController.protect, userController.createUser);
+    .get(userController.getAllUsers)
+    .post(userController.createUser);
 
 router
     .route("/:id")
-    .get(authController.protect, userController.getUser)
-    .patch(authController.protect, userController.updateUser)
-    .delete(
-        authController.protect, 
-        authController.restrictTo("admin"), 
-        userController.deleteUser);
+    .get(userController.getUser)
+    .patch(userController.updateUser)
+    .delete(userController.deleteUser);
 
 module.exports = router;
