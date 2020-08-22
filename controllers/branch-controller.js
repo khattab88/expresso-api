@@ -35,19 +35,14 @@ exports.getBranch = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.createBranch = catchAsync(async (req, res, next) => {
+exports.setRestaurantId = (req, res, next) => {
     // allow nested routes
     if(!req.body.restaurant) req.body.restaurant = req.params.restaurantId;
 
-    const newBranch = await branchRepo.create(req.body);
+    next();
+};
 
-    res.status(201).json({
-        status: 'success',
-        data: {
-          branch: newBranch,
-        }
-    });
-});
+exports.createBranch = controllerFactory.create(branchRepo);
 
 exports.updateUser = controllerFactory.update(branchRepo);
 

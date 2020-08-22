@@ -11,7 +11,7 @@ router
     .route("/")
     .get(authController.protect, branchController.getAllBranches)
     .post(authController.protect, authController.restrictTo("admin"),
-          branchController.createBranch);
+          branchController.setRestaurantId, branchController.createBranch);
 
 router
     .route("/:id")

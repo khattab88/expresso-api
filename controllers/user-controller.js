@@ -28,16 +28,7 @@ exports.getUser = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.createUser = catchAsync(async (req, res, next) => {
-    const newUser = await userRepo.create(req.body);
-
-    res.status(201).json({
-        status: 'success',
-        data: {
-          user: newUser,
-        }
-    });
-});
+exports.createUser = controllerFactory.create(userRepo);
 
 exports.updateUser = controllerFactory.update(userRepo);
 

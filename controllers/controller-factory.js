@@ -2,6 +2,18 @@
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
+
+exports.create = repo => catchAsync(async (req, res, next) => {
+  const newDoc = await repo.create(req.body);
+
+  res.status(201).json({
+      status: 'success',
+      data: {
+        doc: newDoc,
+      }
+  });
+});
+
 exports.update = repo => catchAsync(async (req, res, next) => {
     const updated = await repo.update(req.params.id, req.body);
 

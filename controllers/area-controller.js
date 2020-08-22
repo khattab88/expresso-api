@@ -35,19 +35,14 @@ exports.getArea = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.createArea = catchAsync(async (req, res, next) => {
+exports.setCityId = (req, res, next) => {
     // allow nested routes
     if(!req.body.city) req.body.city = req.params.cityId;
+    
+    next();
+};
 
-    const newArea = await areaRepo.create(req.body);
-
-    res.status(201).json({
-        status: 'success',
-        data: {
-          area: newArea,
-        }
-    });
-});
+exports.createArea = controllerFactory.create(areaRepo);
 
 exports.updateArea = controllerFactory.update(areaRepo);
 

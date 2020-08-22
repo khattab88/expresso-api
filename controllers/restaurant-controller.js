@@ -81,16 +81,7 @@ exports.getRestaurant = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.createRestaurant = catchAsync( async (req, res, next) => {
-  const newRestaurant = await restaurantRepo.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      restaurant: newRestaurant,
-    }
-  });
-});
+exports.createRestaurant = controllerFactory.create(restaurantRepo);
 
 exports.updateRestaurant = controllerFactory.update(restaurantRepo);
 

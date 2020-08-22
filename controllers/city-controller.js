@@ -39,19 +39,14 @@ exports.getCity = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.createCity = catchAsync(async (req, res, next) => {
+exports.setCountryId = (req, res, next) => {
     // allow nested rotes
     if(!req.body.country) req.body.country = req.params.countryId;
+    
+    next();
+};
 
-    const newCity = await cityRepo.create(req.body);
-
-    res.status(201).json({
-        status: 'success',
-        data: {
-          city: newCity,
-        }
-    });
-});
+exports.createCity = controllerFactory.create(cityRepo);
 
 exports.updateCity = controllerFactory.update(cityRepo);
 

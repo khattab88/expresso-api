@@ -11,7 +11,7 @@ router
     .route("/")
     .get(authController.protect, areaController.getAllAreas)
     .post(authController.protect, authController.restrictTo("admin"),
-          areaController.createArea);
+          areaController.setCityId, areaController.createArea);
 
 router
     .route("/:id")

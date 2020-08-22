@@ -98,24 +98,7 @@ exports.getTag = async (req, res) => {
   }
 };
 
-exports.createTag = async (req, res) => {
-    try {
-        const newTag = await tagRepo.create(req.body);
-
-        res.status(201).json({
-          status: 'success',
-          data: {
-            tag: newTag,
-          }
-        });
-    }
-    catch(err) {
-        res.status(400).json({
-            status: 'fail',
-            message: err
-        });
-    }
-};
+exports.createTag = controllerFactory.create(tagRepo);
 
 exports.updateTag = controllerFactory.update(tagRepo);
 

@@ -29,16 +29,7 @@ exports.getCountry = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.createCountry = catchAsync(async (req, res, next) => {
-    const newCountry = await countryRepo.create(req.body);
-
-    res.status(201).json({
-        status: 'success',
-        data: {
-          country: newCountry,
-        }
-    });
-});
+exports.createCountry = controllerFactory.create(countryRepo);
 
 exports.updateCountry = controllerFactory.update(countryRepo);
 

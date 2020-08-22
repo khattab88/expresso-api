@@ -18,7 +18,7 @@ router.use("/:cityId/areas", areaRouter);
 router.route("/")
         .get(authController.protect, cityController.getAllCities)
         .post(authController.protect, authController.restrictTo("admin"),
-              cityController.createCity);
+              cityController.setCountryId, cityController.createCity);
 
 router.route("/:id")
         .get(authController.protect, cityController.getCity)
