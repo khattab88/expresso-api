@@ -47,7 +47,7 @@ class Repository {
 
     async delete (id) { 
         try {
-            await this.modelfindOneAndDelete({ id: id });
+            await this.model.findOneAndDelete({ id: id });
           }
           catch (err) {
             throw new Error(err);
