@@ -45,12 +45,12 @@ areaSchema.pre("save", function(next) {
 });
 
 // embed city object as a child document
-areaSchema.pre("save", async function(next) {
-    const city = await City.findOne({ id: this.city });
-    this.city = city;
+// areaSchema.pre("save", async function(next) {
+//     const city = await City.findOne({ id: this.city });
+//     this.city = city;
 
-    next();
-});
+//     next();
+// });
 
 const Area = mongoose.model("Area", areaSchema);
 
