@@ -122,6 +122,15 @@ const restaurantSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 });
 
+
+// single-field index
+restaurantSchema.index({ deliveryTime: 1 });
+restaurantSchema.index({ slug: 1 });
+
+// compound index
+restaurantSchema.index({ deliveryTime: 1, deliveryFee: -1 });
+
+
 // virtual properties
 restaurantSchema.virtual("deliveryRate").get(function() {
     return (this.deliveryFee / this.deliveryTime).toFixed(2) * 1;
