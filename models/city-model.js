@@ -43,6 +43,7 @@ citySchema.pre("save", function(next) {
     next();
 });
 
+
 // embed country object as a child document
 citySchema.pre("save", async function(next) {
     const country = await Country.findOne({ id: this.country });
@@ -60,6 +61,46 @@ citySchema.pre("save", async function(next) {
     this.areas.forEach(area => area.city = undefined);
 
     next();
+});
+
+
+// calculate number of cities by country (as static function)
+citySchema.statics.getNumOfCities = async function(countryId) {
+    const stats = await this.aggregate([
+        {
+            $match: { "country.id": countryId }  
+        },
+        {
+            $group: {
+                _id: "$country.id",
+                numOfCities: { $sum: 1 }
+            }
+        }
+    ]);
+
+    //console.log(stats);
+
+    if(stats.length > 0) {
+        await Country.findOneAndUpdate({ id: countryId }, { numOfCities: stats[0].numOfCities });
+    } else {
+        await Country.findOneAndUpdate({ id: countryId }, { numOfCities: 0 });
+    }
+};
+
+citySchema.post("save", function() {
+    this.constructor.getNumOfCities(this.country.id);
+});
+
+
+// query middleware hooks for findOneAndUpdate / findOneAndDelete 
+citySchema.pre(/^findOneAnd/, async function(next) {
+    this.cityDoc = await this.findOne();
+    //console.log(city);
+    next();
+});
+
+citySchema.post(/^findOneAnd/, async function() {
+    this.cityDoc.constructor.getNumOfCities(this.cityDoc.country.id);
 });
 
 const City = mongoose.model("City", citySchema);
