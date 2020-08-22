@@ -30,8 +30,11 @@ const citySchema = new mongoose.Schema({
     areas: Array
 });
 
-// Document middleware: runs BEFORE .save() and .create()
+// compound index 
+citySchema.index({ city: 1 , name: 1}, { unique: true});
 
+
+/* Document middleware: runs BEFORE .save() and .create() */
 // create name slug
 citySchema.pre("save", function(next) {
     // eslint-disable-next-line prefer-destructuring
@@ -92,16 +95,17 @@ citySchema.post("save", function() {
 });
 
 
-// query middleware hooks for findOneAndUpdate / findOneAndDelete 
-citySchema.pre(/^findOneAnd/, async function(next) {
-    this.cityDoc = await this.findOne();
-    //console.log(city);
-    next();
-});
+//// query middleware hooks for findOneAndUpdate / findOneAndDelete 
+// citySchema.pre(/^findOneAnd/, async function(next) {
+//     this.cityDoc = await this.findOne();
+//     //console.log(city);
+//     next();
+// });
 
-citySchema.post(/^findOneAnd/, async function() {
-    this.cityDoc.constructor.getNumOfCities(this.cityDoc.country.id);
-});
+// citySchema.post(/^findOneAnd/, async function() {
+//     this.cityDoc.constructor.getNumOfCities(this.cityDoc.country.id);
+// });
+
 
 const City = mongoose.model("City", citySchema);
 
