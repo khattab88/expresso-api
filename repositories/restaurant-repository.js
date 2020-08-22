@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
 const Restaurant = require("../models/restaurant-model");
+const Repository = require("./repository");
 
-class RestaurantRepository {
+class RestaurantRepository extends Repository{
+  constructor() { 
+    super(Restaurant); 
+  }
 
   async getTopRating(count) {
     return await Restaurant.aggregate([
@@ -42,63 +46,11 @@ class RestaurantRepository {
       }
     ]);  
 
-}
+  }
 
-    async getCount() {
-        return await Restaurant.countDocuments();
-    }
-
-    async getAll() {
-        try {
-          const restaurants = await Restaurant.find();
-          return restaurants; 
-        }
-        catch(err) {
-          throw new Error(err);
-        }
-    }
-
-    async getById(id) {
-        try {
-          const restaurant = await Restaurant.findOne({ id: id });
-          return restaurant;
-        }
-        catch(err) {
-          throw new Error(err);
-        }
-      }
-    
-      async create(restaurant) {
-        try {
-          const newRestaurant = await Restaurant.create(restaurant);
-          return newRestaurant;
-        }
-        catch (err) {
-          throw new Error(err);
-        }
-      }
-    
-      async update(id, restaurant) {
-        try {
-          const updated = await Restaurant.findOneAndUpdate({ id: id }, restaurant, { 
-            new: true,
-            runValidators: true
-          });
-          return updated;
-        }
-        catch (err) {
-          throw new Error(err);
-        }
-      }
-    
-      async delete(id) {
-        try {
-          await Restaurant.findOneAndDelete({ id: id });
-        }
-        catch (err) {
-          throw new Error(err);
-        }
-      }
+  async getCount() {
+      return await Restaurant.countDocuments();
+  }
 }
 
 module.exports = new RestaurantRepository();

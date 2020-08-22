@@ -5,56 +5,11 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable prettier/prettier */
 const User = require("../models/user-model");
+const Repository = require("./repository");
 
-class UserRepository {
-
-    async getAll() {
-        try {
-            const users = await User.find();
-            return users;
-        } catch (err) {
-            throw new Error(err);
-        }
-    }
-
-    async getById(id) {
-        try {
-            const user = await User.findOne({ id: id }).select("+password");
-            return user;
-        } catch (err) {
-            throw new Error(err);
-        }
-    }
-
-    async create(user) {
-        try {
-            const newUser = await User.create(user);
-            return newUser;
-        } catch (err) {
-            throw new Error(err);
-        }
-    }
-
-    async update(id, user) {
-        try {
-          const updated = await User.findOneAndUpdate({ id: id }, user, { 
-            new: true,
-            runValidators: true
-          });
-          return updated;
-        }
-        catch (err) {
-          throw new Error(err);
-        }
-    }
-
-    async delete(id) {
-        try {
-          await User.findOneAndDelete({ id: id });
-        }
-        catch (err) {
-          throw new Error(err);
-        }
+class UserRepository extends Repository {
+    constructor() { 
+        super(User); 
     }
 
     async getByEmail(email) {

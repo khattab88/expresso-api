@@ -1,19 +1,58 @@
-export default class Repository {
-    constructor () {}
+/* eslint-disable prettier/prettier */
+class Repository {
+    constructor (model) {
+        this.model = model;
+    }
     
-    async getAll () { throw new Error("Not implemented yet!"); }
+    async getAll (query) { 
+        try {
+            const docs = await this.model.find(query);
+            return docs;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
     
-    async getById (id) { throw new Error("Not implemented yet!"); }
-    
-    async find (attrs) { throw new Error("Not implemented yet!"); }
+    async getById (id) { 
+        try {
+            const doc = await this.model.findOne({ id: id });
+            return doc;
+        } catch (err) {
+            throw new Error(err);
+        }
+     }
 
-    async filter (attrs) { throw new Error("Not implemented yet!"); }
+    async create (doc) { 
+        try {
+            const newDoc = await this.model.create(doc);
+            return newDoc;
+          }
+          catch (err) {
+            throw new Error(err);
+          }
+     }
 
-    async create (attrs) { throw new Error("Not implemented yet!"); }
+    async update (id, doc) { 
+        try {
+            const updated = await this.model.findOneAndUpdate({ id: id }, doc, { 
+              new: true,
+              runValidators: true
+            });
+            return updated;
+          }
+          catch (err) {
+            throw new Error(err);
+          }
+     }
 
-    async update (id, attrs) { throw new Error("Not implemented yet!"); }
-
-    async delete (id) { throw new Error("Not implemented yet!"); }
-
-    async getCount() { throw new Error("Not implemented yet!"); }
+    async delete (id) { 
+        try {
+            await this.modelfindOneAndDelete({ id: id });
+          }
+          catch (err) {
+            throw new Error(err);
+          }
+     }
 }
+
+module.exports = Repository;
