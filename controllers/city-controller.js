@@ -4,6 +4,7 @@ const cityRepo = require("../repositories/city-repository");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const City = require("../models/city-model");
+const controllerFactory = require("./controller-factory");
 
 
 exports.getAllCities = catchAsync(async (req, res, next) => {
@@ -70,15 +71,4 @@ exports.updateCity = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.deleteCity = catchAsync(async (req, res, next) => {
-    const city = await cityRepo.getById(req.params.id);
-
-    if(!city) return next(new AppError(`City with id: ${req.params.id} is not found!`, 404));
-
-    await cityRepo.delete(req.params.id);
-
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
-});
+exports.deleteCity = controllerFactory.delete(cityRepo);

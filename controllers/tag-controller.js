@@ -5,7 +5,7 @@
 const QueryBuilder = require('../repositories/query-builder');
 const Tag = require('../models/tag-model');
 const tagRepo = require('../repositories/tag-repository');
-
+const controllerFactory = require("./controller-factory");
 
 /* OBSOLETE */
 exports.checkId = (req, res, next, val) => {
@@ -143,19 +143,4 @@ exports.updateTag = async (req, res) => {
     }
 };
 
-exports.deleteTag = async (req, res) => {
-    try {
-        tagRepo.delete(req.params.id);
-
-        res.status(204).json({
-          status: 'success',
-          data: null,
-        });
-    }
-    catch(err) {
-        res.status(404).json({
-            status: 'fail',
-            message: "not found!",
-        });
-    }
-};
+exports.deleteTag = controllerFactory.delete(tagRepo);

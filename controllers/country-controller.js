@@ -2,6 +2,7 @@
 const countryRepo = require('../repositories/country-repository');
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const controllerFactory = require("./controller-factory");
 
 exports.getAllCountries = catchAsync(async (req, res, next) => {
     const countries = await countryRepo.getAll();
@@ -57,15 +58,4 @@ exports.updateCountry = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.deleteCountry = catchAsync(async (req, res, next) => {
-    const country = await countryRepo.getById(req.params.id);
-
-    if(!country) return next(new AppError(`Country with id: ${req.params.id} is not found!`, 404));
-
-    await countryRepo.delete(req.params.id);
-
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
-});
+exports.deleteCountry = controllerFactory.delete(countryRepo);

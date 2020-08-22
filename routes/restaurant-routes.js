@@ -30,6 +30,8 @@ router
     .route("/:id")
     .get(authController.protect, restaurantController.getRestaurant)
     .patch(authController.protect, authController.restrictTo("admin"),
-           restaurantController.updateRestaurant);
+           restaurantController.updateRestaurant)
+    .delete(authController.protect, authController.restrictTo("admin"),
+            restaurantController.deleteRestaurant);
 
 module.exports = router;

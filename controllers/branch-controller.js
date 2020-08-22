@@ -3,6 +3,7 @@
 const branchRepo = require('../repositories/branch-repository');
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const controllerFactory = require("./controller-factory");
 
 exports.getAllBranches = catchAsync(async (req, res, next) => {
     let branches = null;
@@ -66,15 +67,4 @@ exports.updateUser = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.deleteBranch = catchAsync(async (req, res, next) => {
-    const branch = await branchRepo.getById(req.params.id);
-
-    if(!branch) return next(new AppError(`User with id: ${req.params.id} is not found!`, 404));
-
-    await branchRepo.delete(req.params.id);
-
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
-});
+exports.deleteBranch = controllerFactory.delete(branchRepo);

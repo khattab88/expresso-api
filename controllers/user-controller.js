@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 const User = require('../models/user-model');
 const userRepo = require("../repositories/user-repository");
-
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const controllerFactory = require("./controller-factory");
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
     const users = await userRepo.getAll();
@@ -57,14 +57,4 @@ exports.updateUser = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.deleteUser = catchAsync(async (req, res, next) => {
-    const user = await userRepo.getById(req.params.id);
-    if(!user) return next(new AppError(`User with id: ${req.params.id} is not found!`, 404));
-
-    await userRepo.delete(req.params.id);
-
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
-});
+exports.deleteUser = controllerFactory.delete(userRepo);

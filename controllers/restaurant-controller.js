@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
 const Restaurant = require('../models/restaurant-model');
 const restaurantRepo = require('../repositories/restaurant-repository');
-
 const AppError = require('../utils/app-error');
 const catchAsync = require('../utils/catch-async');
-
+const controllerFactory = require("./controller-factory");
 
 exports.getTopRating = async (req, res) => {
   try {
@@ -110,3 +109,5 @@ exports.updateRestaurant = catchAsync(async (req, res, next) => {
     }
   });
 });
+
+exports.deleteRestaurant = controllerFactory.delete(restaurantRepo);

@@ -2,6 +2,7 @@
 const areaRepo = require('../repositories/area-repository');
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+const controllerFactory = require("./controller-factory");
 
 exports.getAllAreas = catchAsync(async (req, res, next) => {
     let areas = null;
@@ -66,16 +67,4 @@ exports.updateArea = catchAsync(async (req, res, next) => {
       });
 });
 
-exports.deleteArea = catchAsync(async (req, res, next) => {
-    const area = await areaRepo.getById(req.params.id);
-
-    if(!area) return next(new AppError(`Area with id: ${req.params.id} is not found!`, 404));
-
-    await areaRepo.delete(req.params.id);
-
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
-});
-
+exports.deleteArea = controllerFactory.delete(areaRepo);
