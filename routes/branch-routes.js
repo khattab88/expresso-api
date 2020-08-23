@@ -14,6 +14,10 @@ router
     .get(branchController.getBranchesWithin);
 
 router
+    .route("/distances/in/:unit/from/:location")
+    .get(branchController.getDistancesFrom);
+
+router
     .route("/")
     .get(branchController.getAllBranches)
     .post(authController.protect, authController.restrictTo("admin"),

@@ -1,5 +1,6 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
+const Branch = require("../models/branch-model");
 const branchRepo = require('../repositories/branch-repository');
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
@@ -52,5 +53,42 @@ exports.getBranchesWithin = catchAsync(async (req, res, next) => {
         status: "success",
         count: branches.length,
         data: { docs: branches }
+    });
+});
+
+exports.getDistancesFrom = catchAsync(async (req, res, next) => {
+    const { unit, location } = req.params;
+    const [ lat, lng ] = location.split(",");
+
+    const multiplier = unit === "mi" ? 0.000621371 : 0.001;
+
+    if(!lat || !lng) return next(new AppError("Please provide a valid location in this format lat,lng!", 400));
+
+    const distances = await Branch.aggregate([
+        {
+            $geoNear: {
+                near: {
+                    type: "Point",
+                    coordinates: [lng * 1, lat * 1]
+                },
+                distanceField: "distance",
+                distanceMultiplier: multiplier
+            }
+        },
+        {
+            $project: {
+                id: 1,
+                name: 1,
+                distance: 1,
+                _id: 0
+            }
+        }
+    ]);
+
+    res.status(200).json({
+        status: "success",
+        data: { 
+            distances
+        }
     });
 });
