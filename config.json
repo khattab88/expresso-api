@@ -1,5 +1,5 @@
 {
-    "env": "development",
+    "env": "staging",
     "development": {
         "dbServer": "localhost:27017",
         "dbName": "expresso",
