@@ -1,0 +1,1989 @@
+{
+	"info": {
+		"_postman_id": "61d20eb4-1419-4d0f-88af-0c6fc99f214b",
+		"name": "expresso",
+		"description": "Expresso API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "67dbb705-fb83-470f-abf8-a71a7fd3eaa9",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Mahmoud\",\r\n    \"lastName\": \"Khattab\",\r\n    \"email\": \"m.khatab.88@gmail.com\",\r\n    \"password\": \"{{password}}\",\r\n    \"passwordConfirm\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/signup",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"signup"
+							]
+						},
+						"description": "Sign Up Endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02199b01-7942-43aa-ac41-97e88361b4d9",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"m.khatab.88@gmail.com\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Up (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"admin\",\r\n    \"lastName\": \"admin\",\r\n    \"email\": \"admin@expresso.com\",\r\n    \"password\": \"{{password}}\",\r\n    \"passwordConfirm\": \"{{password}}\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/signup",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d9f9c5de-fde0-4ee4-9984-3d94d5129709",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@expresso.com\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"m.khatab.88@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/forgotPassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c6bbd4b-2d1c-4582-a1e0-e836637b7694",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"0123456789\",\r\n    \"passwordConfirm\": \"0123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/resetPassword/659959315293cd30509bd0f09114f8c50645891c4791ac88ed35d38accf1d5a7",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"resetPassword",
+								"659959315293cd30509bd0f09114f8c50645891c4791ac88ed35d38accf1d5a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8cb03cf-49e3-42db-b8df-bd57b6e77d0c",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currentPassword\": \"{{password}}\",\r\n    \"newPassword\": \"{{password}}\",\r\n    \"newPasswordConfirm\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/changePassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/auth/me",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Mahmoud\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/auth/updateMe",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"updateMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/auth/deactivate",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Only for securtity related stuff.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00709c64-e0fb-4510-9bdd-b54528fc3dee",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f63f596-1e5a-4607-9529-67f45b1480cc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Mahmoud\",\r\n    \"lastName\": \"Khattab\",\r\n    \"email\": \"m.khatab.88@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"passwordConfirm\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/1f227f4b-0778-4e2a-b11b-8846c0d7dc8c",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"1f227f4b-0778-4e2a-b11b-8846c0d7dc8c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastName\": \"mohammed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/1bb293f1-bf44-41b2-a8cc-1cf030a0f57f",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"1bb293f1-bf44-41b2-a8cc-1cf030a0f57f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/c9e36795-eef6-4cf5-894a-29fe9b9a7d09",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"c9e36795-eef6-4cf5-894a-29fe9b9a7d09"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Countries",
+			"item": [
+				{
+					"name": "Get All Countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/countries",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Country By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/countries/a9a31c15-3886-4217-a097-ef4159952c33",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries",
+								"a9a31c15-3886-4217-a097-ef4159952c33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Craete Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"USA\",\r\n    \"alias\": \"us\",\r\n    \"image\": \"https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/us.svg\",\r\n    \"currency\": \"USD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/countries",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"United States\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/countries/80bd939b-eeed-412a-925a-b97b3e2e2cb9",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries",
+								"80bd939b-eeed-412a-925a-b97b3e2e2cb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/countries/7b8087c1-6da5-4cd9-a5f2-a3ddb224d856",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries",
+								"7b8087c1-6da5-4cd9-a5f2-a3ddb224d856"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cities",
+			"item": [
+				{
+					"name": "Get All Cities",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/cities",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get City By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/cities/ad637ba7-6273-4944-b2f2-f866be27fe2e",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities",
+								"ad637ba7-6273-4944-b2f2-f866be27fe2e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dubai\",\r\n    \"country\": \"09ab080e-0f72-4729-9286-08cac24e983a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/cities",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test city\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/cities/00c5f366-7698-46c7-9f7d-3b252f2aff56",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities",
+								"00c5f366-7698-46c7-9f7d-3b252f2aff56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/cities/00c5f366-7698-46c7-9f7d-3b252f2aff56",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities",
+								"00c5f366-7698-46c7-9f7d-3b252f2aff56"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Countries/Cities",
+			"item": [
+				{
+					"name": "Create City on Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Burj Zayed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/countries/09ab080e-0f72-4729-9286-08cac24e983a/cities",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries",
+								"09ab080e-0f72-4729-9286-08cac24e983a",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cities By Country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/countries/09ab080e-0f72-4729-9286-08cac24e983a/cities",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"countries",
+								"09ab080e-0f72-4729-9286-08cac24e983a",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Areas",
+			"item": [
+				{
+					"name": "Get All Areas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/areas",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"areas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Area By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/areas/c51a1407-0605-46b2-ae1a-fb7452f958ba",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"areas",
+								"c51a1407-0605-46b2-ae1a-fb7452f958ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Area",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Smouha\",\r\n    \"city\": \"f92b2df5-1e60-456d-ab6a-565e7b447df9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/areas",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"areas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Area",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Agamy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/areas/2ac4e158-e87f-48bf-b283-b2a800b68fcc",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"areas",
+								"2ac4e158-e87f-48bf-b283-b2a800b68fcc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Area",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/areas/2ac4e158-e87f-48bf-b283-b2a800b68fcc",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"areas",
+								"2ac4e158-e87f-48bf-b283-b2a800b68fcc"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cities/Areas",
+			"item": [
+				{
+					"name": "Create Area on City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Business Bay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/cities/2f7c7c17-dfba-4a2b-a7b8-99666256da2b/areas",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities",
+								"2f7c7c17-dfba-4a2b-a7b8-99666256da2b",
+								"areas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Areas By City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/cities/cc4e6c90-0129-4280-a539-09e9b312afe4/areas",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"cities",
+								"cc4e6c90-0129-4280-a539-09e9b312afe4",
+								"areas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Get All Tags",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Moroccan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tag By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags/fc454087-0036-4b92-ac64-e2ebac5acb5e",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"fc454087-0036-4b92-ac64-e2ebac5acb5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mexican\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags/a44ede95-1f57-4eb5-95a5-4cd939ef6efc",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"a44ede95-1f57-4eb5-95a5-4cd939ef6efc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Moroccan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags/51621745-717a-4e9a-a756-16f9b65268c1",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"51621745-717a-4e9a-a756-16f9b65268c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags (filtering)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags?name=American",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "American",
+									"description": "tag name"
+								},
+								{
+									"key": "number[gte]",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags (sorting)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags?sort=-name,id",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "-name,id",
+									"description": "sort parameter"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags (fields)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"23\",\r\n    \"name\": \"Egyptian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tags?fields=id,name",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags (paging)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tags?page=3&pagesize=10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								},
+								{
+									"key": "pagesize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Popular tags (alias)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tags/popular",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags (limiting)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tags?limit=20",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Get All Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurants Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/stats",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top n Restaurants (Rating)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/top/10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"top",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Restaurant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 4.5,\r\n    \"tags\": [\r\n        \"Offers\",\r\n        \"American\",\r\n        \"Burgers\",\r\n        \"Fast Food\",\r\n        \"Sandwiches\"\r\n    ],\r\n    \"name\": \"TEST RESTAURANT\",\r\n    \"slogan\": \"testslogan\",\r\n    \"deliveryTime\": 65,\r\n    \"deliveryFee\": 15,\r\n    \"specialOffers\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurant By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/b2165acd-4148-47b8-a60f-ab12e8296547",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"b2165acd-4148-47b8-a60f-ab12e8296547"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Restaurant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 5.6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/9bc2cfb6-55d7-4bac-8582-3895e72d1f44",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"9bc2cfb6-55d7-4bac-8582-3895e72d1f44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Restaurant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/b2165acd-4148-47b8-a60f-ab12e8296547",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"b2165acd-4148-47b8-a60f-ab12e8296547"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Branches",
+			"item": [
+				{
+					"name": "Get All Branches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/branches",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Branch By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/branches/f62590f1-1990-4281-a3c5-ceb2176f8798",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"f62590f1-1990-4281-a3c5-ceb2176f8798"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Craete Branch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"KFC - Mohandessien\",\r\n    \"area\": \"8ac4d22b-8fe2-4855-bc50-43b4a32ef2ce\",\r\n    \"restaurant\": \"5f3b63c81daa8a21f07c60e2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/branches",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Branch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mc'Donalds - DownTown\",\r\n    \"location\": {\r\n        \"coordinates\": [\r\n            \"31.241114\",\r\n            \"30.051978\"\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/branches/c4a0636c-c90a-46ac-b0d2-657e82f905ca",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"c4a0636c-c90a-46ac-b0d2-657e82f905ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Branch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/branches/7be5c964-b9db-4b75-b81a-86fc18723982",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"7be5c964-b9db-4b75-b81a-86fc18723982"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Branches Within Distance (from location)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/branches/within/11/km/center/29.986994,31.149467",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"within",
+								"11",
+								"km",
+								"center",
+								"29.986994,31.149467"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Branches Distances (from location)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/branches/distances/in/km/from/29.986994,31.149467",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"distances",
+								"in",
+								"km",
+								"from",
+								"29.986994,31.149467"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Restaurants/Branches",
+			"item": [
+				{
+					"name": "Create Branch on Restaurant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mc'Donalds - Heliopolis\",\r\n    \"area\": \"80a8c4cb-b738-4026-b16e-4a70ba895ae3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/5f3ce0706fda963f4405f6e3/branches",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"5f3ce0706fda963f4405f6e3",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Branches By Restaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/restaurants/b2165acd-4148-47b8-a60f-ab12e8296547/branches",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"b2165acd-4148-47b8-a60f-ab12e8296547",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1c2b56a4-610a-4f2f-bf77-a232611d0eae",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4928fc27-c467-4576-ab10-3fb61a3ec345",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
