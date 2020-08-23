@@ -35,3 +35,22 @@ exports.createBranch = controllerFactory.create(branchRepo);
 exports.updateUser = controllerFactory.update(branchRepo);
 
 exports.deleteBranch = controllerFactory.delete(branchRepo);
+
+exports.getBranchesWithin = catchAsync(async (req, res, next) => {
+    const { distance, unit, location } = req.params;
+    const [ lat, lng ] = location.split(",");
+
+    const radius = unit === "mi" ? distance / 3963.2 : distance / 6378.1;
+
+    if(!lat || !lng) return next(new AppError("Please provide a valid location in this format lat,lng!", 400));
+
+    const branches = await branchRepo.getAll({ 
+        location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } } 
+    });
+
+    res.status(200).json({
+        status: "success",
+        count: branches.length,
+        data: { docs: branches }
+    });
+});

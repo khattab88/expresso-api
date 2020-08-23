@@ -7,6 +7,12 @@ const router = express.Router({ mergeParams: true});
 const branchController = require('../controllers/branch-controller');
 const authController = require('../controllers/auth-controller');
 
+
+//  /branches/within/5/km/center/29.986994,31.149467
+router
+    .route("/within/:distance/:unit/center/:location")
+    .get(branchController.getBranchesWithin);
+
 router
     .route("/")
     .get(branchController.getAllBranches)
