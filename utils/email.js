@@ -2,17 +2,17 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 const nodemailer = require('nodemailer');
-const config = require("../config.json");
+const config = require("../config");
 
 // Dev Mail Server: https://mailtrap.io/inboxes/1025540/messages
 const sendEmailDev = async options => {
     // 1. create a transporter
     const transporter = nodemailer.createTransport({
-        host: config.development.email.host,
+        host: config.email.host,
         //port: config.development.email.port,
         auth: {
-            user: config.development.email.address,
-            pass: config.development.email.password
+            user: config.email.address,
+            pass: config.email.password
         }
     });
 
@@ -32,10 +32,10 @@ const sendEmailDev = async options => {
 const sendEmailProd = async options => {
      // 1. create a transporter
      const transporter = nodemailer.createTransport({
-        service: config.staging.email.host,
+        service: config.email.host,
         auth: {
-            user: config.staging.email.address,
-            pass: config.staging.email.password
+            user: config.email.address,
+            pass: config.email.password
         }
         // ACTIVATE in Gmail "less secure app" option
         // https://nodemailer.com/usage/using-gmail/
