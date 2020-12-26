@@ -70,6 +70,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
     const token = signToken(user.id);
 
+    setTokenCookie(res, token);
+
     res.status(200).json({
         status: 'success',
         token: token,
@@ -178,6 +180,8 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 4. log user in, send JWT
     const jwtToken = signToken(user.id);
 
+    setTokenCookie(res, jwtToken);
+
     res.status(200).json({
         status: 'success',
         token: jwtToken,
@@ -204,6 +208,8 @@ exports.changePassword = catchAsync(async (req, res, next) => {
 
     // 4. log user in => send JWT
     const jwtToken = signToken(user.id);
+
+    setTokenCookie(res, jwtToken);
 
     res.status(200).json({
         status: 'success',
