@@ -8,6 +8,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -34,6 +35,8 @@ app.use(helmet());
 
 app.use(bodyParser.json({ limit: "100kb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -76,6 +79,7 @@ app.options('*', cors());
 // Test Middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
+    console.log(req.cookies);
     next();
 }); 
 
