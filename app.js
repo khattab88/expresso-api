@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
 const hpp = require("hpp");
+const cors = require("cors");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -60,14 +61,17 @@ const limiter = rateLimit({
 app.use("/api/", limiter);
 
 // Enabling CORS
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    // console.log(req.headers);
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//     // console.log(req.headers);
 
-    next();
-});
+//     next();
+// });
+
+app.use(cors());
+app.options('*', cors());
 
 // Test Middleware
 app.use((req, res, next) => {
