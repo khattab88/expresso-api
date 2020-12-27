@@ -31,6 +31,29 @@ const setTokenCookie = (res, token) => {
     res.cookie('jwt', token, cookieOptions);
 };
 
+const sendResponseWithCookie = (user, statusCode, req, res) => {
+    const token = signToken(user.id);
+
+    res.cookie('jwt', token, {
+        expires: new Date(
+          Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true,
+        secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
+      });
+    
+      // Remove password from output
+      user.password = undefined;
+    
+      res.status(statusCode).json({
+        status: 'success',
+        token,
+        data: {
+          user
+        }
+      });
+};
+
 exports.signup = catchAsync(async (req, res) => {
     // const newUser = await userRepo.create({
     //     firstName: req.body.firstName,
@@ -42,17 +65,8 @@ exports.signup = catchAsync(async (req, res) => {
     // });
 
     const newUser = await userRepo.create(req.body);
-    newUser.password = undefined;
 
-    const token = signToken(newUser.id);
-
-    setTokenCookie(res, token);
-
-    res.status(201).json({
-        status: 'success',
-        token,
-        data: { user: newUser }
-    });
+    sendResponseWithCookie(newUser, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -65,18 +79,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
     const correctPassword = await user.isCorrectPassword(user.password, password);
     if(!correctPassword) return next(new AppError("Wrong password entered!", 401));
-    user.password = undefined;
-    // console.log(user);
 
-    const token = signToken(user.id);
-
-    setTokenCookie(res, token);
-
-    res.status(200).json({
-        status: 'success',
-        token: token,
-        data: { user }
-    });
+    sendResponseWithCookie(user, 200, req, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -178,15 +182,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 3. update passwordChangedAt property for user
 
     // 4. log user in, send JWT
-    const jwtToken = signToken(user.id);
-
-    setTokenCookie(res, jwtToken);
-
-    res.status(200).json({
-        status: 'success',
-        token: jwtToken,
-        //data: { user }
-    }); 
+    sendResponseWithCookie(user, 200, req, res);
 });
 
 exports.changePassword = catchAsync(async (req, res, next) => {
@@ -207,14 +203,7 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     await user.save();
 
     // 4. log user in => send JWT
-    const jwtToken = signToken(user.id);
-
-    setTokenCookie(res, jwtToken);
-
-    res.status(200).json({
-        status: 'success',
-        token: jwtToken
-    });
+    sendResponseWithCookie(user, 200, req, res);
 });
 
 exports.getMe = (req, res, next) => {
