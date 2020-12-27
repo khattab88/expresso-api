@@ -14,12 +14,53 @@ const sendEmail = require("../utils/email");
 const helper = require("../utils/helper");
 
 
+exports.protect = catchAsync(async (req, res, next) => {
+    let token;
+
+    // get token from authorization header
+    if(
+        req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+        token = req.cookies.jwt
+    }
+
+    if(!token) return next(new AppError("You are not logged in!", 401));
+
+    // verify token
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    
+    // check if user still exists
+    const user = await userRepo.getById(decoded.id);
+    if(!user) return next(new AppError("User is no longer exists", 401));
+
+    // check if user changed password, after token issued
+    if(user.hasPasswordChangedAfter(decoded.iat)) {
+        return next(new AppError("User recently changed password, please login again!", 401));
+    };
+
+    // next() => grant access to protected route
+    req.user = user;
+    next();
+});
+
+exports.restrictTo = (...roles) => {
+    return (req, res, next) => {
+        // Roles: ["user", "admin"]
+        if(!roles.includes(req.user.role)) return next(new AppError("You don't have a sufficient permission!", 403));
+
+        next();
+    };
+};
+
+
 const signToken = id => {
     return jwt.sign({ id: id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES
     });
 };
 
+/* OBSOLETE - TO BE DELETED */
 const setTokenCookie = (res, token) => {
     const cookieOptions = {
         expires: new Date(Date.now() + (process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000)),
@@ -54,6 +95,7 @@ const sendResponseWithCookie = (user, statusCode, req, res) => {
       });
 };
 
+
 exports.signup = catchAsync(async (req, res) => {
     // const newUser = await userRepo.create({
     //     firstName: req.body.firstName,
@@ -82,42 +124,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
     sendResponseWithCookie(user, 200, req, res);
 });
-
-exports.protect = catchAsync(async (req, res, next) => {
-    let token;
-
-    // get token from authorization header
-    if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
-        token = req.headers.authorization.split(' ')[1];
-    }
-
-    if(!token) return next(new AppError("You are not logged in!", 401));
-
-    // verify token
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    
-    // check if user still exists
-    const user = await userRepo.getById(decoded.id);
-    if(!user) return next(new AppError("User is no longer exists", 401));
-
-    // check if user changed password, after token issued
-    if(user.hasPasswordChangedAfter(decoded.iat)) {
-        return next(new AppError("User recently changed password, please login again!", 401));
-    };
-
-    // next() => grant access to protected route
-    req.user = user;
-    next();
-});
-
-exports.restrictTo = (...roles) => {
-    return (req, res, next) => {
-        // Roles: ["user", "admin"]
-        if(!roles.includes(req.user.role)) return next(new AppError("You don't have a sufficient permission!", 403));
-
-        next();
-    };
-};
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
     // 1. get user based on posted Email
