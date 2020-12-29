@@ -18,24 +18,24 @@ exports.protect = catchAsync(async (req, res, next) => {
     let token;
 
     // get token from authorization header
-    if(
+    if (
         req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(' ')[1];
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt
     }
 
-    if(!token) return next(new AppError("You are not logged in!", 401));
+    if (!token) return next(new AppError("You are not logged in!", 401));
 
     // verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    
+
     // check if user still exists
     const user = await userRepo.getById(decoded.id);
-    if(!user) return next(new AppError("User is no longer exists", 401));
+    if (!user) return next(new AppError("User is no longer exists", 401));
 
     // check if user changed password, after token issued
-    if(user.hasPasswordChangedAfter(decoded.iat)) {
+    if (user.hasPasswordChangedAfter(decoded.iat)) {
         return next(new AppError("User recently changed password, please login again!", 401));
     };
 
@@ -47,7 +47,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.restrictTo = (...roles) => {
     return (req, res, next) => {
         // Roles: ["user", "admin"]
-        if(!roles.includes(req.user.role)) return next(new AppError("You don't have a sufficient permission!", 403));
+        if (!roles.includes(req.user.role)) return next(new AppError("You don't have a sufficient permission!", 403));
 
         next();
     };
@@ -67,32 +67,34 @@ const setTokenCookie = (res, token) => {
         httpOnly: true
     };
 
-    if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+    if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
     res.cookie('jwt', token, cookieOptions);
 };
 
-const sendResponseWithCookie = (user, statusCode, req, res) => {
+const sendResponseWithCookie = (user, statusCode, res) => {
     const token = signToken(user.id);
 
-    res.cookie('jwt', token, {
+    const cookieOptions = {
         expires: new Date(
-          Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
         ),
-        httpOnly: true,
-        secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
-      });
-    
-      // Remove password from output
-      user.password = undefined;
-    
-      res.status(statusCode).json({
+        httpOnly: true
+    };
+    if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+
+    res.cookie('jwt', token, cookieOptions);
+
+    // Remove password from output
+    user.password = undefined;
+
+    res.status(statusCode).json({
         status: 'success',
         token,
         data: {
-          user
+            user
         }
-      });
+    });
 };
 
 
@@ -108,27 +110,27 @@ exports.signup = catchAsync(async (req, res) => {
 
     const newUser = await userRepo.create(req.body);
 
-    sendResponseWithCookie(newUser, 201, req, res);
+    sendResponseWithCookie(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
 
-    if(!email || !password) return next(new AppError("Please provide email and password!", 400));
+    if (!email || !password) return next(new AppError("Please provide email and password!", 400));
 
     const user = await userRepo.getByEmail(email);
-    if(!user) return next(new AppError("Email not found!", 404));
+    if (!user) return next(new AppError("Email not found!", 404));
 
     const correctPassword = await user.isCorrectPassword(user.password, password);
-    if(!correctPassword) return next(new AppError("Wrong password entered!", 401));
+    if (!correctPassword) return next(new AppError("Wrong password entered!", 401));
 
-    sendResponseWithCookie(user, 200, req, res);
+    sendResponseWithCookie(user, 200, res);
 });
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
     // 1. get user based on posted Email
     const user = await userRepo.getByEmail(req.body.email);
-    if(!user) return next(new AppError("There is no user with such email address!", 404));
+    if (!user) return next(new AppError("There is no user with such email address!", 404));
 
     // 2. generate reset token
     const resetToken = user.createPasswordResetToken();
@@ -167,14 +169,14 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 1. get user based on reset token value
     const resetToken = req.params.token;
     const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-    
-    const user = await userRepo.getByFieldValue({passwordResetToken: hashedToken});
 
-    if(!user) {
+    const user = await userRepo.getByFieldValue({ passwordResetToken: hashedToken });
+
+    if (!user) {
         return next(new AppError("Invalid token!", 400));
     }
 
-    if(user.passwordResetExpires < Date.now()) {
+    if (user.passwordResetExpires < Date.now()) {
         return next(new AppError("Expired token!", 400));
     }
 
@@ -188,7 +190,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 3. update passwordChangedAt property for user
 
     // 4. log user in, send JWT
-    sendResponseWithCookie(user, 200, req, res);
+    sendResponseWithCookie(user, 200, res);
 });
 
 exports.changePassword = catchAsync(async (req, res, next) => {
@@ -197,9 +199,9 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     //console.log(user);
 
     // 2. check if POSTed password is correct
-    if(!user) return next(new AppError("User not found!", 404));
+    if (!user) return next(new AppError("User not found!", 404));
 
-    if(!(await user.isCorrectPassword(user.password, req.body.currentPassword))) {
+    if (!(await user.isCorrectPassword(user.password, req.body.currentPassword))) {
         return next(new AppError("Incorrect password!", 401));
     }
 
@@ -209,7 +211,7 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     await user.save();
 
     // 4. log user in => send JWT
-    sendResponseWithCookie(user, 200, req, res);
+    sendResponseWithCookie(user, 200, res);
 });
 
 exports.getMe = (req, res, next) => {
@@ -219,17 +221,17 @@ exports.getMe = (req, res, next) => {
 
 exports.updateMe = catchAsync(async (req, res, next) => {
     // 1. create error if user POSTed password data (no password updtaes)
-    if(req.body.password || req.body.passwordConfirm) {
+    if (req.body.password || req.body.passwordConfirm) {
         return next(new AppError("Can not update password via this route, please use /changePassword instead!", 400));
     }
 
-    
+
     // 2. filter out fields that not allowed to be updated
     const filteredBody = helper.filterObject(req.body, "firstName", "lastName", "email");
 
     // 3. update user data
     const updatedUser = await userRepo.update(req.user.id, filteredBody);
-    
+
     res.status(200).json({
         status: 'success',
         data: { updatedUser }
@@ -237,7 +239,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 });
 
 exports.deactivate = catchAsync(async (req, res, next) => {
-    await userRepo.update(req.user.id, { active: false});
+    await userRepo.update(req.user.id, { active: false });
 
     res.status(204).json({
         status: 'success',
