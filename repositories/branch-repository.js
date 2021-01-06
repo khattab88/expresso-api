@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 const Branch = require('../models/branch-model');
+const Restaurant = require('../models/restaurant-model');
 const Repository = require("./repository");
 
 class BranchRepository extends Repository{
@@ -9,8 +10,10 @@ class BranchRepository extends Repository{
 
   async getByRestaurantId(restaurantId) {
     try {
-      const cities = await Branch.find({ "restaurant.id": restaurantId });
-      return cities;
+      // const branches = await Branch.find({ "restaurant.id": restaurantId });
+      const restaurant = await Restaurant.findOne({ id: restaurantId });
+      const restaurantBranches = await Branch.find({ restaurant: restaurant._id });
+      return restaurantBranches;
     }
     catch(err) {
       throw new Error(err);

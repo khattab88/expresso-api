@@ -8,7 +8,7 @@
     "start:dev": "set NODE_ENV=development&& set APP_ENV=development&& nodemon server.js",
     "start:stag": "set NODE_ENV=production&& set APP_ENV=staging&& node server.js",
     "start:prod": "set NODE_ENV=production&& set APP_ENV=production&& node server.js",
-    "debug": "ndb server.js"
+    "debug": "set NODE_ENV=development&& set APP_ENV=development&& nodemon --inspect server.js"
   },
   "author": "",
   "license": "ISC",
