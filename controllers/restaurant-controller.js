@@ -12,43 +12,49 @@ exports.getTopRating = async (req, res) => {
     const top = await restaurantRepo.getTopRating(count);
 
     res.status(200).json({
-        status: 'success',
-        count: top.length,
-        data: {
-          top: top,
-        },
+      status: 'success',
+      count: top.length,
+      data: {
+        top: top,
+      },
     });
   } catch (err) {
     res.status(500).json({
       status: 'fail',
       message: err.message,
-  });
+    });
   }
 };
 
 exports.getStats = async (req, res) => {
-    try {
-        const stats = await restaurantRepo.getStats();
+  try {
+    const stats = await restaurantRepo.getStats();
 
-        res.status(200).json({
-            status: 'success',
-            data: {
-              stats: stats,
-            },
-        });
-    } catch (err) {
-        res.status(500).json({
-            status: 'fail',
-            message: err.message,
-        });
-    }
+    res.status(200).json({
+      status: 'success',
+      data: {
+        stats: stats,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
 };
 
 exports.getAllRestaurants = controllerFactory.getAll(Restaurant, restaurantRepo);
-  
+
 exports.getRestaurant = controllerFactory.getById(restaurantRepo);
 
-exports.createRestaurant = controllerFactory.create(restaurantRepo);
+exports.createRestaurant = () => {
+
+  controllerFactory.create(restaurantRepo);
+
+  //TODO: create menu after restaurant creation
+
+};
 
 exports.updateRestaurant = controllerFactory.update(restaurantRepo);
 
