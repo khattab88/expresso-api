@@ -16,13 +16,15 @@ const globalErorrHandler = require("./controllers/error-controller");
 const cityRouter = require("./routes/city-routes");
 const restaurantRouter = require("./routes/restaurant-routes");
 const tagRouter = require("./routes/tag-routes");
-const menuRouter = require("./routes/menu-routes");
 const userRouter = require("./routes/user-routes");
 const authRouter = require("./routes/auth-routes");
 const branchRouter = require("./routes/branch-routes");
 const areaRouter = require("./routes/area-routes");
 const countryRouter = require("./routes/country-routes");
 const orderRoutes = require("./routes/order-routes");
+const menuRouter = require("./routes/menu-routes");
+const menuSectionRouter = require("./routes/menuSection-routes");
+const menuItemRouter = require("./routes/menuItem-routes");
 
 const app = express();
 
@@ -90,13 +92,15 @@ app.use((req, res, next) => {
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/restaurants", restaurantRouter);
 app.use("/api/v1/tags", tagRouter);
-app.use("/api/v1/menus", menuRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/branches", branchRouter);
 app.use("/api/v1/areas", areaRouter);
 app.use("/api/v1/countries", countryRouter);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/menus", menuRouter);
+app.use("/api/v1/menusections", menuSectionRouter);
+app.use("/api/v1/menuitems", menuItemRouter);
 
 /* ROOT ROUTE */
 app.get("/", (req, res) => {

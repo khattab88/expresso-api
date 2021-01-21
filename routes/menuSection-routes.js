@@ -2,21 +2,22 @@
 const express = require('express');
 const router = express.Router();
 
-const menuController = require('../controllers/menu-controller');
+const menuSectionController = require('../controllers/menuSection-controller');
 const authController = require('../controllers/auth-controller');
+
 
 router
     .route('/')
-    .get(menuController.getAllMenus)
+    .get(menuSectionController.getAllMenuSections)
     .post(authController.protect, authController.restrictTo("admin"),
-          menuController.createMenu);
+          menuSectionController.createMenuSection);
 
 router
     .route("/:id")
-    .get(menuController.getMenu)
+    .get(menuSectionController.getMenuSection)
     .patch(authController.protect, authController.restrictTo("admin"),
-           menuController.updateMenu)
+           menuSectionController.updateMenuSection)
     .delete(authController.protect, authController.restrictTo("admin"),
-            menuController.deleteMenu);
+            menuSectionController.deleteMenuSection);
 
 module.exports = router;
