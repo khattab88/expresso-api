@@ -5,6 +5,7 @@ const slugify = require('slugify');
 const validator = require('validator')
 
 const Tag = require('./tag-model');
+const Menu = require('./menu-model');
 
 const restaurantSchema = new mongoose.Schema({
     id: {
@@ -62,61 +63,7 @@ const restaurantSchema = new mongoose.Schema({
     //         message: "Level is either A, B or C!"
     //     }
     // }
-    menu: {
-        id: {
-            type: String,
-            default: uuidv4,
-            unique: true,
-        },
-        menuSections: [
-            {
-                id: {
-                    type: String,
-                    default: uuidv4,
-                    unique: true,
-                },
-                name: String,
-                menuItems: [
-                    {
-                        id: {
-                            type: String,
-                            default: uuidv4,
-                            unique: true,
-                        },
-                        name: String,
-                        price: Number,
-                        description: String,
-                        image: String,
-                        options: [
-                            {
-                                id: {
-                                    type: String,
-                                    default: uuidv4,
-                                    unique: true,
-                                },
-                                name: String,
-                                type: {
-                                    type: String,
-                                    enum: ["Required", "Optional"]
-                                },
-                                optionItems: [
-                                    {
-                                        id: {
-                                            type: String,
-                                            default: uuidv4,
-                                            unique: true,
-                                        },
-                                        name: String,
-                                        value: Number
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+    // menu: Object
 }, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
