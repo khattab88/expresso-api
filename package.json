@@ -8,11 +8,14 @@
     "start:dev": "set NODE_ENV=development&& set APP_ENV=development&& nodemon server.js",
     "start:stag": "set NODE_ENV=production&& set APP_ENV=staging&& node server.js",
     "start:prod": "set NODE_ENV=production&& set APP_ENV=production&& node server.js",
-    "debug": "set NODE_ENV=development&& set APP_ENV=development&& nodemon --inspect server.js"
+    "debug": "set NODE_ENV=development&& set APP_ENV=development&& nodemon --inspect server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -31,6 +34,7 @@
     "mongoose": "^5.9.23",
     "morgan": "^1.10.0",
     "nodemailer": "^6.4.11",
+    "pug": "^3.0.0",
     "slugify": "^1.4.4",
     "stripe": "^8.132.0",
     "uuid": "^8.2.0",
@@ -48,6 +52,7 @@
     "eslint-plugin-react": "^7.20.3",
     "ndb": "^1.1.5",
     "nodemon": "^2.0.4",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5"
   }
 }

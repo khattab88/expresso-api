@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
@@ -13,6 +14,7 @@ const cookieParser = require("cookie-parser");
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
 
+const viewRouter = require('./routes/view-routes')
 const cityRouter = require("./routes/city-routes");
 const restaurantRouter = require("./routes/restaurant-routes");
 const tagRouter = require("./routes/tag-routes");
@@ -34,8 +36,18 @@ console.log(process.env.NODE_ENV);
 
 /* GLOBAL MIDDLEWARES */
 
+// setting view engine
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+// Serving static files
+app.use(express.static(`${__dirname}/public`));
+
 // Setting security HTTP headers
-app.use(helmet());
+app.use(
+    helmet({
+        contentSecurityPolicy: false // VERY BAD: disabling content security policy
+}));
 
 app.use(bodyParser.json({ limit: "100kb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -50,9 +62,6 @@ app.use(xssClean());
 
 // prevent http parameter pollution
 app.use(hpp());
-
-// Serving static files
-app.use(express.static(`${__dirname}/public`));
 
 // Development Logging
 if(process.env.NODE_ENV === "development") {
@@ -80,6 +89,18 @@ app.use("/api/", limiter);
 app.use(cors());
 app.options('*', cors());
 
+// Allow loading external images 
+// https://stackoverflow.com/questions/21048252/nodejs-where-exactly-can-i-put-the-content-security-policy
+app.use((req, res, next) => {
+    //res.setHeader("Content-Security-Policy", "img-src 'self' https://cdnjs.cloudflare.com");
+    //res.setHeader("Content-Security-Policy", "worker-src 'self' https://api.mapbox.com");
+    //res.setHeader("Content-Security-Policy", "img-src 'self' https://api.mapbox.com");
+    //res.set("Content-Security-Policy", "default-src 'self'");
+
+    next();
+});
+
+
 // Test Middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
@@ -90,6 +111,8 @@ app.use((req, res, next) => {
 
 
 /* ROUTERS */
+app.use("/views", viewRouter);
+
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/countries", countryRouter);
