@@ -19,6 +19,10 @@ const orderSchema = new mongoose.Schema({
         type: Object,
         required: [true, "Order must be associated with a user!"]
     },
+    paid: {
+        type: Boolean,
+        default: true
+    },
     orderItems: Array
 });
 

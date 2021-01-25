@@ -20,8 +20,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // 2) create checkout session
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        success_url: "http://127.0.0.1:3000/",
-        cancel_url: "http://127.0.0.1:3000/orders",
+        success_url: `http://127.0.0.1:3000/orders/?order=${req.params.orderId}`,
+        cancel_url: "http://127.0.0.1:3000/orders/",
         customer_email: req.user.email,
         client_reference_id: req.params.orderId,
         line_items: [{
@@ -50,6 +50,17 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         status: 'success',
         session
     });
+});
+
+/* TEMPORARY CODE */
+exports.createCheckoutOrder = catchAsync(async (req, res, next) => {
+    const { order } = req.query;
+
+    if(!order) return next();
+
+    await orderRepo.create(order);
+
+    res.redirect(req.originalUrl.split("?")[0]);
 });
 
 exports.createOrder = controllerFactory.create(orderRepo);
