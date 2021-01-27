@@ -32,7 +32,8 @@ const orderItemRouter = require("./routes/orderItem-routes");
 
 const app = express();
 
-console.log(process.env.NODE_ENV);
+console.log("NODE_ENV: " + process.env.NODE_ENV);
+console.log("APP_ENV: " + process.env.APP_ENV);
 
 
 /* GLOBAL MIDDLEWARES */
@@ -107,7 +108,7 @@ app.use(compression());
 // Test Middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
-    console.log("cookies:", req.cookies);
+    // console.log("cookies:", req.cookies);
 
     next();
 }); 
