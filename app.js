@@ -32,6 +32,8 @@ const orderItemRouter = require("./routes/orderItem-routes");
 
 const app = express();
 
+app.enable("trust proxy");
+
 console.log("NODE_ENV: " + process.env.NODE_ENV);
 console.log("APP_ENV: " + process.env.APP_ENV);
 
