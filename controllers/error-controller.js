@@ -54,7 +54,9 @@ const sendErrorProd = (err, res) => {
             // message: "Something went wrong!"
             status: err.status,
             message: err.message,
-            error: err
+            error: err,
+            stack: err.stack,
+            statusCode: err.statusCode
         });
     }
 };
