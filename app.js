@@ -11,6 +11,9 @@ const hpp = require("hpp");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const { graphqlHTTP } = require("express-graphql");
+const graphqlSchema = require("./graphql/schema");
+const graphqlResolver = require("./graphql/resolver");
 
 const AppError = require("./utils/app-error");
 const globalErorrHandler = require("./controllers/error-controller");
@@ -106,6 +109,12 @@ app.use((req, res, next) => {
 
 // enable response compression
 app.use(compression());
+
+// GraphQl
+app.use("/graphql", graphqlHTTP({
+    schema: graphqlSchema,
+    rootValue: graphqlResolver
+}));
 
 // Test Middleware
 app.use((req, res, next) => {
