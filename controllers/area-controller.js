@@ -1,13 +1,17 @@
 /* eslint-disable prettier/prettier */
-const areaRepo = require('../repositories/area-repository');
+
+// const areaRepo = require('../repositories/area-repository');
+const { areaRepository: areaRepo } = require('expresso-repositories');
+
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
+
 const controllerFactory = require("./controller-factory");
 
 exports.getAllAreas = catchAsync(async (req, res, next) => {
     let areas = null;
 
-    if(req.params.cityId) {
+    if (req.params.cityId) {
         areas = await areaRepo.getByCityId(req.params.cityId);
     } else {
         areas = await areaRepo.getAll();
@@ -22,10 +26,11 @@ exports.getAllAreas = catchAsync(async (req, res, next) => {
 
 exports.getArea = controllerFactory.getById(areaRepo);
 
+
 exports.setCityId = (req, res, next) => {
     // allow nested routes
-    if(!req.body.city) req.body.city = req.params.cityId;
-    
+    if (!req.body.city) req.body.city = req.params.cityId;
+
     next();
 };
 

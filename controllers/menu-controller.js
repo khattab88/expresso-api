@@ -1,7 +1,12 @@
 /* eslint-disable prettier/prettier */
-const Menu = require('../models/menu-model');
-const menuRepo = require('../repositories/menu-repository');
+
+// const Menu = require('../models/menu-model');
+const { Menu } = require('expresso-models');
+// const menuRepo = require('../repositories/menu-repository');
+const { menuRepository: menuRepo } = require('expresso-repositories');
+
 const controllerFactory = require("./controller-factory");
+const catchAsync = require("../utils/catch-async");
 
 exports.getAllMenus = controllerFactory.getAll(Menu, menuRepo);
 

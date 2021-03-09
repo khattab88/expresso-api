@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */
-const User = require('../models/user-model');
-const userRepo = require("../repositories/user-repository");
+
+// const User = require('../models/user-model');
+// const { User } = require('expresso-models');
+// const userRepo = require("../repositories/user-repository");
+const { userRepository: userRepo } = require('expresso-repositories');
+
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const controllerFactory = require("./controller-factory");

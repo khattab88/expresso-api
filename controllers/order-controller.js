@@ -5,8 +5,11 @@ const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const controllerFactory = require("./controller-factory");
 
-const Order = require("../models/order-model");
-const orderRepo = require("../repositories/order-repository");
+// const Order = require("../models/order-model");
+// const { Order } = require('expresso-models');
+// const orderRepo = require("../repositories/order-repository");
+const { orderRepository: orderRepo, orderItemRepository: orderItemRepo } = require('expresso-repositories');
+
 
 /* 
 USING HERE AN OLD STRIPE API (V.7)

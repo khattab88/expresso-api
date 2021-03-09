@@ -1,9 +1,14 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
-const cityRepo = require("../repositories/city-repository");
+
+// const City = require("../models/city-model");
+// const { City } = require('expresso-models');
+// const cityRepo = require("../repositories/city-repository");
+const { cityRepository: cityRepo } = require("expresso-repositories");
+
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
-const City = require("../models/city-model");
+
 const controllerFactory = require("./controller-factory");
 
 

@@ -21,7 +21,6 @@ const globalErorrHandler = require("./controllers/error-controller");
 const viewRouter = require('./routes/view-routes')
 const cityRouter = require("./routes/city-routes");
 const restaurantRouter = require("./routes/restaurant-routes");
-const tagRouter = require("./routes/tag-routes");
 const userRouter = require("./routes/user-routes");
 const authRouter = require("./routes/auth-routes");
 const branchRouter = require("./routes/branch-routes");
@@ -32,6 +31,7 @@ const menuRouter = require("./routes/menu-routes");
 const menuSectionRouter = require("./routes/menuSection-routes");
 const menuItemRouter = require("./routes/menuItem-routes");
 const orderItemRouter = require("./routes/orderItem-routes");
+const tagRouter = require("./routes/tag-routes");
 
 const app = express();
 
@@ -133,7 +133,6 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/countries", countryRouter);
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/areas", areaRouter);
-app.use("/api/v1/tags", tagRouter);
 app.use("/api/v1/restaurants", restaurantRouter);
 app.use("/api/v1/branches", branchRouter);
 app.use("/api/v1/menus", menuRouter);
@@ -141,6 +140,7 @@ app.use("/api/v1/menusections", menuSectionRouter);
 app.use("/api/v1/menuitems", menuItemRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/orderitems", orderItemRouter);
+app.use("/api/v1/tags", tagRouter);
 
 /* ROOT ROUTE */
 app.get("/", (req, res) => {

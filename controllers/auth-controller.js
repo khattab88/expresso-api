@@ -7,7 +7,9 @@ const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 
-const userRepo = require("../repositories/user-repository");
+// const userRepo = require("../repositories/user-repository");
+const { userRepository: userRepo } = require("expresso-repositories");
+
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const sendEmail = require("../utils/email");

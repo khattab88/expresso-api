@@ -2,10 +2,18 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
-const QueryBuilder = require('../repositories/query-builder');
-const Tag = require('../models/tag-model');
-const tagRepo = require('../repositories/tag-repository');
+
+// const Tag = require('../models/tag-model');
+const { Tag } = require("expresso-models");
+// const tagRepo = require('../repositories/tag-repository');
+const { tagRepository: tagRepo } = require('expresso-repositories');
+
+// const QueryBuilder = require('../repositories/query-builder');
+// const { QueryBuilder } = require('expresso-repositories');
+
 const controllerFactory = require("./controller-factory");
+
+const catchAsync = require("../utils/catch-async");
 
 /* OBSOLETE */
 exports.checkId = (req, res, next, val) => {

@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
-const OrderItem = require('../models/orderItem-model');
-const orderItemRepo = require('../repositories/orderItem-repository');
+
+// const OrderItem = require('../models/orderItem-model');
+const { OrderItem } = require('expresso-models');
+// const orderItemRepo = require('../repositories/orderItem-repository');
+const { orderItemRepository: orderItemRepo } = require('expresso-repositories');
 const controllerFactory = require("./controller-factory");
+const catchAsync = require("../utils/catch-async");
 
 exports.getAllOrderItems = controllerFactory.getAll(OrderItem, orderItemRepo);
 

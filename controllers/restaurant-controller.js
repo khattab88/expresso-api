@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */
-const Restaurant = require('../models/restaurant-model');
-const restaurantRepo = require('../repositories/restaurant-repository');
+
+// const Restaurant = require('../models/restaurant-model');
+const { Restaurant } = require("expresso-models");
+// const restaurantRepo = require('../repositories/restaurant-repository');
+const { restaurantRepository: restaurantRepo } = require('expresso-repositories');
+
 const AppError = require('../utils/app-error');
 const catchAsync = require('../utils/catch-async');
 const controllerFactory = require("./controller-factory");

@@ -1,7 +1,11 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable prettier/prettier */
-const Branch = require("../models/branch-model");
-const branchRepo = require('../repositories/branch-repository');
+
+// const Branch = require("../models/branch-model");
+// const { Branch } = require("expresso-models");
+// const branchRepo = require('../repositories/branch-repository');
+const { branchRepository: branchRepo } = require('expresso-repositories');
+
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const controllerFactory = require("./controller-factory");
@@ -64,26 +68,27 @@ exports.getDistancesFrom = catchAsync(async (req, res, next) => {
 
     if(!lat || !lng) return next(new AppError("Please provide a valid location in this format lat,lng!", 400));
 
-    const distances = await Branch.aggregate([
-        {
-            $geoNear: {
-                near: {
-                    type: "Point",
-                    coordinates: [lng * 1, lat * 1]
-                },
-                distanceField: "distance",
-                distanceMultiplier: multiplier
-            }
-        },
-        {
-            $project: {
-                id: 1,
-                name: 1,
-                distance: 1,
-                _id: 0
-            }
-        }
-    ]);
+    const distances = [];
+    // const distances = await Branch.aggregate([
+    //     {
+    //         $geoNear: {
+    //             near: {
+    //                 type: "Point",
+    //                 coordinates: [lng * 1, lat * 1]
+    //             },
+    //             distanceField: "distance",
+    //             distanceMultiplier: multiplier
+    //         }
+    //     },
+    //     {
+    //         $project: {
+    //             id: 1,
+    //             name: 1,
+    //             distance: 1,
+    //             _id: 0
+    //         }
+    //     }
+    // ]);
 
     res.status(200).json({
         status: "success",
