@@ -32,6 +32,7 @@ const menuSectionRouter = require("./routes/menuSection-routes");
 const menuItemRouter = require("./routes/menuItem-routes");
 const orderItemRouter = require("./routes/orderItem-routes");
 const tagRouter = require("./routes/tag-routes");
+const categoryRouter = require("./routes/category-routes");
 
 const app = express();
 
@@ -141,6 +142,7 @@ app.use("/api/v1/menuitems", menuItemRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/orderitems", orderItemRouter);
 app.use("/api/v1/tags", tagRouter);
+app.use("/api/v1/categories", categoryRouter);
 
 /* ROOT ROUTE */
 app.get("/", (req, res) => {
