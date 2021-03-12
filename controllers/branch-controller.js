@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 
 // const Branch = require("../models/branch-model");
-const { Branch } = require("expresso-models");
+const { Branch, Tag } = require("expresso-models");
 // const branchRepo = require('../repositories/branch-repository');
 const { branchRepository: branchRepo } = require('expresso-repositories');
 
@@ -21,6 +21,12 @@ exports.getAllBranches = catchAsync(async (req, res, next) => {
     } 
     else {
         branches = await branchRepo.getAll();
+    }
+
+    for(let branch of branches) {
+        const tagPromises = branch.restaurant.tags.map(async tag => await Tag.findOne({ "id": tag }));
+
+        branch.restaurant.tags = await Promise.all(tagPromises);
     }
 
     res.status(200).json({
