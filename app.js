@@ -80,7 +80,7 @@ if(process.env.NODE_ENV === "development") {
 
 // Limiting requests from same IP address
 const limiter = rateLimit({
-    max: 100,
+    max: 1000,
     windowMs: 60 * 60 * 1000,
     message: "Too many requests from this IP, please try again in a hour!"
 });
