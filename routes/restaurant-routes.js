@@ -3,10 +3,11 @@
 const express = require('express');
 const router = express.Router();
 
+const branchRouter = require('./branch-routes');
+
 const restaurantController = require('../controllers/restaurant-controller');
 const authController = require('../controllers/auth-controller');
 
-const branchRouter = require('./branch-routes');
 
 // GET /restaurants/35kjh0/branches
 // POST /restaurants/35kjh0/branches

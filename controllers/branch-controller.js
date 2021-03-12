@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 
 // const Branch = require("../models/branch-model");
-// const { Branch } = require("expresso-models");
+const { Branch } = require("expresso-models");
 // const branchRepo = require('../repositories/branch-repository');
 const { branchRepository: branchRepo } = require('expresso-repositories');
 
@@ -15,7 +15,11 @@ exports.getAllBranches = catchAsync(async (req, res, next) => {
 
     if(req.params.restaurantId) {
         branches = await branchRepo.getByRestaurantId(req.params.restaurantId);
-    } else {
+    }
+    else if(req.params.areaId) {
+        branches = await Branch.find({ "area.id": req.params.areaId });
+    } 
+    else {
         branches = await branchRepo.getAll();
     }
 

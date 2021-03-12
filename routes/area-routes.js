@@ -4,8 +4,14 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
+const branchRouter = require('./branch-routes');
+
 const areaController = require('../controllers/area-controller');
 const authController = require('../controllers/auth-controller');
+
+// GET /areas/35kjh0/branches
+// POST /areas/35kjh0/branches
+router.use("/:areaId/branches", branchRouter);
 
 router
     .route("/")
