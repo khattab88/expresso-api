@@ -1,9 +1,10 @@
 /* eslint-disable import/newline-after-import */
 /* eslint-disable prettier/prettier */
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const branchRouter = require('./branch-routes');
+const menuRouter = require('./menu-routes');
 
 const restaurantController = require('../controllers/restaurant-controller');
 const authController = require('../controllers/auth-controller');
@@ -12,6 +13,9 @@ const authController = require('../controllers/auth-controller');
 // GET /restaurants/35kjh0/branches
 // POST /restaurants/35kjh0/branches
 router.use("/:restaurantId/branches", branchRouter);
+
+// GET /restaurants/35kjh0/menus
+router.use("/:restaurantId/menus", menuRouter);
 
 router
     .route("/top/:count")

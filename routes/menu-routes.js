@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const menuController = require('../controllers/menu-controller');
 const authController = require('../controllers/auth-controller');
