@@ -27,4 +27,8 @@ router
     .delete(authController.protect, authController.restrictTo("admin"), 
             areaController.deleteArea);
 
+router
+    .route("/getbyslug/:slug")
+    .get(areaController.getAreaBySlug);
+
 module.exports = router;
