@@ -9,6 +9,7 @@
     "start:stag": "set NODE_ENV=production&& set APP_ENV=staging&& node server.js",
     "start:prod": "set NODE_ENV=production&& set APP_ENV=production&& node server.js",
     "debug": "set NODE_ENV=development&& set APP_ENV=development&& nodemon --inspect server.js",
+    "debug:stag": "set NODE_ENV=production&& set APP_ENV=staging&& nodemon --inspect server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "test": "mocha"
