@@ -229,10 +229,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
 
     // 2. filter out fields that not allowed to be updated
-    const filteredBody = helper.filterObject(req.body, "firstName", "lastName", "email");
+    // const filteredBody = helper.filterObject(req.body, "firstName", "lastName", "email");
 
     // 3. update user data
-    const updatedUser = await userRepo.update(req.user.id, filteredBody);
+    const updatedUser = await userRepo.update(req.user.id, req.body);
 
     res.status(200).json({
         status: 'success',
