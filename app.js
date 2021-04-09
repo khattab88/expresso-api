@@ -35,6 +35,7 @@ const tagRouter = require("./routes/tag-routes");
 const categoryRouter = require("./routes/category-routes");
 const menuItemOptionRouter = require("./routes/menuItemOption-routes");
 const menuItemOptionItemRouter = require("./routes/menuItemOptionItem-routes");
+const addressRouter = require("./routes/address-routes");
 
 const app = express();
 
@@ -131,8 +132,9 @@ app.use((req, res, next) => {
 /* ROUTERS */
 app.use("/views", viewRouter);
 
-app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/addresses", addressRouter);
 app.use("/api/v1/countries", countryRouter);
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/areas", areaRouter);
