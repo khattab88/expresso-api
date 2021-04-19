@@ -60,7 +60,7 @@ app.use(
         contentSecurityPolicy: false // VERY BAD: disabling content security policy
 }));
 
-app.use(bodyParser.json({ limit: "100kb" })); // for parsing application/json
+app.use(bodyParser.json({ limit: "500kb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(cookieParser());
@@ -87,7 +87,7 @@ const limiter = rateLimit({
 });
 app.use("/api/", limiter);
 
-// Enabling CORS
+// // Enabling CORS
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "*");
 //     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");

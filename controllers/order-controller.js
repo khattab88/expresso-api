@@ -59,13 +59,34 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 exports.createCheckoutOrder = catchAsync(async (req, res, next) => {
     const { order } = req.query;
 
-    if(!order) return next();
+    if (!order) return next();
 
     await orderRepo.create(order);
 
     res.redirect(req.originalUrl.split("?")[0]);
 });
 
-exports.createOrder = controllerFactory.create(orderRepo);
+// exports.createOrder = controllerFactory.create(orderRepo);
+
+exports.createOrder = catchAsync(async (req, res, next) => {
+    const orderData = req.body;
+
+    //1. create order
+    const order = await orderRepo.create(orderData);
+
+    //2. create order items
+    if (orderData.orderItems) {
+        const orderItemsPromises = orderData.orderItems.forEach(async oi => {
+            oi.order = order._id;
+            await orderItemRepo.create(oi);
+        });
+    }
+
+    res.status(201).json({
+        status: "success",
+        data: { doc: order }
+    });
+});
+
 exports.getOrder = controllerFactory.getById(orderRepo);
 exports.updateOrder = controllerFactory.update(orderRepo);

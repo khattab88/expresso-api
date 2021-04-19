@@ -7,9 +7,9 @@ const router = express.Router();
 const orderController = require('../controllers/order-controller');
 const authController = require('../controllers/auth-controller');
 
-router.get("/checkout-session/:orderId", 
-            authController.protect,
-            orderController.getCheckoutSession);
+// router.get("/checkout-session/:orderId", 
+//             authController.protect,
+//             orderController.getCheckoutSession);
 
 router
     .route("/")
