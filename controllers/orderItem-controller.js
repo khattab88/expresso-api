@@ -16,7 +16,8 @@ exports.getAllOrderItems = catchAsync(async (req, res, next) => {
         const order = await orderRepo.getById(req.params.orderId);
         orderItems = await OrderItem.find({ "order": order._id });
     } else {
-        orderItems = await orderItemRepo.getAll();
+        // orderItems = await orderItemRepo.getAll();
+        orderItems = [];
     }
 
     res.status(200).json({
