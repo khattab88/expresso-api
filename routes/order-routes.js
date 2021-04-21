@@ -4,6 +4,8 @@
 const express = require('express');
 const router = express.Router();
 
+const orderItemRouter = require('./orderItem-routes');
+
 const orderController = require('../controllers/order-controller');
 const authController = require('../controllers/auth-controller');
 
@@ -11,13 +13,18 @@ const authController = require('../controllers/auth-controller');
 //             authController.protect,
 //             orderController.getCheckoutSession);
 
+router.use(authController.protect);
+
+// GET /orders/35kjh0/orderitems
+router.use("/:orderId/orderitems", orderItemRouter);
+
 router
     .route("/")
-    .post(authController.protect, orderController.createOrder);
+    .post(orderController.createOrder);
 
 router
     .route("/:id")
-    .get(authController.protect, orderController.getOrder)
-    .patch(authController.protect, orderController.updateOrder);
+    .get(orderController.getOrder)
+    .patch(orderController.updateOrder);
 
 module.exports = router;
