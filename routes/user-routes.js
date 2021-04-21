@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const addressRouter = require('./address-routes');
-// const orderRouter = require('./order-routes');
+const orderRouter = require('./order-routes');
 
 const userController = require('../controllers/user-controller');
 const authController = require('../controllers/auth-controller');
@@ -17,7 +17,7 @@ router.use(authController.protect);
 router.use("/:userId/addresses", addressRouter);
 
 // GET /users/35kjh0/orders
-// router.use("/:userId/orders", orderRouter);
+router.use("/:userId/orders", orderRouter);
 
 // Admin Only Routes
 router.use(authController.restrictTo("admin"));

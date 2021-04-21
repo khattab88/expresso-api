@@ -2,7 +2,7 @@
 /* eslint-disable import/newline-after-import */
 /* eslint-disable prettier/prettier */
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const orderItemRouter = require('./orderItem-routes');
 
@@ -20,6 +20,7 @@ router.use("/:orderId/orderitems", orderItemRouter);
 
 router
     .route("/")
+    .get(orderController.getAllOrders)
     .post(orderController.createOrder);
 
 router

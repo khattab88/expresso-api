@@ -6,9 +6,9 @@ const AppError = require("../utils/app-error");
 const controllerFactory = require("./controller-factory");
 
 // const Order = require("../models/order-model");
-// const { Order } = require('expresso-models');
+const { Order } = require('expresso-models');
 // const orderRepo = require("../repositories/order-repository");
-const { orderRepository: orderRepo, orderItemRepository: orderItemRepo } = require('expresso-repositories');
+const { orderRepository: orderRepo, orderItemRepository: orderItemRepo, userRepository: userRepo } = require('expresso-repositories');
 
 
 /* 
@@ -66,7 +66,21 @@ exports.createCheckoutOrder = catchAsync(async (req, res, next) => {
     res.redirect(req.originalUrl.split("?")[0]);
 });
 
-// exports.createOrder = controllerFactory.create(orderRepo);
+exports.getAllOrders = catchAsync(async (req, res, next) => {
+    let orders = [];
+
+    if(req.params.userId) {
+        const user = await userRepo.getById(req.params.userId);
+
+        orders = await Order.find({ user: user._id });
+    }
+
+    res.status(200).json({
+        status: "success",
+        count: orders.length,
+        data: { docs: orders }
+    });
+});
 
 exports.createOrder = catchAsync(async (req, res, next) => {
     const orderData = req.body;
